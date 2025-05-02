@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <table border="1">
+    <caption><h2>TABLA COMBINACION FILAS-COLUMNAS</h2></caption>
+    <tr>
+        <th>celda1</th>
+        <th>celda2</th>
+        <th>celda3</th>
+        <th>celda4</th>
+    </tr>
+    <tr>
+        <td rowspan="3">Celda5</td>
+        <td>Celda6</td>
+        <td colspan="2">Celda7</td>
+    </tr>
+    <tr>
+        <td>Celda8</td>
+        <td>Celda9</td>
+        <td rowspan="2">Celda10</td>
+    </tr>
+    <tr>
+        <td colspan="2">Celda11</td>
+    </tr>
+  
+    <!--
+    
+    tr=filas 
+    
+    th= 1er numero de datos por fila 
+    
+    td= datos por fila (después de th)
+    
+    COMBINACIONES:
+
+    colspan (combinar columnas); rowspan (combinar filas) =son atributos
+    
+    
+    -->
+</table>
+
+<caption><h3>Tabla anidada</h3></caption>
+<table border="1">
+
+ <tr>
+    <td>Celda</td>
+    <td>Celda</td>
+    <td><table border="1">
+        <tr>
+            <td>Celda</td>
+            <td>Celda</td>
+            <td>Celda</td>
+        </tr>
+        <tr>
+            <td>Celda</td>
+            <td>Celda</td>
+            <td>Celda</td>
+        </tr>
+        <tr>
+            <td>Celda</td>
+            <td>Celda</td>
+            <td>Celda</td>
+        </tr>
+
+    </table></td>
+
+ </tr>
+ <tr>
+    <td>Celda</td>
+    <td>Celda</td>
+    <td>Celda</td>
+
+ </tr>
+ <tr>
+    <td>Celda</td>
+    <td>Celda</td>
+    <td>Celda</td>
+
+ </tr>
+
+
+
+
+</table>
+
+
+
+
+
+
+
+
+</body>
+</html>
