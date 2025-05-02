@@ -1,0 +1,136 @@
+
+
+
+
+# Resumen: Estándares Web, Versiones y Clasificación
+
+## Introducción a los Estándares Web
+
+En esta clase del 14 de marzo de 2025, el profesor Mario explica la importancia de los estándares web, su evolución y clasificación, centrándose en cómo estos han permitido el desarrollo estructurado de Internet y las aplicaciones web modernas.
+
+### ¿Qué son los estándares web?
+
+Los estándares web son normas y especificaciones que definen cómo deben funcionar las tecnologías web. El profesor destaca que estos estándares:
+
+- **Normalizan y establecen marcos de trabajo** para el desarrollo web
+- **Garantizan la compatibilidad** entre diferentes plataformas y navegadores
+- **Evitan la fragmentación** de la experiencia web
+- **Permiten la accesibilidad** para personas con discapacidades
+
+## Organismos que gestionan los estándares web
+
+El profesor menciona los principales organismos que desarrollan y mantienen los estándares web:
+
+1. **W3C (World Wide Web Consortium)**: Principal organización que desarrolla estándares para HTML, CSS, XML, etc.
+2. **ISO (International Organization for Standardization)**: Organización que establece estándares internacionales en diversos campos, incluyendo tecnologías web.
+3. **ECMA International**: Organización que estandariza JavaScript (ECMAScript).
+4. **IETF (Internet Engineering Task Force)**: Desarrolla y promueve estándares de Internet, como HTTP y URL.
+
+## Evolución de los estándares web
+
+El profesor explica cómo los estándares web han evolucionado significativamente:
+
+- **Las primeras webs** eran muy básicas y carecían de interactividad
+- **La evolución de HTML y CSS** ha permitido diseños más sofisticados
+- **La incorporación de JavaScript** añadió interactividad y funcionalidad
+- **Los estándares modernos** permiten crear aplicaciones web complejas comparables a aplicaciones nativas
+
+### Ejemplos de evolución:
+
+El profesor muestra ejemplos de cómo las páginas web han evolucionado desde diseños muy simples y poco atractivos a interfaces sofisticadas y altamente funcionales gracias a los estándares web.
+
+## Clasificación de los principales estándares web
+
+### 1. Estándares de Estructura
+
+**HTML (HyperText Markup Language)**:
+- Define la estructura del contenido web
+- Ha evolucionado desde versiones simples hasta HTML5
+- Permite organizar el contenido de forma semántica
+
+**XML (eXtensible Markup Language)**:
+- Estándar para almacenar y transportar datos
+- Base para otros lenguajes de marcado
+- Permite crear estructuras de datos personalizadas
+
+**Markdown**:
+- Aunque no es un estándar oficial, el profesor menciona su utilidad
+- Usado para formatear texto de forma sencilla
+- Útil para documentación y repositorios Git
+
+### 2. Estándares de Presentación
+
+**CSS (Cascading Style Sheets)**:
+- Controla la presentación visual de las páginas web
+- Ha evolucionado con nuevas características como flexbox, grid, animaciones
+- Existen variantes como SASS y SCSS que amplían sus capacidades
+
+**SVG (Scalable Vector Graphics)**:
+- Estándar para gráficos vectoriales
+- Permite crear imágenes que se escalan sin pérdida de calidad
+- Optimiza la carga de imágenes en sitios web
+
+### 3. Estándares de Comportamiento
+
+**JavaScript/ECMAScript**:
+- Estandarizado por ECMA International
+- Permite añadir interactividad y funcionalidad a las webs
+- Ha evolucionado significativamente con cada nueva versión
+
+### 4. Estándares de Comunicación
+
+**HTTP/HTTPS**:
+- Protocolos para la transferencia de datos en la web
+- HTTPS añade seguridad mediante cifrado
+- Fundamental para la navegación web
+
+**API REST**:
+- Estándar para la comunicación entre sistemas
+- Permite el consumo de servicios web
+- Muy utilizado en desarrollo de aplicaciones modernas
+
+### 5. Estándares de Accesibilidad
+
+**WCAG (Web Content Accessibility Guidelines)**:
+- Garantiza que las webs sean accesibles para personas con discapacidades
+- El profesor menciona su experiencia implementándolo en proyectos gubernamentales
+- Incluye pautas para personas con limitaciones visuales, auditivas, etc.
+
+## Importancia del SEO y los estándares
+
+El profesor enfatiza la relación entre los estándares web y el posicionamiento en buscadores:
+
+- **Los sitios que siguen estándares** tienen mejor posicionamiento
+- **La estructura semántica correcta** mejora el SEO
+- **La accesibilidad** también influye en el ranking
+
+## Introducción práctica a CSS
+
+En la segunda parte de la clase, el profesor inicia una introducción práctica a CSS:
+
+1. **Creación de estructura de carpetas**:
+   - Organización del proyecto con carpeta para estilos (styles o estilos)
+   - Separación de HTML y CSS en archivos diferentes
+
+2. **Vinculación de CSS con HTML**:
+   ```html
+   <link rel="stylesheet" href="styles/styles.css">
+   ```
+
+3. **Explicación de rutas relativas**:
+   - La importancia de usar rutas relativas en lugar de absolutas
+   - Problemas comunes al transferir a servidores remotos
+
+4. **Conceptos básicos**:
+   - Clases CSS para estilizar elementos
+   - Selectores para identificar elementos específicos
+
+## Conclusión y recomendaciones
+
+El profesor concluye destacando:
+
+- La importancia de entender los estándares web para desarrollar correctamente
+- Que seguir estándares no solo mejora la calidad técnica sino también la experiencia de usuario y el SEO
+- La constante evolución de los estándares y la necesidad de mantenerse actualizado
+
+La clase termina con el profesor mencionando que continuará con más detalles sobre HTML y CSS en la siguiente sesión, para asegurarse de cubrir todas las etiquetas y conceptos importantes antes de avanzar a temas más complejos.

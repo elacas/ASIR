@@ -1,0 +1,194 @@
+
+
+
+
+# Resumen: Elaboración de Documentos HTML Bien Formados - Ejercicios Prácticos
+
+## Elementos Avanzados de HTML
+
+En esta tutoría, el profesor Mario amplía los conocimientos sobre HTML trabajando con elementos más avanzados y mostrando cómo crear documentos correctamente estructurados. El enfoque principal está en la práctica de elementos que no se vieron en la clase teórica anterior.
+
+### División de Contenido con DIV
+
+El elemento `<div>` es fundamental para organizar el contenido en contenedores:
+
+```html
+<div>
+  <p>Este es un párrafo dentro de un div</p>
+</div>
+```
+
+**Explicación del profesor sobre el DIV:**
+- Sirve como contenedor para agrupar elementos
+- No tiene apariencia visual propia sin CSS
+- Permite dividir la página en secciones para aplicar estilos específicos
+- Es útil para separar contenido temáticamente
+
+**Ejemplo práctico**: El profesor demuestra cómo un párrafo dentro de un DIV puede separarse visualmente de otros elementos cuando se aplica CSS, aunque sin estilos aún no se aprecia la diferencia.
+
+### Texto con Formato Especial
+
+```html
+<p>Este es un <span>texto en línea</span> con formato especial</p>
+<p>Este es un texto con <em>énfasis</em> en algunas palabras</p>
+<p>Este es un texto con <strong>negrita</strong> para destacar</p>
+```
+
+**Características explicadas:**
+- `<span>`: Contenedor en línea para aplicar estilos a fragmentos de texto
+- `<em>`: Texto con énfasis (normalmente en cursiva)
+- `<strong>`: Texto importante o destacado (normalmente en negrita)
+
+### Líneas Horizontales y Separación
+
+```html
+<p>Contenido separado por una línea horizontal</p>
+<hr>
+<p>Otro contenido separado</p>
+```
+
+El profesor muestra cómo las líneas horizontales (`<hr>`) pueden utilizarse para crear separaciones visuales entre secciones de contenido.
+
+### Organización de Página con Header, Footer y Aside
+
+```html
+<header>
+  <h1>Encabezado principal</h1>
+  <nav>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#acercade">Acerca de</a></li>
+    </ul>
+  </nav>
+</header>
+
+<aside>
+  <h2>Información adicional</h2>
+  <p>Contenido que no tiene que ver con mi propósito inicial</p>
+</aside>
+
+<footer>
+  <p>© 2025 - Información de contacto</p>
+</footer>
+```
+
+**Explicación de los elementos:**
+
+1. **Header**: 
+   - Contiene la cabecera de la página con el título principal
+   - Ideal para incluir el menú de navegación
+   - Elemento semántico que ayuda al SEO
+
+2. **Aside**:
+   - Para contenido relacionado pero independiente del principal
+   - Ejemplo: publicidad, enlaces relacionados, información complementaria
+   - El profesor muestra ejemplos de periódicos online donde se usa para mostrar noticias adicionales
+
+3. **Footer**:
+   - Pie de página con información de contacto, derechos de autor, enlaces a redes sociales
+   - El profesor señala que es "la última oportunidad de captar al usuario antes de que abandone la página"
+
+### Listas de Definición
+
+```html
+<dl>
+  <dt>Término 1</dt>
+  <dd>Santi Aldama: campeón del mundo</dd>
+  
+  <dt>Término 2</dt>
+  <dd>Lewis Hamilton: siete veces campeón del mundo</dd>
+</dl>
+```
+
+**Componentes explicados:**
+- `<dl>`: Lista de definición completa
+- `<dt>`: Término a definir
+- `<dd>`: Descripción o definición del término
+
+El profesor muestra cómo este tipo de lista es ideal para presentar términos y sus definiciones, mencionando que tiene un formato visual específico que la distingue de las listas normales.
+
+### Figure y Figcaption para Imágenes
+
+```html
+<figure>
+  <img src="img/hamilton.jpg" alt="Lewis Hamilton">
+  <figcaption>Lewis Hamilton, 7 veces campeón del mundo</figcaption>
+</figure>
+```
+
+**Ventajas explicadas:**
+- `<figure>` agrupa contenido relacionado (imagen)
+- `<figcaption>` proporciona un pie de foto descriptivo
+- Mejora la accesibilidad y el SEO
+- Permite asociar claramente una descripción con una imagen
+
+### Details y Summary para Contenido Desplegable
+
+```html
+<details>
+  <summary>Haz clic para ver más información</summary>
+  <p>Este sería mi contenido adicional</p>
+</details>
+```
+
+El profesor demuestra cómo esta combinación crea un elemento desplegable nativo en HTML sin necesidad de JavaScript, ideal para mostrar información adicional sin ocupar espacio permanente en la página.
+
+### Article para Contenido Independiente
+
+```html
+<article>
+  <h2>Título del artículo</h2>
+  <p>Contenido del artículo que puede existir independientemente</p>
+</article>
+```
+
+**Explicación del profesor:**
+- Ideal para contenido que podría existir independientemente (noticias, blogs, comentarios)
+- Mejora el SEO al indicar que es contenido principal
+- El profesor menciona que sitios como The New York Times utilizan sistemas CMS como WordPress para gestionar este tipo de contenido
+
+## Consejos Prácticos
+
+Durante la tutoría, el profesor dio varios consejos prácticos:
+
+1. **Organización de código**: 
+   - Utilizar tabulaciones para mejorar la legibilidad
+   - Usar combinaciones de teclas como Ctrl+Shift+F para formatear automáticamente
+
+2. **Prueba constante**:
+   - Usar Live Server para ver los cambios en tiempo real
+   - Guardar frecuentemente para comprobar el resultado visual
+
+3. **Uso de IDs y estructura**:
+   - Crear una buena estructura desde el principio facilitará añadir CSS posteriormente
+   - Los IDs deben ser significativos y relacionados con el contenido
+
+4. **Archivos y carpetas**:
+   - Organizar imágenes en carpetas específicas (img/)
+   - Mantener una estructura de archivos ordenada
+
+5. **SEO y accesibilidad**:
+   - Utilizar elementos semánticos mejora el posicionamiento en buscadores
+   - Añadir atributos alt a las imágenes
+   - Estructura jerárquica lógica con encabezados
+
+## Ejemplo Práctico Completo
+
+El profesor va construyendo progresivamente una página web de ejemplo durante la tutoría, incorporando todos los elementos mencionados. La página incluye:
+
+- Un encabezado con menú de navegación
+- Secciones con contenido diverso (textos, imágenes, listas)
+- Elementos interactivos como details/summary
+- Un aside con información adicional
+- Un footer con información de contacto
+
+Aunque la página es visualmente simple sin CSS, el profesor enfatiza que la estructura HTML correcta es fundamental antes de aplicar estilos, y anima a los estudiantes a guardar este ejemplo para añadirle CSS posteriormente.
+
+## Conclusión
+
+El profesor finaliza recordando que la práctica es fundamental para dominar HTML:
+- Repasando repetidamente los elementos hasta memorizarlos
+- Construyendo páginas de práctica para reforzar conocimientos
+- Consultando la documentación (como MDN) para profundizar
+
+También menciona que subirá todos los ejemplos vistos en clase para que los estudiantes puedan revisarlos y practicar con ellos.

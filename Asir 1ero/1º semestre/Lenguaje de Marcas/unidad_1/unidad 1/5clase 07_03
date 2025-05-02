@@ -1,0 +1,177 @@
+
+
+
+
+# Resumen: Elaboración de Documentos HTML Bien Formados
+
+## Introducción a los documentos HTML bien formados
+
+En esta clase, el profesor Mario explica los principios fundamentales para crear documentos HTML bien estructurados, comenzando con una breve parte teórica seguida de una extensa práctica. El enfoque principal está en la correcta aplicación de la sintaxis HTML y la jerarquía de elementos.
+
+### ¿Qué es un documento HTML bien formado?
+
+Un documento HTML bien formado es aquel que:
+- Sigue correctamente la sintaxis del lenguaje HTML
+- Tiene las etiquetas debidamente abiertas y cerradas
+- Respeta la jerarquía de elementos
+- Utiliza los atributos de manera apropiada
+
+El profesor destaca que incluso la estructura básica creada con `<!DOCTYPE html>` ya constituye un documento bien formado cuando se siguen estas reglas.
+
+## Reglas para crear documentos HTML bien formados
+
+### 1. Etiquetas correctamente cerradas
+
+**Regla fundamental:** Si abres una etiqueta, ciérrala (a menos que sea una etiqueta que se cierra automáticamente).
+
+**Ejemplos de mala práctica:**
+```html
+<p>Este texto no se cierra
+<b><i>Texto en negrita e itálica</b></i> <!-- Orden incorrecto -->
+```
+
+**Ejemplos de buena práctica:**
+```html
+<p>Este texto sí se cierra correctamente</p>
+<b><i>Texto en negrita e itálica</i></b> <!-- Orden correcto -->
+```
+
+### 2. Jerarquía correcta
+
+El profesor enfatiza que es fundamental respetar la jerarquía lógica de los elementos:
+- No se debe colocar una celda de tabla fuera de una tabla
+- Los elementos anidados deben cerrarse en orden inverso al que se abrieron
+
+### 3. Atributos correctamente utilizados
+
+Los atributos deben:
+- Estar asignados a las etiquetas apropiadas
+- Estar correctamente escritos (entre comillas)
+- Tener valores válidos
+
+## Práctica de elementos HTML fundamentales
+
+Durante la parte práctica de la clase, el profesor realiza un recorrido por los elementos HTML básicos, explicando su uso y sintaxis:
+
+### 1. Encabezados (h1-h6)
+
+```html
+<h1>Encabezado de nivel uno</h1>
+<h2>Encabezado de nivel dos</h2>
+<h3>Encabezado de nivel tres</h3>
+<h4>Encabezado de nivel cuatro</h4>
+<h5>Encabezado de nivel cinco</h5>
+<h6>Encabezado de nivel seis</h6>
+```
+
+El profesor destaca que los encabezados solo existen hasta el nivel 6 (h6) y que tienen una jerarquía descendente de tamaño.
+
+### 2. Párrafos
+
+```html
+<p>Este es un párrafo de texto.</p>
+```
+
+### 3. Enlaces
+
+```html
+<a href="https://www.marca.com">Marca</a>
+```
+
+El profesor enfatiza la importancia de:
+- Utilizar la etiqueta `<a>` para los enlaces
+- Incluir el atributo `href` con la URL completa (protocolo incluido)
+- Colocar texto visible entre las etiquetas
+
+### 4. Imágenes
+
+```html
+<img src="img/luis.jpg" alt="Lewis Hamilton">
+```
+
+Se muestra cómo:
+- Organizar imágenes en una carpeta separada (img)
+- Utilizar tanto rutas relativas como URLs
+- Incluir siempre el atributo `alt` para accesibilidad y SEO
+
+### 5. Listas
+
+**Lista desordenada:**
+```html
+<ul>
+  <li>Ir a comprar patatas</li>
+  <li>Madrid 2 - Atlético de Madrid 1</li>
+</ul>
+```
+
+**Lista ordenada:**
+```html
+<ol>
+  <li>Ganar al Atleti</li>
+  <li>Ganar al Barcelona</li>
+  <li>Ganar al Liverpool</li>
+  <li>En la final ganar al Benfica</li>
+</ol>
+```
+
+El profesor explica la diferencia entre ambos tipos de listas:
+- Desordenada (ul): elementos sin secuencia específica
+- Ordenada (ol): elementos con secuencia específica (numerada)
+
+### 6. Tablas
+
+```html
+<table>
+  <tr>
+    <th>Fila 1</th>
+    <th>Fila 2</th>
+    <th>Fila 3</th>
+  </tr>
+  <tr>
+    <td>Equipo 1</td>
+    <td>Equipo 2</td>
+    <td>Equipo 3</td>
+  </tr>
+</table>
+```
+
+Se explican los elementos de la tabla:
+- `<table>`: contenedor principal
+- `<tr>`: filas (table row)
+- `<th>`: celdas de encabezado (table header)
+- `<td>`: celdas de datos (table data)
+
+### 7. Formularios
+
+```html
+<form action="guardar_datos.php">
+  Nombre: <input type="text" id="nombre" name="nombre">
+  <input type="submit" value="Enviar">
+</form>
+```
+
+El profesor muestra los componentes básicos de un formulario:
+- `<form>`: contenedor con atributo `action` para el destino de los datos
+- `<input>`: campos para introducir información
+  - Con atributo `type` para definir el tipo de entrada
+  - Con atributos `id` y `name` para identificación
+- Botón de envío (submit)
+
+## Consejos prácticos
+
+A lo largo de la clase, el profesor ofrece varios consejos prácticos:
+
+1. **Estructura de carpetas**: Organizar los proyectos con carpetas específicas (img/, css/, etc.)
+2. **Probar las etiquetas**: Experimentar para entender cuáles se autocierran
+3. **Uso de IDs**: Asignar identificadores únicos para facilitar la aplicación de estilos CSS
+4. **Navegadores**: Recordar que diferentes navegadores pueden interpretar el código de manera distinta
+5. **Atender a los errores**: El IDE suele marcar en rojo los errores de sintaxis
+
+## Importancia de la práctica
+
+El profesor enfatiza repetidamente que HTML se aprende principalmente practicando:
+> "No quiero daros mucha tabarra con la teoría del lenguaje de marcas porque el lenguaje de marcas, ¿cómo se aprende? Picando."
+
+También comparte una anécdota sobre un compañero que, sin titulación formal pero con mucha práctica, llegó a ser un excelente desarrollador, resaltando que aunque el título es importante, la habilidad práctica es fundamental.
+
+Esta clase establece las bases para la creación de documentos HTML estructurados correctamente, preparando a los estudiantes para añadir estilos con CSS en próximas sesiones.

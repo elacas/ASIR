@@ -1,0 +1,245 @@
+
+
+
+
+# Resumen: Tutoría sobre Ejercicio Práctico en HTML
+
+## Estructura de Navegación en HTML
+
+En esta clase tutorial, el profesor muestra cómo estructurar una página web sobre Pau Gasol, centrándose en la implementación de un sistema de navegación y diferentes secciones con distintos elementos HTML.
+
+### Menú de Navegación
+
+**Ejemplo práctico:**
+```html
+<nav>
+  <ul>
+    <li><a href="#biografia">Biografía</a></li>
+    <li><a href="#equipos">Equipos</a></li>
+    <li><a href="#logros">Logros</a></li>
+    <li><a href="#estadisticas">Estadísticas</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#videos">Vídeos</a></li>
+    <li><a href="#audios">Audios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+```
+
+**Explicación:**
+- Se utiliza `<nav>` para crear el menú de navegación
+- Dentro se coloca una lista desordenada (`<ul>`) con elementos (`<li>`)
+- Cada elemento contiene un enlace (`<a>`) con atributo `href` que apunta a un ID específico
+- El símbolo `#` seguido del ID establece un enlace interno a la sección correspondiente
+
+## Secciones de Contenido
+
+### 1. Biografía
+
+**Código:**
+```html
+<section id="biografia">
+  <h2>Biografía</h2>
+  <p>Pau Gasol es un exjugador de baloncesto profesional, ícono del mundo de la NBA y del eurobasket.</p>
+  <blockquote>"Me gustan las patatas."</blockquote>
+  <p>Fue rookie del año en 2001...</p>
+</section>
+```
+
+**Características destacadas:**
+- Uso de `<section>` con atributo `id` que coincide con el enlace del menú
+- Encabezado `<h2>` para el subtítulo
+- Párrafos `<p>` para el contenido textual
+- Uso de `<blockquote>` para citas
+
+### 2. Equipos
+
+**Código:**
+```html
+<section id="equipos">
+  <h2>Equipos donde jugó Pau</h2>
+  <ul>
+    <li>Barcelona</li>
+    <li>Memphis</li>
+    <li>Los Ángeles</li>
+    <li>Chicago</li>
+    <li>San Antonio</li>
+    <li>Milwaukee</li>
+    <li>Portland</li>
+  </ul>
+</section>
+```
+
+**Características destacadas:**
+- Lista desordenada (`<ul>`) para mostrar los equipos
+- Cada equipo como elemento de lista (`<li>`)
+
+### 3. Logros
+
+**Código:**
+```html
+<section id="logros">
+  <h3>Palmarés</h3>
+  <table border="3">
+    <tr>
+      <th>Año</th>
+      <th>Título</th>
+      <th>Equipo</th>
+    </tr>
+    <tr>
+      <td>2009</td>
+      <td>NBA</td>
+      <td>Los Ángeles</td>
+    </tr>
+  </table>
+</section>
+```
+
+**Características destacadas:**
+- Uso de `<h3>` para mostrar una jerarquía diferente
+- Tabla HTML con atributo `border` para visualización
+- Cabeceras de tabla con `<th>` y datos con `<td>`
+- Filas definidas con `<tr>`
+
+### 4. Estadísticas
+
+**Código:**
+```html
+<section id="estadisticas">
+  <h4>Estadísticas en la NBA</h4>
+  <ul>
+    <li>Puntos por partido: 20</li>
+    <li>Rebotes por partido: 9</li>
+    <li>Asistencias por partido: 4-5</li>
+    <li>Temporadas: 19</li>
+  </ul>
+</section>
+```
+
+**Características destacadas:**
+- Uso de `<h4>` para seguir la jerarquía de encabezados
+- Lista desordenada para las estadísticas
+
+### 5. Galería
+
+**Código:**
+```html
+<section id="galeria">
+  <h5>Galería</h5>
+  <figure>
+    <img src="imagenes/paugasol.jpg" alt="Pau Gasol con distintos uniformes">
+    <figcaption>Pau Gasol en su retorno al Barcelona</figcaption>
+  </figure>
+</section>
+```
+
+**Características destacadas:**
+- Uso de `<figure>` para encapsular la imagen
+- La imagen (`<img>`) con atributos `src` para la ruta y `alt` para descripción
+- Uso de `<figcaption>` para añadir pie de foto
+
+### 6. Vídeos
+
+**Código:**
+```html
+<section id="videos">
+  <h6>Vídeos</h6>
+  <video width="960" controls>
+    <source src="videos/paugasol.mp4" type="video/mp4">
+    Tu navegador no soporta la reproducción de vídeos.
+  </video>
+</section>
+```
+
+**Características destacadas:**
+- Elemento `<video>` con atributos `width` y `controls`
+- `<source>` para definir el archivo de vídeo
+- Texto alternativo para navegadores que no soporten vídeo
+
+### 7. Audios
+
+**Código:**
+```html
+<section id="audios">
+  <h7>Audios</h7>
+  <audio controls>
+    <source src="audios/entrevista.mp3" type="audio/mp3">
+    Tu navegador no soporta la reproducción de audio.
+  </audio>
+</section>
+```
+
+**Características destacadas:**
+- Elemento `<audio>` con atributo `controls`
+- `<source>` para definir el archivo de audio
+- Texto alternativo para navegadores incompatibles
+
+## Elementos para la Sección de Contacto
+
+El profesor asignó como ejercicio práctico crear una sección de contacto con los siguientes elementos:
+
+1. **Formulario:**
+   ```html
+   <form></form>
+   ```
+
+2. **Etiquetas para los campos:**
+   ```html
+   <label></label>
+   ```
+
+3. **Campos de entrada:**
+   ```html
+   <input>
+   ```
+
+4. **Campo requerido:**
+   ```html
+   <input required>
+   ```
+
+5. **Área de texto:**
+   ```html
+   <textarea></textarea>
+   ```
+
+6. **Botones:**
+   ```html
+   <button type="submit">Enviar</button>
+   <button type="reset">Borrar</button>
+   ```
+
+## Aspectos destacados de HTML
+
+1. **Jerarquía de encabezados:**
+   - Se muestra el uso de `<h1>` a `<h6>` con distintos tamaños
+   - El profesor demuestra cómo cada nivel de encabezado tiene un tamaño menor
+
+2. **Atributo ID:**
+   - Fundamental para la navegación interna
+   - Debe coincidir exactamente entre el enlace y la sección de destino
+   - Se recomienda usar nombres sin acentos ni caracteres especiales
+
+3. **Elementos multimedia:**
+   - Demostración de cómo insertar y configurar imágenes, vídeos y audios
+   - Explicación del atributo `controls` y su importancia para la interacción
+
+4. **Organización de archivos:**
+   - Estructura de carpetas recomendada:
+     - Carpeta principal del proyecto
+     - Subcarpeta "imágenes" para archivos de imagen
+     - Subcarpeta "videos" para archivos multimedia
+     - Subcarpeta "audios" para archivos de sonido
+
+5. **Uso de comentarios:**
+   - El profesor menciona que dejará comentarios explicativos en el código final
+
+## Consejos prácticos
+
+1. Los IDs deben ser únicos y no contener espacios ni caracteres especiales
+2. Mantener coherencia entre los elementos del menú y sus secciones correspondientes
+3. Usar atributos `alt` en las imágenes para mejorar SEO y accesibilidad
+4. Para depurar, usar IDs sin acentos para facilitar la búsqueda con Ctrl+F
+5. Los elementos multimedia deben incluir texto alternativo para compatibilidad
+
+Esta clase práctica muestra cómo construir una página web completa con navegación interna funcional, múltiples secciones de contenido y elementos multimedia, todo siguiendo las buenas prácticas de HTML.

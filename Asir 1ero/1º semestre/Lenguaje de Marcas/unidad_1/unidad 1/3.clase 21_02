@@ -1,0 +1,149 @@
+
+
+# Resumen: Clasificación de los Lenguajes de Marcas y sus Características
+
+## Introducción a los Lenguajes de Marcas
+
+Los lenguajes de marcas son fundamentales para estructurar información en la web de manera que sea fácilmente comprensible para los usuarios. A diferencia de un texto plano, los lenguajes de marcas utilizan etiquetas que permiten organizar el contenido de forma visual y jerárquica.
+
+### Definición y Propósito
+
+- **¿Qué son?**: Lenguajes que utilizan etiquetas para estructurar la información.
+- **Objetivo principal**: Presentar la información de forma organizada y visualmente accesible.
+- **Diferencia con lenguajes de programación**: No permiten ejecutar instrucciones por sí mismos, solo estructuran la información.
+
+## Clasificación de los Lenguajes de Marcas
+
+El profesor divide los lenguajes de marcas en tres categorías principales:
+
+### 1. Lenguajes de Presentación
+- **Ejemplos**: HTML y CSS
+- **Función**: Muestran la información de manera visual para el usuario final
+- **Características**: Son más intuitivos y visuales
+
+### 2. Lenguajes de Estructuración
+- **Ejemplos**: XML y JSON
+- **Función**: Organizan los datos de manera estructurada, facilitando su procesamiento
+- **Características**: Son menos visuales pero permiten un mejor manejo de datos
+
+**Ejemplo práctico de XML**:
+```xml
+<oficina>
+   <nombre>Oficina Central</nombre>
+   <disponible>http://ejemplo.com</disponible>
+   <dirección>
+      <calle>Av. Principal</calle>
+      <provincia>Canadá</provincia>
+   </dirección>
+   <equipo>
+      <número>123</número>
+      <categoría>Premium</categoría>
+   </equipo>
+</oficina>
+```
+
+### 3. Lenguajes de Transformación
+- **Ejemplo**: XSLT (eXtensible Stylesheet Language Transformations)
+- **Función**: Convierten documentos de un formato a otro (ej. Word a PDF)
+- **Características**: Procesan la información para cambiar su formato
+
+## Características Principales de los Lenguajes de Marcas
+
+El profesor detalla las siguientes características esenciales:
+
+### 1. Uso de Etiquetas
+- Las etiquetas definen la estructura del documento
+- Ejemplo: `<etiqueta>contenido</etiqueta>`
+- La etiqueta de apertura y cierre indica dónde empieza y termina cada elemento
+
+### 2. Jerarquía y Anidamiento
+- Permiten colocar elementos dentro de otros
+- Facilitan la creación de estructuras complejas
+- Ayudan a organizar la información en secciones y subsecciones
+
+### 3. Extensibilidad
+- Se pueden añadir nuevas etiquetas según necesidades
+- No están limitados a un conjunto fijo de elementos
+- Ejemplo mencionado: Poder añadir etiquetas personalizadas en HTML
+
+### 4. Interoperabilidad
+- Funcionan en diferentes plataformas y dispositivos
+- Ejemplo: Una página web puede adaptarse tanto a ordenadores como a móviles
+
+### 5. Simplicidad
+- Son relativamente sencillos de aprender y aplicar
+- Las etiquetas suelen tener nombres descriptivos en inglés (p. ej., `<p>` para párrafo)
+
+## Ámbitos de Aplicación
+
+Los lenguajes de marcas se aplican principalmente en:
+
+- **Desarrollo web**: Creación de páginas y aplicaciones web
+- **Gestión de datos**: Estructuración de información para su procesamiento
+- **Bases de datos**: Intercambio de información entre sistemas
+
+## Ventajas y Desventajas
+
+### Ventajas
+- Facilitan la organización y presentación de información
+- Permiten la adaptación a diferentes dispositivos
+- Mejoran la experiencia del usuario con contenido estructurado
+
+### Desventajas
+- Son **verbosos**: Requieren muchas etiquetas para definir la estructura
+- **Limitación funcional**: Por sí solos no añaden funcionalidad (necesitan JavaScript u otros lenguajes)
+- **Problemas de compatibilidad**: Diferentes navegadores pueden interpretar el mismo código de forma distinta
+
+## Aspectos Prácticos para el Desarrollo Web
+
+### SEO (Search Engine Optimization)
+El profesor explica la importancia del SEO en el desarrollo web:
+
+- **Metadatos**: Información como título, descripción y palabras clave ayudan al posicionamiento
+- **Ejemplo práctico**: Añadir metaetiquetas como:
+  ```html
+  <meta name="description" content="Página web sobre Pau Gasol, baloncesto, NBA...">
+  <meta name="keywords" content="Pau Gasol, NBA, Lakers, Memphis, baloncesto">
+  <meta name="author" content="Antonio Daimiel">
+  ```
+
+### Compatibilidad entre Navegadores
+- Es crucial probar las páginas web en diferentes navegadores (Chrome, Edge, Firefox, etc.)
+- Cada navegador puede interpretar el código HTML/CSS de forma diferente
+- Esto puede causar problemas de visualización si no se tiene en cuenta
+
+## Estructura de una Página Web Básica
+
+El profesor comienza a crear una página tributo a Pau Gasol para demostrar los conceptos:
+
+1. **DOCTYPE y estructura básica**:
+   ```html
+   <!DOCTYPE html>
+   <html lang="es">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Pau Gasol: 20 años de leyenda</title>
+   </head>
+   <body>
+       <h1>Pau Gasol: 20 años de leyenda</h1>
+   </body>
+   </html>
+   ```
+
+2. **Metadatos para SEO**:
+   ```html
+   <meta name="description" content="Página web sobre el mejor jugador de baloncesto español">
+   <meta name="keywords" content="Pau Gasol, NBA, Lakers, Memphis, Portland, Milwaukee">
+   <meta name="author" content="Antonio Daimiel">
+   ```
+
+3. **Organización de carpetas**:
+   - Crear una carpeta principal para el proyecto
+   - Subcarpeta "imágenes" para almacenar las imágenes del sitio
+
+## Conclusión
+
+El profesor enfatiza que los lenguajes de marcas son fundamentales para la web moderna, permitiendo una presentación estructurada de la información. Aunque tienen limitaciones, como la necesidad de complementarse con lenguajes de programación para añadir funcionalidad, son la base de toda la experiencia web actual.
+
+La clase concluye con el inicio de un proyecto práctico de una página tributo a Pau Gasol, donde se aplicarán los conceptos teóricos explicados, continuando en la siguiente sesión de tutoría.

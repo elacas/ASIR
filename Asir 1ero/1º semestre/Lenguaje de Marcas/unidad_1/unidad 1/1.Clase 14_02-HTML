@@ -1,0 +1,91 @@
+
+
+# Resumen del Video: Introducción a Visual Studio y HTML
+
+## Introducción a Visual Studio Code
+
+El video es una clase de ASIR (Administración de Sistemas Informáticos en Red) del 14 de febrero de 2025, donde el profesor Mario introduce Visual Studio Code y los conceptos básicos de HTML.
+
+### Instalación y configuración de Visual Studio Code
+
+- **Descarga e instalación**: Se recomienda descargar Visual Studio Code desde la página oficial y seguir un proceso de instalación sencillo con las opciones predeterminadas.
+- **Extensiones recomendadas**: 
+  - **Live Server**: Esta extensión es esencial y permite ver en tiempo real los cambios que se realizan en el código HTML.
+  - **No recomendadas para principiantes**: El profesor recomienda evitar extensiones como "Prettier" o "Auto Close Tag" para forzar a los estudiantes a aprender correctamente la sintaxis.
+
+**Ejemplo práctico**: 
+```
+// Instalar solo Live Server y mantenerlo en auto-update
+```
+
+### Creación del primer documento HTML
+
+- **Creación de archivos**: Se muestra cómo crear un nuevo archivo de texto y guardarlo con extensión .html.
+- **Método rápido para estructura HTML**: Escribir una exclamación "!" y presionar Enter para generar automáticamente la estructura básica de un documento HTML.
+
+**Ejemplo práctico**: 
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi primera web en HTML</title>
+</head>
+<body>
+    
+</body>
+</html>
+```
+
+## Estructura básica de HTML
+
+El profesor explica cada parte de la estructura HTML generada:
+
+### Elementos principales
+
+1. **DOCTYPE html**: Define que es un documento HTML5.
+   - **Ejemplo**: `<!DOCTYPE html>` indica al navegador que use los estándares HTML5.
+
+2. **Etiqueta HTML**: Representa la raíz del documento.
+   - **Atributo lang**: Define el idioma del documento.
+   - **Ejemplo**: `<html lang="es">` especifica que el contenido está en español, importante para los buscadores.
+
+3. **HEAD (Cabeza)**: Contiene metadatos del documento.
+   - **charset**: Define la codificación de caracteres.
+     - **Ejemplo**: `<meta charset="UTF-8">` permite usar caracteres especiales como la "ñ".
+   - **viewport**: Controla cómo se muestra la página en dispositivos móviles.
+     - **Ejemplo práctico**: El profesor muestra en su móvil cómo una página se adapta al dispositivo cuando está bien configurada.
+   - **title**: Define el título que aparece en la pestaña del navegador.
+     - **Ejemplo**: El profesor muestra cómo el título "Mi primera web en HTML" aparecería en la pestaña del navegador.
+
+4. **BODY (Cuerpo)**: Contiene todo el contenido visible de la página.
+   - **Ejemplo**: `<body>...</body>` es donde se colocará todo el contenido que queremos mostrar al usuario.
+
+### Concepto de etiquetas HTML
+
+- Las etiquetas son la base del HTML y generalmente vienen en pares (apertura y cierre).
+- HTML significa "HyperText Markup Language" (Lenguaje de Marcado de Hipertexto).
+- Cada etiqueta cumple una función específica en el documento.
+
+**Ejemplo de estructura de etiquetas**: 
+```html
+<etiqueta>Contenido</etiqueta>
+```
+
+## Uso de Live Server
+
+El profesor muestra cómo utilizar la extensión Live Server para visualizar la página:
+
+1. Crear una carpeta para el proyecto (ej. "lenguaje_de_marcas").
+2. Guardar el archivo HTML dentro de esa carpeta.
+3. Hacer clic en el botón "Go Live" en la esquina inferior derecha.
+4. Esto abre la página en el navegador y se actualiza automáticamente al hacer cambios.
+
+## Recomendaciones pedagógicas
+
+- **Evitar el uso de Copilot o IA**: El profesor enfatiza la importancia de aprender a escribir código manualmente.
+- **Aprender a cerrar etiquetas**: Es importante acostumbrarse a abrir y cerrar correctamente las etiquetas para evitar errores.
+- **Entender cada elemento**: Comprender la función de cada parte del documento HTML antes de avanzar.
+
+En resumen, la clase presenta una introducción básica a Visual Studio Code y la estructura fundamental de HTML, sentando las bases para futuras clases donde se profundizará en el desarrollo web.

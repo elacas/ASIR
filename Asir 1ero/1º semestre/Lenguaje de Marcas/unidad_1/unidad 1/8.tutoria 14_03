@@ -1,0 +1,207 @@
+
+
+
+
+
+
+# Resumen: Ejercicios Prácticos de HTML y CSS
+
+## Introducción a CSS y Selectores
+
+En esta tutoría, el profesor Mario profundiza en CSS y su integración con HTML, centrándose en cómo seleccionar y estilizar elementos específicos en una página web.
+
+### Estructura de archivos y vinculación CSS
+
+El profesor muestra cómo organizar correctamente un proyecto web:
+
+1. **Estructura de carpetas**:
+   - Carpeta principal del proyecto con index.html
+   - Subcarpeta "styles" para archivos CSS
+   - Subcarpeta "images" para imágenes
+   - Subcarpeta "js" para JavaScript
+
+2. **Vinculación del CSS**:
+   ```html
+   <link rel="stylesheet" href="styles/styles.css">
+   ```
+   - El profesor enfatiza la importancia de usar rutas relativas correctas
+   - Explica que esto permite mantener el código HTML limpio y organizado
+
+## Selectores CSS y su aplicación
+
+### 1. Selectores de Clase
+
+```html
+<p class="destacado">Este es un párrafo destacado</p>
+```
+
+```css
+.destacado {
+  color: blue;
+  font-weight: bold;
+}
+```
+
+El profesor explica:
+- Las clases se definen con un punto (.) en CSS
+- Pueden aplicarse a múltiples elementos
+- Son ideales para aplicar estilos repetitivos en la página
+
+**Ejemplo práctico**: Se aplica la clase "destacado" a dos párrafos diferentes, mostrando cómo ambos adoptan el mismo estilo.
+
+### 2. Selectores de ID
+
+```html
+<p id="importante">Este párrafo tiene un ID único</p>
+```
+
+```css
+#importante {
+  color: red;
+  font-size: 20px;
+}
+```
+
+El profesor enfatiza:
+- Los IDs se definen con un hashtag (#) en CSS
+- Solo deben usarse una vez en cada página
+- Son útiles para elementos únicos con estilos específicos
+
+**Diferencias clave entre Clase e ID**:
+- **Clase**: Reutilizable, para múltiples elementos
+- **ID**: Único, para un solo elemento
+- El profesor recomienda usar clases para la mayoría de los casos
+
+### 3. Selectores de Elemento
+
+```css
+section {
+  background-color: aquamarine;
+  border: 1px solid black;
+}
+```
+
+El profesor demuestra:
+- Cómo seleccionar todas las etiquetas de un mismo tipo
+- Que este selector afecta a todos los elementos de ese tipo en la página
+- Que es útil para establecer estilos base
+
+### Prioridad y Cascada
+
+El profesor muestra un ejemplo práctico de cómo CSS maneja la prioridad:
+
+```html
+<section class="fernando">
+  <h2>Título dentro de sección</h2>
+  <p>Párrafo dentro de sección</p>
+</section>
+```
+
+```css
+section {
+  background-color: green;
+}
+.fernando {
+  background-color: aquamarine;
+}
+```
+
+Se explica que:
+- Los estilos más específicos tienen prioridad
+- Una clase tiene mayor prioridad que un selector de elemento
+- Un ID tiene mayor prioridad que una clase
+
+## Elementos multimedia y Recursos
+
+### Iframe y contenido incrustado
+
+El profesor demuestra cómo incrustar contenido externo:
+
+```html
+<iframe src="https://es.wikipedia.org/wiki/HTML"></iframe>
+```
+
+Y explica:
+- Que es útil para incrustar contenido de terceros sin necesidad de copiarlo
+- Que YouTube utiliza iframes para permitir incrustar videos:
+  ```html
+  <iframe src="https://www.youtube.com/embed/VIDEO_ID"></iframe>
+  ```
+- Que tiene limitaciones por cuestiones de seguridad
+
+### Favicon y metadatos
+
+El profesor muestra cómo añadir un favicon:
+
+```html
+<link rel="icon" type="image/png" href="images/logo.png">
+```
+
+Y explica:
+- Que se coloca en el `<head>` del documento
+- Que mejora la identidad visual de la página
+- Que se puede usar la misma imagen que aparece en la web para mantener coherencia
+
+## JavaScript básico
+
+Aunque no profundiza en JavaScript, el profesor muestra cómo organizarlo:
+
+1. **Crear estructura**:
+   ```
+   /proyecto
+     /js
+       main.js
+   ```
+
+2. **Vincular JavaScript**:
+   ```html
+   <script src="js/main.js"></script>
+   ```
+
+El profesor menciona:
+- La importancia de organizar el código JavaScript en archivos separados
+- Que normalmente se coloca al final del body para mejorar el rendimiento
+- Que se profundizará en JavaScript en futuras sesiones
+
+## Proyecto práctico propuesto
+
+El profesor propone un proyecto de grupo:
+
+1. **Crear una web para un centro de FP ficticio** con:
+   - Estructura HTML correcta
+   - Estilos CSS básicos
+   - Menú de navegación
+   - Secciones de contenido
+   - Formulario de contacto
+
+2. **Proceso de trabajo**:
+   - El profesor subirá el proyecto a un repositorio de GitHub
+   - Los estudiantes podrán contribuir con mejoras
+   - Se irá construyendo progresivamente en las siguientes clases
+
+## Herramientas y consejos prácticos
+
+Durante la clase, se mencionan varias herramientas útiles:
+
+1. **Firefox Developer Tools**: Un estudiante menciona una visualización 3D para inspeccionar capas en Firefox, que el profesor encuentra interesante para entender mejor la estructura de la página.
+
+2. **Control de versiones**: El profesor muestra cómo subir el proyecto a GitHub:
+   ```
+   Publicar > Repositorio público > Incluir todos los archivos
+   ```
+
+3. **Consejos de desarrollo**:
+   - Mantener una estructura de archivos ordenada
+   - Separar HTML, CSS y JavaScript
+   - Usar nombres descriptivos para clases e IDs
+   - Probar en diferentes navegadores
+
+## Conclusión
+
+El profesor cierra la sesión animando a los estudiantes a:
+- Practicar lo aprendido con ejercicios adicionales
+- Revisar los conceptos de HTML y CSS vistos hasta ahora
+- Prepararse para el proyecto conjunto que se desarrollará en las próximas clases
+- Continuar enviando consultas por correo electrónico para resolver dudas
+
+La tutoría termina con el profesor mencionando que en las próximas sesiones se profundizará en formularios HTML y se comenzará a integrar más funcionalidades con JavaScript.

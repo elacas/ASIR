@@ -1,0 +1,90 @@
+
+
+# Resumen: Tutoría de Introducción a Visual Studio y HTML
+
+## Contenido principal
+
+Esta segunda parte de la clase se centra en la aplicación práctica de los conocimientos básicos de HTML, la resolución de problemas técnicos y la profundización en elementos fundamentales del lenguaje de marcado.
+
+## Creación de la primera página web
+
+### Estructura básica de una página HTML
+- El profesor explica que todo el contenido visible debe colocarse dentro de la etiqueta `<body>`.
+- Se muestra cómo crear títulos con diferentes jerarquías usando las etiquetas `<h1>` a `<h6>`.
+- Se explican los párrafos usando la etiqueta `<p>`.
+
+**Ejemplo práctico de estructura:**
+```html
+<h1>Bienvenido a mi web</h1>
+<h2>Mi primera web en HTML</h2>
+<h3>Nombre y apellidos</h3>
+<h2>Sobre mí</h2>
+<p>Hola, me llamo Mario, tengo 32 años y vivo en...</p>
+```
+
+### Comentarios en HTML
+- El profesor muestra cómo crear comentarios para documentar el código:
+```html
+<!-- Esto es un comentario en HTML -->
+```
+- Explica que los comentarios son útiles para organizar y documentar el código.
+
+### Inserción de imágenes
+- Se explica cómo insertar imágenes utilizando la etiqueta `<img>`:
+```html
+<img src="ruta_de_la_imagen" alt="texto descriptivo">
+```
+- El profesor muestra dos formas de insertar imágenes:
+  1. A través de URLs externas: `<img src="https://dominio.com/imagen.jpg" alt="Logo JavaScript">`
+  2. A través de archivos locales (mencionado pero no implementado en detalle)
+
+**Consideraciones importantes sobre imágenes:**
+- Se advierte sobre el riesgo de utilizar URLs externas que pueden cambiar o desaparecer.
+- Se menciona la importancia de respetar los derechos de autor al utilizar imágenes de internet.
+
+## Aspectos pedagógicos y técnicos
+
+### Ejercicios prácticos
+- El profesor propone un ejercicio para familiarizarse con las jerarquías de títulos:
+  - Crear una página usando todos los niveles de encabezados (h1 a h6)
+  - Observar cómo cambia el aspecto visual según la jerarquía
+
+### Resolución de problemas técnicos
+- Varios estudiantes experimentan problemas con Live Server:
+  - Error de "conexión reiniciada" al intentar ver la página
+  - Problemas con la configuración del puerto 5500
+  - Diferencias de comportamiento entre navegadores
+
+**Soluciones propuestas:**
+1. Cambiar el puerto del Live Server en la configuración
+2. Revisar configuración del navegador predeterminado
+3. Verificar si hay restricciones de firewall
+4. Modificar la configuración de "Use Local IP as Host"
+
+### Compatibilidad entre navegadores
+- El profesor destaca que el mismo código HTML puede verse diferente en distintos navegadores:
+  > "Si vosotros pensáis que porque tu web funcione en Chrome va a funcionar en Edge, va a funcionar en Firefox, Opera... todos los navegadores, estáis muy equivocados porque cada uno tiene un set de reglas que hace que interpreten las cosas de una manera."
+
+## Información académica
+
+### Estructura del curso
+- Se aclara que las unidades formativas son modulares:
+  - Si un estudiante aprueba el primer y tercer trimestre pero suspende el segundo, solo necesita recuperar el segundo.
+- Se menciona que el examen final representa el 100% de la nota.
+- El profesor explica que creará actividades parciales para proporcionar feedback durante el curso.
+- Se mencionan contenidos futuros como HTML, CSS, JavaScript y posiblemente Bootstrap.
+
+### Evaluación
+- El profesor explica que se diseñarán ejercicios con tres niveles de dificultad:
+  - Nivel básico: para estudiantes sin experiencia previa
+  - Nivel medio: para consolidar conocimientos
+  - Nivel avanzado: para estudiantes con experiencia previa
+
+## Recomendaciones finales
+
+1. Practicar creando páginas web simples para familiarizarse con la sintaxis HTML
+2. Revisar la instalación de herramientas y extensiones antes de la próxima clase
+3. Solucionar los problemas técnicos con Live Server
+4. Entender que al principio las páginas serán simples y "feas" pero irán mejorando con la práctica
+
+El profesor finaliza mencionando que continuarán profundizando en estos temas en la próxima clase y ofrece ayuda para resolver los problemas técnicos que han surgido.
