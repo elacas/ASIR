@@ -1,0 +1,195 @@
+
+
+# Resumen: Ejercicios Prácticos con Hojas de Estilo (CSS)
+
+## Introducción a la Estructuración de CSS
+
+En esta tutoría del 28 de marzo de 2025, el profesor Mario guía a los estudiantes a través de ejercicios prácticos para aplicar hojas de estilo CSS a una página HTML básica. La sesión se centra en la transformación visual de una página mediante la aplicación sistemática de estilos a diferentes elementos.
+
+## Configuración inicial y Reset CSS
+
+El profesor comienza explicando la importancia de establecer un "reset" inicial en CSS para eliminar los estilos predeterminados de los navegadores y partir de una base limpia:
+
+```css
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+```
+
+**Explicación del Reset CSS:**
+- Elimina márgenes y rellenos predeterminados
+- Establece el modelo de caja (box-sizing) a "border-box" para un cálculo más intuitivo de dimensiones
+- Evita inconsistencias entre diferentes navegadores
+- Previene comportamientos inesperados en el diseño
+
+## Estilos por Elementos y Secciones
+
+### Estilizado del Body
+
+```css
+body {
+    font-family: Geneva, sans-serif;
+    background-color: #F5F5F5;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+```
+
+El profesor explica cada propiedad:
+- **font-family**: Define la tipografía del documento
+- **background-color**: Establece el color de fondo usando código hexadecimal
+- **color**: Define el color del texto
+- **line-height**: Controla el espaciado entre líneas de texto
+- **padding**: Añade espacio interno alrededor del contenido
+
+### Encabezado (Header)
+
+```css
+header {
+    background-color: navy;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+```
+
+El profesor destaca:
+- El uso de **padding** con dos valores (30px para arriba/abajo, 20px para izquierda/derecha)
+- La importancia del **text-align** para centrar el contenido
+- El uso de **border-radius** para redondear las esquinas
+
+### Clases para elementos específicos
+
+```css
+.titulo-principal {
+    font-size: 2rem;
+}
+
+.subtitulo {
+    font-size: 1.2rem;
+    font-style: italic;
+}
+```
+
+El profesor explica:
+- El uso del punto (.) para seleccionar elementos por clase
+- La unidad **rem** para tamaños de fuente relativos al elemento raíz
+- La propiedad **font-style** para aplicar cursiva
+
+## Menú de Navegación
+
+El profesor dedica especial atención al estilizado del menú de navegación:
+
+```css
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    background-color: #555;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: black;
+}
+```
+
+**Aspectos destacados:**
+- **display: flex**: Para alinear los elementos horizontalmente
+- **justify-content**: Para centrar los elementos horizontalmente
+- **gap**: Para añadir espacio entre elementos del menú
+- **transition**: Para crear una animación suave al pasar el ratón sobre los enlaces
+- **:hover**: Pseudoclase para cambiar el estilo cuando el cursor está sobre el elemento
+
+El profesor hace una demostración práctica de las transiciones, modificando la duración para hacerla más visible (de 0.3s a 3s).
+
+## Contenido Principal
+
+Para el contenido principal, el profesor aplica estilos al elemento main y a la sección de contenido:
+
+```css
+main {
+    margin-top: 30px;
+}
+
+.contenido {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+```
+
+**Explicaciones importantes:**
+- **margin-top**: Crea separación entre el encabezado y el contenido principal
+- **display: flex** con **flex-wrap: wrap**: Permite que los elementos se organicen en filas y se ajusten al tamaño de la pantalla
+- **justify-content: space-between**: Distribuye los elementos para llenar el espacio disponible
+
+## Tarjetas de Contenido
+
+El profesor comienza a estilizar las tarjetas individuales de contenido:
+
+```css
+.tarjeta {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(33% - 20px);
+}
+```
+
+**Características explicadas:**
+- **background-color**: Para diferenciar las tarjetas del fondo de la página
+- **padding**: Para dar espacio interno al contenido de las tarjetas
+- **border-radius**: Para redondear las esquinas de las tarjetas
+- **width: calc()**: Para calcular dinámicamente el ancho (33% menos 20px para márgenes)
+
+El profesor intentó añadir más propiedades como box-shadow y transiciones, pero debido a limitaciones de tiempo, decidió continuar en la próxima sesión.
+
+## Buenas Prácticas y Consejos
+
+A lo largo de la tutoría, el profesor comparte varias recomendaciones:
+
+1. **Uso del autoguardado**: Activar esta función en el editor para ver los cambios en tiempo real.
+
+2. **Organización del código**: Separar los estilos por componentes o secciones para mantener el código ordenado.
+
+3. **Uso de selectores adecuados**:
+   - Para elementos HTML: `elemento { propiedad: valor; }`
+   - Para clases: `.clase { propiedad: valor; }`
+   - Para elementos dentro de otros: `.menu a { propiedad: valor; }`
+
+4. **Mejora progresiva**: Ir construyendo los estilos paso a paso, probando cada cambio.
+
+5. **Planificación del diseño**: Pensar en la estructura antes de comenzar a estilizar.
+
+## Herramientas y Técnicas Utilizadas
+
+- **Live Server**: Para ver los cambios en tiempo real en el navegador.
+- **Visual Studio Code**: Como editor de código, con la capacidad de dividir la pantalla para ver HTML y CSS simultáneamente.
+- **Selectores CSS**: Para dirigir estilos a elementos específicos.
+- **Flexbox**: Para layouts modernos y responsivos.
+- **Transiciones CSS**: Para efectos visuales suaves.
+
+## Conclusión
+
+La sesión concluye con la página parcialmente estilizada, con una estructura visual mejorada que incluye:
+- Un encabezado atractivo con un menú de navegación funcional
+- Un esquema de contenido organizado en tarjetas
+- Efectos interactivos como cambios de color al pasar el cursor
+
+El profesor menciona que continuarán en la próxima sesión completando el estilizado y añadiendo características más avanzadas como sombras y efectos de hover a las tarjetas.
+
+Esta tutoría práctica demuestra cómo transformar una página HTML básica en un diseño más atractivo y profesional utilizando las propiedades fundamentales de CSS, sentando las bases para un diseño web más avanzado.

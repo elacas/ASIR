@@ -1,0 +1,156 @@
+# Resumen: ASIR - Tutoría 25/04/2025. Introducción a las mediaquerys y Figma
+
+En esta tutoría, el profesor Raúl introduce dos conceptos fundamentales para el diseño web responsive: las media queries en CSS y la herramienta de diseño Figma. A continuación, presento un resumen detallado con ejemplos prácticos de cada tema:
+
+## 1. Media Queries y Diseño Responsive
+
+Las media queries son reglas CSS que permiten aplicar diferentes estilos dependiendo del tamaño de la pantalla u otras características del dispositivo.
+
+### Ejemplo 1: Adaptación de imágenes
+
+El profesor muestra cómo hacer que las imágenes sean responsive:
+
+```css
+.imagen {
+    width: 30%;
+    margin-left: 35%;
+}
+
+@media screen and (max-width: 700px) {
+    .imagen {
+        width: 60%;
+        margin-left: 20%;
+    }
+}
+```
+
+Este código hace que:
+- En pantallas grandes, la imagen ocupe un 30% del ancho y esté centrada.
+- En pantallas menores a 700px, la imagen ocupe un 60% del ancho.
+
+### Ejemplo 2: Mostrar/ocultar elementos según el dispositivo
+
+```css
+.imagen-ordenador {
+    display: block;
+}
+
+.imagen-movil {
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+    .imagen-ordenador {
+        display: none;
+    }
+    
+    .imagen-movil {
+        display: block;
+    }
+}
+```
+
+Este ejemplo muestra cómo cambiar una imagen para ordenador por una versión optimizada para móvil cuando la pantalla es pequeña.
+
+### Ejemplo 3: Cambio de distribución con cajas flotantes
+
+```css
+.caja1, .caja2 {
+    width: 50%;
+    padding-bottom: 30%;
+    float: left;
+}
+
+@media screen and (max-width: 600px) {
+    .caja1, .caja2 {
+        float: none;
+        width: 100%;
+        padding-bottom: 50%;
+    }
+}
+```
+
+Aquí se muestra:
+- En pantallas normales, dos cajas flotantes que ocupan 50% cada una, lado a lado.
+- En pantallas menores a 600px, las cajas dejan de flotar y ocupan el 100% del ancho, apilándose una sobre otra.
+
+### Ejemplo 4: Diseño responsive con etiquetas semánticas
+
+```css
+header, nav, main, footer {
+    padding: 5%;
+    text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+    nav {
+        display: none;
+    }
+    
+    header, footer {
+        background-color: lightblue;
+    }
+}
+```
+
+Este código:
+- Oculta el menú de navegación en pantallas pequeñas
+- Cambia el color de fondo del encabezado y pie de página
+
+## 2. Introducción a Figma
+
+Figma es una herramienta de diseño que permite crear prototipos y maquetas para sitios web y aplicaciones.
+
+### Características presentadas:
+
+- **Interfaz sencilla**: No requiere conocimientos avanzados de diseño como Photoshop
+- **Herramientas básicas**:
+  - Rectángulos para crear contenedores
+  - Textos para añadir contenido
+  - Importación de imágenes
+  - Sistema de capas
+
+### Ejemplo práctico en Figma:
+
+El profesor diseña una maqueta con 4 columnas para mostrar cómo debería verse una web en diferentes tamaños de pantalla:
+
+1. **Versión escritorio**: Cuatro columnas en una fila
+   ```
+   [Col 1] [Col 2] [Col 3] [Col 4]
+   ```
+
+2. **Versión tablet**: Dos filas con dos columnas
+   ```
+   [Col 1] [Col 2]
+   [Col 3] [Col 4]
+   ```
+
+3. **Versión móvil**: Cuatro filas con una columna
+   ```
+   [Col 1]
+   [Col 2]
+   [Col 3]
+   [Col 4]
+   ```
+
+## Consejos importantes mencionados:
+
+1. **Sobre media queries**:
+   - "Las media queries son un poco rollo... hay que intentar utilizarlas lo menos posible"
+   - Es mejor diseñar elementos naturalmente responsive que depender de muchas media queries
+
+2. **Sobre alturas en diseño responsive**:
+   - "Las alturas por norma general tampoco son responsive"
+   - Es preferible usar padding-bottom en lugar de height fijo
+   - Se pueden usar unidades vh (viewport height) en ciertos casos
+
+3. **Enfoques de diseño responsive**:
+   - **Mobile First**: Diseñar primero para móvil y luego adaptar a pantallas más grandes
+   - **Desktop First**: Diseñar primero para escritorio y luego adaptar a pantallas más pequeñas (enfoque usado en la clase)
+
+4. **Sobre Figma**:
+   - Util para crear bocetos previos antes de programar
+   - Permite visualizar el diseño en diferentes tamaños de pantalla
+   - No hace falta ser diseñador profesional para usarlo eficazmente
+
+La clase concluye con el profesor mencionando que dejará ejercicios prácticos para que los estudiantes practiquen lo aprendido sobre media queries, que serán corregidos en la próxima clase.

@@ -1,0 +1,302 @@
+# Estructura de un Documento HTML: Resumen con Ejemplos
+
+## Estructura básica de un documento HTML
+
+Todo documento HTML bien formado sigue una estructura jerárquica específica que comienza con la declaración DOCTYPE y organiza el contenido en secciones lógicas.
+
+### Declaración DOCTYPE
+
+La primera línea de todo documento HTML debe ser la declaración DOCTYPE, que indica al navegador que está trabajando con HTML5:
+
+```html
+<!DOCTYPE html>
+```
+
+### Elemento HTML con atributo de idioma
+
+El elemento raíz que contiene todo el documento, con el atributo de idioma que mejora el SEO y la accesibilidad:
+
+```html
+<html lang="es">
+  <!-- Todo el contenido del documento va aquí -->
+</html>
+```
+
+## La sección HEAD
+
+El HEAD contiene metadatos e información sobre el documento que no se muestra directamente al usuario.
+
+### Ejemplo completo del HEAD
+
+```html
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 5</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+```
+
+### Desglose de elementos del HEAD:
+
+1. **Codificación de caracteres**:
+   ```html
+   <meta charset="UTF-8">
+   ```
+   Permite el uso de caracteres especiales como la "ñ" o acentos.
+
+2. **Viewport para diseño responsive**:
+   ```html
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   ```
+   Hace que la página se adapte a diferentes dispositivos (móviles, tabletas, etc).
+
+3. **Título de la página**:
+   ```html
+   <title>Clase 5</title>
+   ```
+   Aparece en la pestaña del navegador y en los resultados de los buscadores.
+
+4. **Vinculación con CSS**:
+   ```html
+   <link rel="stylesheet" href="styles/styles.css">
+   ```
+   Conecta el documento con estilos externos.
+
+5. **Favicon**:
+   ```html
+   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+   ```
+   Añade el icono que aparece en la pestaña del navegador.
+
+## La sección BODY
+
+El BODY contiene todo el contenido visible de la página, estructurado mediante elementos semánticos.
+
+### Ejemplo de estructura semántica en el BODY
+
+```html
+<body>
+    <!-- Encabezado -->
+    <header>
+        <h1>HTML</h1>
+        <nav>
+            <ul>
+                <li><a href="#responsive">Diseño Responsive</a></li>
+                <li><a href="#code">Código HTML</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Contenido principal -->
+    <main>
+        <section id="responsive">
+            <h2>Diseño responsive</h2>
+            <p>Con esto el sitio se adapta a distintas pantallas</p>
+            <p style="background-color:grey; padding:40px;">Este párrafo tiene estilo en línea</p>
+        </section>
+        
+        <section id="code">
+            <h2>Esto es código en HTML</h2>
+            <p>Ejemplo de código en línea: <code>print("Hola mundo")</code></p>
+            <p>Salida del programa: <samp>Error: archivo no encontrado</samp></p>
+            <p>Atajo de teclado: <kbd>Control+S</kbd></p>
+            <p>Variable: <var>x</var></p>
+        </section>
+    </main>
+    
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2025 - Ejemplo de documento HTML</p>
+    </footer>
+</body>
+```
+
+### Elementos semánticos clave:
+
+1. **Header**:
+   ```html
+   <header>
+     <h1>HTML</h1>
+     <!-- Contenido del encabezado -->
+   </header>
+   ```
+   Contiene el encabezado de la página y generalmente incluye el logotipo, título y navegación.
+
+2. **Navegación**:
+   ```html
+   <nav>
+     <ul>
+       <li><a href="#responsive">Diseño Responsive</a></li>
+       <li><a href="#code">Código HTML</a></li>
+     </ul>
+   </nav>
+   ```
+   Define la navegación principal del sitio.
+
+3. **Main**:
+   ```html
+   <main>
+     <!-- Contenido principal -->
+   </main>
+   ```
+   Contiene el contenido principal. Solo debe haber un elemento `<main>` por documento.
+
+4. **Secciones**:
+   ```html
+   <section id="responsive">
+     <h2>Diseño responsive</h2>
+     <!-- Contenido de la sección -->
+   </section>
+   ```
+   Divide el contenido en secciones temáticas.
+
+5. **Footer**:
+   ```html
+   <footer>
+     <p>&copy; 2025 - Ejemplo de documento HTML</p>
+   </footer>
+   ```
+   Contiene información de contacto, copyright, enlaces relacionados, etc.
+
+## Elementos para presentación de código
+
+HTML ofrece elementos específicos para mostrar código y elementos técnicos:
+
+```html
+<p>Código en línea: <code>console.log("Hola mundo");</code></p>
+<p>Salida del programa: <samp>Hola mundo</samp></p>
+<p>Tecla: <kbd>Control+S</kbd></p>
+<p>Variable: <var>x</var> = 10</p>
+```
+
+**Resultado visual:**
+- `code`: Se muestra en fuente monoespaciada (`console.log("Hola mundo");`)
+- `samp`: Muestra la salida de un programa (Hola mundo)
+- `kbd`: Representa teclas o combinaciones de teclas (Control+S)
+- `var`: Representa variables matemáticas o de programación (*x* = 10, con x en cursiva)
+
+## Aplicación de estilos en HTML
+
+### Estilos en línea
+
+```html
+<p style="background-color:grey; padding:40px; color:white;">
+   Este párrafo tiene estilo en línea
+</p>
+```
+
+### Clases e IDs para aplicar estilos
+
+```html
+<!-- Uso de ID para una sola instancia -->
+<section id="responsive">
+   <h2>Diseño responsive</h2>
+</section>
+
+<!-- Uso de clase para múltiples instancias -->
+<p class="destacado">Este párrafo está destacado</p>
+<p class="destacado">Este otro también está destacado</p>
+```
+
+Con su correspondiente CSS:
+
+```css
+#responsive {
+   background-color: #f0f0f0;
+   border: 1px solid #ccc;
+}
+
+.destacado {
+   background-color: yellow;
+   font-weight: bold;
+}
+```
+
+## Organización de archivos
+
+Una estructura recomendada para proyectos web:
+
+```
+proyecto/
+├── index.html
+├── styles/
+│   └── styles.css
+├── images/
+│   └── favicon.ico
+└── js/
+    └── main.js
+```
+
+### Referencia a archivos desde HTML
+
+```html
+<!-- CSS externo -->
+<link rel="stylesheet" href="styles/styles.css">
+
+<!-- JavaScript externo -->
+<script src="js/main.js"></script>
+
+<!-- Imagen -->
+<img src="images/logo.png" alt="Logo de la empresa">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+```
+
+## Buenas prácticas
+
+1. **Cierre adecuado de etiquetas**:
+   ```html
+   <!-- CORRECTO: Anidamiento adecuado -->
+   <div><p>Texto</p></div>
+   
+   <!-- INCORRECTO: Anidamiento incorrecto -->
+   <div><p>Texto</div></p>
+   ```
+
+2. **Uso de elementos semánticos**:
+   ```html
+   <!-- CORRECTO: Semánticamente apropiado -->
+   <article>
+     <h2>Título de artículo</h2>
+     <p>Contenido del artículo...</p>
+   </article>
+   
+   <!-- MENOS RECOMENDADO: Sin valor semántico -->
+   <div>
+     <div>Título de artículo</div>
+     <div>Contenido del artículo...</div>
+   </div>
+   ```
+
+3. **Jerarquía de encabezados**:
+   ```html
+   <h1>Título principal</h1>
+   <section>
+     <h2>Subtítulo</h2>
+     <p>Texto...</p>
+     <h3>Título de nivel inferior</h3>
+     <p>Más texto...</p>
+   </section>
+   ```
+
+4. **Atributos alt en imágenes**:
+   ```html
+   <img src="images/logo.png" alt="Logo de la empresa XYZ">
+   ```
+
+## Notas sobre el Copyright
+
+Muchos sitios web incluyen un símbolo de copyright en el footer:
+
+```html
+<footer>
+   <p>&copy; 2025 - Nombre de la empresa. Todos los derechos reservados.</p>
+</footer>
+```
+
+El símbolo `&copy;` se muestra como © y, aunque muchos lo incluyen, solo tiene valor legal si el contenido está realmente registrado.
+
+Este resumen con ejemplos prácticos cubre los aspectos fundamentales de la estructura de un documento HTML, desde su declaración inicial hasta la organización semántica y la aplicación de estilos básicos.

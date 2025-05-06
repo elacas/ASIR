@@ -1,0 +1,152 @@
+# Resumen: Ejercicios Prácticos de HTML - Elementos Especiales
+
+## Caracteres Especiales en HTML
+
+En esta tutoría, el profesor Mario profundiza en el uso de elementos especiales en HTML, particularmente en cómo manejar caracteres especiales, símbolos y formatos de código. La clase combina teoría con ejercicios prácticos, mostrando diferentes alternativas para representar información especializada en páginas web.
+
+### Entidades HTML para Símbolos y Caracteres Especiales
+
+El profesor explica cómo utilizar entidades HTML para representar caracteres que de otra manera podrían causar problemas en el código:
+
+```html
+<section id="especiales">
+  <h2>Caracteres Especiales</h2>
+  <p>Ejemplo de "ampersand": &amp; (se escribe como &amp;amp;)</p>
+  <p>Menor que: &lt; (se escribe como &amp;lt;)</p>
+  <p>Mayor que: &gt; (se escribe como &amp;gt;)</p>
+</section>
+```
+
+**Razones para usar entidades HTML:**
+- Evitar conflictos con el propio código HTML
+- Garantizar que los caracteres se muestren correctamente en todos los navegadores
+- Optimizar el procesamiento y la lectura de la página (según el profesor, esto puede mejorar levemente el rendimiento)
+
+### Elementos para Mostrar Código
+
+La tutoría muestra diferentes formas de presentar código y elementos técnicos en HTML:
+
+#### 1. Elemento `<code>`
+
+```html
+<p>Ejemplo de código en línea: <code>print("Hola mundo")</code></p>
+```
+
+Utilizado para mostrar fragmentos de código dentro del texto. Se presenta en fuente monoespaciada.
+
+#### 2. Elemento `<samp>`
+
+```html
+<p>Salida del programa: <samp>Error: archivo no encontrado</samp></p>
+```
+
+Representa la salida de un programa o script. Visualmente similar a `<code>` pero semánticamente diferente.
+
+#### 3. Elemento `<kbd>`
+
+```html
+<p>Atajo de teclado: <kbd>Control+S</kbd></p>
+```
+
+Muestra combinaciones de teclas o entradas de teclado.
+
+#### 4. Elemento `<var>`
+
+```html
+<p>Variable: <var>x</var></p>
+```
+
+Para representar variables en expresiones matemáticas o programación. Se muestra típicamente en cursiva.
+
+### URLs Codificadas
+
+El profesor intenta explicar cómo codificar URLs con caracteres especiales, aunque reconoce tener problemas con la implementación específica durante la clase:
+
+```html
+<h2>URL Codificada</h2>
+<p><code>https%3A%2F%2Fgoogle.com</code></p>
+```
+
+Comenta que la codificación URL sustituye caracteres especiales como `:` por `%3A` y `/` por `%2F` para asegurar que las URLs se procesen correctamente.
+
+### XHTML: HTML Extensible
+
+El profesor menciona las diferencias entre HTML estándar y XHTML:
+
+```html
+<section id="encoding">
+  <h2>XHTML</h2>
+  <p>Ejemplo de charset: <code>&lt;meta charset="UTF-8"&gt;</code></p>
+</section>
+```
+
+**Características de XHTML:**
+- Más estricto que HTML regular
+- Exige que todas las etiquetas estén correctamente cerradas
+- Tiene relación con XML (Extensible Markup Language)
+- No permite errores de sintaxis que HTML toleraría
+
+### Estructura de Página Completa
+
+La tutoría completa la estructura de la página con un footer:
+
+```html
+<footer>
+  <p>Página creada por equipazo de ASIR</p>
+</footer>
+```
+
+El profesor explica que aunque de momento el footer no tiene estilo visual distinto, cuando se aplique CSS se verá correctamente como una sección de pie de página.
+
+## Recursos y Herramientas Recomendadas
+
+Durante la clase, el profesor recomienda recursos adicionales:
+
+1. **W3Schools**: Como guía de referencia completa para HTML
+   - Menciona que sigue esta estructura para enseñar conceptos en orden lógico
+   - Señala que es un recurso muy útil para aprender de manera autodidacta
+
+2. **Comentarios en el código**:
+   - Muestra el atajo `Control+K+C` para comentar bloques de código en Visual Studio Code
+   - Explica que los comentarios ayudan a documentar la intención del código
+
+## Próximos Temas
+
+El profesor anticipa los próximos temas que cubrirán en clases futuras:
+
+1. **Formularios HTML**: Menciona que es uno de los temas pendientes
+2. **Elementos multimedia**: Media, gráficos e integración con APIs
+3. **CSS avanzado**: Para dar estilo a todos los elementos estudiados
+
+## Ejemplos adicionales en Python
+
+La última parte de la tutoría cambia a Python para mostrar ejemplos de:
+
+1. **Operaciones con valores booleanos**: 
+   ```python
+   es_mayor_y_registrado = persona['edad'] > 18 and registrado_en_censo
+   ```
+
+2. **Uso del operador NOT**:
+   ```python
+   no_registrado = not registrado_en_censo
+   ```
+
+3. **Trabajando con conjuntos (sets)**:
+   ```python
+   numeros = [1, 2, 3, 4, 5, 1, 2, 1]
+   conjunto = set(numeros)  # Resultado: {1, 2, 3, 4, 5}
+   ```
+
+4. **Comparación de conjuntos**:
+   ```python
+   lista_a = set([1, 2, 3, 4])
+   lista_b = set([4, 3, 2, 1])
+   mismos_elementos = lista_a == lista_b  # True
+   ```
+
+## Conclusión
+
+La tutoría proporciona una comprensión práctica de cómo utilizar elementos HTML especiales para mejorar la presentación y accesibilidad de una página web. El profesor demuestra que estos elementos no son solo formativos sino que tienen significado semántico, ayudando a los navegadores y lectores de pantalla a interpretar correctamente el contenido.
+
+El profesor también señala la importancia de la organización del código y la carpeta del proyecto, mostrando cómo mantener una estructura lógica mejora el mantenimiento y la escalabilidad de los proyectos web.

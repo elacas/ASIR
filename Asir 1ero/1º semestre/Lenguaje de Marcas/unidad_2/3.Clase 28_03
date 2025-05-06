@@ -1,0 +1,212 @@
+# Resumen: Hojas de Estilo (CSS) y Atributos HTML
+
+## Introducción a CSS y sus fundamentos
+
+En esta clase del 28 de marzo de 2025, el profesor Mario introduce las hojas de estilo en cascada (CSS) y su relación con los atributos de HTML. La clase se centra en la teoría fundamental de CSS, herramientas útiles y conceptos básicos para comenzar a aplicar estilos a documentos HTML.
+
+### Atributos clave de HTML para la aplicación de estilos
+
+El profesor explica varios atributos HTML que son fundamentales para trabajar con CSS:
+
+1. **Atributo ID**: 
+   - Identificador único para un elemento específico
+   - Permite aplicar estilos a un solo elemento
+   - Ejemplo: `<div id="cabecera">Contenido</div>`
+
+2. **Atributo Class**:
+   - Permite agrupar elementos para aplicarles el mismo estilo
+   - Se puede aplicar a múltiples elementos
+   - Ejemplo: `<p class="destacado">Texto destacado</p>`
+
+3. **Atributo Style**:
+   - Permite aplicar estilos directamente en línea
+   - No recomendado para uso extensivo
+   - Ejemplo: `<p style="color:blue; font-size:14px;">Texto azul</p>`
+
+4. **Otros atributos relevantes**:
+   - `src`: Para vincular recursos externos como imágenes o scripts
+   - `href`: Para establecer enlaces y vincular hojas de estilo
+   - `alt`: Para proporcionar texto alternativo a imágenes
+   - `title`: Para añadir información adicional al pasar el ratón
+
+## Herramientas recomendadas para diseño web
+
+El profesor recomienda varias herramientas para el desarrollo web:
+
+1. **Visual Studio Code**:
+   - Principal IDE recomendado por su funcionalidad y extensiones
+   - Complementado con Live Server para visualización en tiempo real
+
+2. **Sublime Text**:
+   - Alternativa ligera y rápida
+   - Útil para trabajo en dispositivos con recursos limitados
+
+3. **W3C Validator**:
+   - Herramienta esencial para verificar que el código cumple con los estándares
+   - Permite validar tanto por URL como subiendo archivos
+   - El profesor enfatiza: "Siempre pasen su código por el validador antes de publicarlo"
+
+4. **Figma**:
+   - Para diseño visual y prototipos
+   - Útil para crear maquetas rápidas y presentar conceptos a clientes
+   - Permite visualizar el diseño antes de codificar
+
+5. **Herramientas de desarrollo del navegador (F12)**:
+   - Fundamentales para inspeccionar y depurar estilos
+   - Incluye visualización 3D de capas en Chrome (Más herramientas > Capas)
+
+## Selectores CSS y su aplicación
+
+El profesor explica los principales tipos de selectores:
+
+### Selectores básicos:
+
+1. **Selector de etiqueta**:
+   ```css
+   h1 {
+     color: blue;
+     font-size: 24px;
+   }
+   ```
+   - Afecta a todas las etiquetas del mismo tipo
+   - Se escribe simplemente con el nombre de la etiqueta
+
+2. **Selector de clase**:
+   ```css
+   .destacado {
+     background-color: yellow;
+     font-weight: bold;
+   }
+   ```
+   - Se indica con un punto (.) seguido del nombre de la clase
+   - Afecta a todos los elementos que tengan esa clase
+
+3. **Selector de ID**:
+   ```css
+   #cabecera {
+     background-color: black;
+     color: white;
+   }
+   ```
+   - Se indica con un hashtag (#) seguido del ID
+   - Solo debe afectar a un único elemento en la página
+
+### Selectores avanzados:
+
+1. **Selector descendente**:
+   ```css
+   div p {
+     margin-left: 20px;
+   }
+   ```
+   - Afecta a los elementos que están dentro de otros elementos
+   - El ejemplo afecta a todos los párrafos dentro de divs
+
+2. **Selector de hijo directo**:
+   ```css
+   ul > li {
+     list-style-type: square;
+   }
+   ```
+   - Afecta solo a los elementos que son hijos directos del elemento padre
+
+3. **Selector combinado**:
+   ```css
+   p.destacado {
+     border: 1px solid red;
+   }
+   ```
+   - Combina diferentes tipos de selectores
+   - El ejemplo afecta solo a los párrafos con la clase "destacado"
+
+## Formas de incluir CSS en HTML
+
+El profesor explica las tres formas de incluir CSS en documentos HTML:
+
+1. **CSS en línea** (no recomendado):
+   ```html
+   <p style="color: blue; font-size: 14px;">Texto con estilo</p>
+   ```
+   - Directamente en el atributo style del elemento
+   - Dificulta la lectura y mantenimiento
+
+2. **CSS interno** (para páginas pequeñas):
+   ```html
+   <head>
+     <style>
+       p { color: blue; }
+       .destacado { font-weight: bold; }
+     </style>
+   </head>
+   ```
+   - Dentro de la etiqueta `<style>` en el `<head>` del documento
+   - Mezcla HTML y CSS, lo que no es ideal para proyectos grandes
+
+3. **CSS externo** (recomendado):
+   ```html
+   <head>
+     <link rel="stylesheet" href="styles.css">
+   </head>
+   ```
+   - En un archivo separado (.css) vinculado al HTML
+   - Facilita la organización y reutilización de estilos
+
+## Propiedades CSS fundamentales
+
+El profesor menciona varias propiedades CSS importantes:
+
+1. **Propiedades de texto**:
+   - `font-size`: Tamaño de la fuente
+   - `font-weight`: Grosor de la fuente (normal, bold, etc.)
+   - `color`: Color del texto
+   - `text-align`: Alineación del texto
+
+2. **Propiedades de espaciado**:
+   - `margin`: Espacio exterior del elemento
+   - `padding`: Espacio interior del elemento
+   - `border`: Borde alrededor del elemento
+
+3. **Propiedades de posicionamiento**:
+   - `position`: Método de posicionamiento (static, relative, absolute, fixed, sticky)
+   - `display`: Comportamiento de visualización del elemento
+
+4. **Propiedades específicas**:
+   - Para listas (list-style-type, etc.)
+   - Para tablas (border-collapse, etc.)
+
+## Modelo de caja en CSS
+
+El profesor explica que CSS sigue un modelo de caja donde cada elemento es una caja rectangular con:
+
+- Contenido (content)
+- Relleno (padding)
+- Borde (border)
+- Margen (margin)
+
+Menciona una herramienta de visualización 3D en Chrome (F12 > Más herramientas > Capas) que permite ver cómo se apilan los elementos en la página, facilitando la comprensión del modelo de caja.
+
+## Buenas prácticas y advertencias
+
+El profesor enfatiza varias prácticas recomendadas:
+
+1. **Evitar el uso excesivo de `!important`**:
+   - Señal de que no se comprende bien la especificidad en CSS
+   - Debe usarse solo en casos excepcionales
+
+2. **Validar siempre el código**:
+   - Usar el W3C Validator para verificar estándares
+   - Incluso el código generado por IA (como ChatGPT) puede tener errores
+
+3. **Mantener el código organizado**:
+   - Separar HTML, CSS y JavaScript en archivos diferentes
+   - Nombrar adecuadamente clases e IDs
+
+4. **Próximos temas a explorar**:
+   - Flexbox y Grid para layouts avanzados
+   - Menciona recursos de juegos interactivos para aprender estos conceptos
+
+## Conclusión
+
+La clase concluye con el profesor destacando la importancia de aprender CSS de manera práctica y mencionando que en las próximas sesiones crearán un formulario completo con estilos, combinando lo aprendido sobre HTML y CSS para crear interfaces más atractivas y funcionales.
+
+También hace hincapié en que, aunque el diseño visual es importante, una página web debe ser principalmente funcional y no sobrecargada con efectos visuales excesivos que puedan afectar negativamente la experiencia del usuario o el rendimiento de la página.

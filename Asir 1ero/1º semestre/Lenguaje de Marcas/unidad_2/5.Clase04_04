@@ -1,0 +1,79 @@
+
+
+# Resumen del Video: ASIR - Clase 04/04/2025
+
+Este video muestra la presentación del nuevo profesor Raúl, quien reemplaza a Mario para la asignatura de Lenguaje de Marcas en el ciclo de ASIR (Administración de Sistemas Informáticos en Red). A continuación, te presento un resumen detallado con los puntos más importantes:
+
+## Presentación del nuevo profesor
+
+- María (coordinadora) presenta a Raúl como el nuevo profesor que sustituye a Mario.
+- Raúl lleva aproximadamente 3 años impartiendo esta asignatura y tiene experiencia profesional en desarrollo web.
+- También ha creado contenidos "preworks" para los ciclos de DAM/DAW.
+- Raúl comenta que fue estudiante online, por lo que entiende bien las necesidades y dificultades de este modelo de enseñanza.
+
+## Estado actual del curso
+
+- Los alumnos han visto conceptos básicos de HTML:
+  - Encabezados
+  - Párrafos
+  - Imágenes
+  - Listas (ordenadas y desordenadas)
+  - Tablas
+  - Formularios básicos
+  - Divs y estructura básica (header, footer, etc.)
+- En CSS han empezado a ver propiedades básicas como colores y márgenes.
+- Los estudiantes mencionan que han visto muchos conceptos pero les ha faltado práctica para afianzar conocimientos.
+
+## Enfoque pedagógico propuesto
+
+Raúl plantea:
+
+1. **Método 100% práctico**: "Las clases con PDF o PowerPoint no, como mucho podré sacar alguna pizarra para hacer algún apunte concreto".
+2. **Proyecto integral**: Desarrollar una landing page completa desde cero, incluyendo:
+   - Diseño con herramientas como Figma
+   - Desarrollo HTML/CSS 
+   - Técnicas responsive (Media Queries, Grid, Flexbox)
+   - Plan de pruebas
+   - Contratación de hosting y dominio gratuito
+   - Subida mediante FTP
+
+3. **Adaptación al perfil de ASIR**: "Haré especial hincapié en los ficheros de configuración XML porque en vuestra vida como administradores de sistemas vais a tocar bastantes ficheros de configuración".
+
+4. **Gestores de contenido**: Introducción a WordPress para entender cómo entregar un proyecto editable a un cliente.
+
+## Evaluación y examen
+
+- Se confirma que habrá dos opciones de evaluación:
+  - Solo examen final en diciembre
+  - O combinar proyecto parcial (30%) + examen final (70%)
+  
+- Sobre el formato del examen, Raúl menciona: "Va a ser tipo test pero con elementos prácticos, como capturas o preguntas sobre propiedades concretas".
+
+- Los alumnos deben aprobar el examen final independientemente de la nota del proyecto parcial.
+
+## Calendario y próximos pasos
+
+- Calendario afectado por días no lectivos:
+  - El viernes siguiente (11 de abril) no hay clase (no lectivo)
+  - El 18 de abril tampoco (Semana Santa)
+  - Retomarán el 25 de abril
+  - El 2 de mayo tampoco habrá clase
+
+- Plan para después de la pausa:
+  - Prácticas voluntarias para mantener el ritmo
+  - Disponibilidad del profesor:
+    - Hasta el 15 de julio disponible
+    - Del 15 de julio al 1 de septiembre de vacaciones
+    - A partir del 1 de septiembre retoma disponibilidad
+  - En septiembre se hará un repaso y se comenzará con XML hasta la fecha del examen
+
+## Ejemplos prácticos mencionados
+
+- Desarrollo de una landing page responsive
+- Uso de Git y GitHub para control de versiones
+- Trabajo con comandos de terminal para Git
+- Aplicación del diseño a través de herramientas como Figma
+- Implementación de técnicas CSS responsive (Grid, Flexbox, Media Queries)
+- Configuración de un servidor web y despliegue mediante FTP
+
+Raúl enfatizó que su enfoque está orientado a dar una formación útil para el futuro laboral de los estudiantes, más allá de solo preparar para el examen, compartiendo que trabaja gestionando prácticas universitarias y puede ayudar a los alumnos con contactos en el sector.

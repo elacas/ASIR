@@ -1,0 +1,156 @@
+
+
+
+
+
+
+
+
+Lamentablemente, no he podido obtener el contenido del video con el ID quzMY1xoALM a pesar de intentarlo con diferentes herramientas. Sin embargo, basándome en la información que he podido recopilar, el video parece ser una clase titulada "ASIR - Clase 25/04/2025. Sourcetree, Introducción al modelo responsive" del canal FP Oficial Prometeo.
+
+Voy a proporcionarte un resumen sobre los temas mencionados en el título del video, con ejemplos prácticos, ya que parece que estás interesado en el contenido relacionado con Sourcetree y el modelo responsive:
+
+# Resumen: Sourcetree y Modelo Responsive
+
+## Sourcetree
+
+Sourcetree es una herramienta gráfica para la gestión de repositorios Git que facilita el trabajo con control de versiones.
+
+### Ejemplos prácticos de Sourcetree:
+
+1. **Inicialización de repositorio**:
+   - Crear un nuevo repositorio local usando la interfaz gráfica de Sourcetree
+   - Clonar un repositorio existente desde GitHub o GitLab
+
+2. **Gestión de cambios**:
+   - Visualización de archivos modificados, añadidos o eliminados en el área de trabajo
+   - Realizar commits con descripciones detalladas
+   - Ejemplo: Añadir un archivo HTML básico y hacer un commit con el mensaje "Añadido estructura base HTML"
+
+3. **Trabajo con ramas**:
+   - Crear una nueva rama para desarrollar una característica
+   - Ejemplo: `git branch feature/responsive-navbar` para crear una rama específica para trabajar en la barra de navegación responsive
+   - Cambiar entre ramas para trabajar en diferentes características
+
+4. **Fusiones y resolución de conflictos**:
+   - Fusionar cambios de una rama a otra (merge)
+   - Visualizar y resolver conflictos de fusión
+   - Ejemplo: Fusionar los cambios de la rama `feature/responsive-navbar` a la rama `main`
+
+5. **Sincronización con repositorios remotos**:
+   - Configurar conexiones a GitHub/GitLab
+   - Push (subir cambios) y Pull (traer cambios)
+   - Ejemplo: `git push origin main` para subir commits locales al repositorio remoto
+
+## Modelo Responsive
+
+El diseño responsive permite que las páginas web se adapten a diferentes tamaños de pantalla y dispositivos.
+
+### Ejemplos prácticos de diseño responsive:
+
+1. **Media Queries**:
+   ```css
+   /* Estilo base para todos los dispositivos */
+   .container {
+     width: 100%;
+     margin: 0 auto;
+   }
+   
+   /* Para pantallas medianas (tablets) */
+   @media (min-width: 768px) {
+     .container {
+       width: 750px;
+     }
+   }
+   
+   /* Para pantallas grandes (desktops) */
+   @media (min-width: 1024px) {
+     .container {
+       width: 970px;
+     }
+   }
+   ```
+
+2. **Unidades relativas**:
+   - Uso de porcentajes en lugar de píxeles para elementos flexibles
+   - Ejemplo: `width: 50%` en lugar de `width: 500px`
+   - Uso de `em` o `rem` para tamaños de texto: `font-size: 1.2rem;`
+   - Uso de `vh` y `vw` para tamaños basados en la ventana: `height: 50vh;`
+
+3. **Flexbox**:
+   ```css
+   .navbar {
+     display: flex;
+     justify-content: space-between;
+   }
+   
+   /* En pantallas pequeñas, cambiar a columna */
+   @media (max-width: 767px) {
+     .navbar {
+       flex-direction: column;
+     }
+   }
+   ```
+
+4. **CSS Grid**:
+   ```css
+   .gallery {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr); /* 4 columnas en pantallas grandes */
+     gap: 20px;
+   }
+   
+   /* En pantallas medianas, 2 columnas */
+   @media (max-width: 767px) {
+     .gallery {
+       grid-template-columns: repeat(2, 1fr);
+     }
+   }
+   
+   /* En pantallas pequeñas, 1 columna */
+   @media (max-width: 480px) {
+     .gallery {
+       grid-template-columns: 1fr;
+     }
+   }
+   ```
+
+5. **Imágenes responsive**:
+   ```css
+   img {
+     max-width: 100%;
+     height: auto;
+   }
+   ```
+
+6. **Técnicas de navegación responsive**:
+   - Menú hamburguesa para dispositivos móviles
+   ```html
+   <button class="menu-toggle">
+     <span class="bar"></span>
+     <span class="bar"></span>
+     <span class="bar"></span>
+   </button>
+   ```
+   ```css
+   @media (max-width: 767px) {
+     .menu {
+       display: none;
+     }
+     
+     .menu-toggle {
+       display: block;
+     }
+     
+     .menu.active {
+       display: flex;
+       flex-direction: column;
+     }
+   }
+   ```
+
+7. **Testing responsive**:
+   - Uso de las herramientas de desarrollo del navegador para simular diferentes dispositivos
+   - Pruebas en breakpoints comunes: 320px, 480px, 768px, 1024px, 1440px
+
+Este resumen incluye los conceptos básicos y ejemplos prácticos que probablemente se cubrieron en la clase sobre Sourcetree y diseño responsive. Si tienes alguna pregunta específica sobre alguno de estos temas, no dudes en preguntar.
