@@ -1,0 +1,71 @@
+# Resumen: ASIR - Clase 18/03/2025. Administración de usuarios y grupos locales
+
+En esta clase, el profesor aborda la importancia de la administración de usuarios y grupos dentro de entornos informáticos empresariales, centrándose en aspectos de seguridad y buenas prácticas. A continuación, presento un resumen detallado con los puntos más relevantes y ejemplos prácticos mencionados.
+
+## 1. Importancia de la gestión de usuarios en entornos empresariales
+
+### Principales responsabilidades en administración de usuarios:
+- Altas y bajas de personal: "Los trámites para gestionar el alta y baja de usuarios normalmente se hacen por script de forma automática"
+- Modificación de permisos: "Si una persona asciende, hay que modificar sus permisos, de nivel medio a nivel alto"
+- Auditoría de cuentas activas: "Verificar que los usuarios que siguen en el sistema son realmente empleados activos"
+
+### Ejemplos prácticos de situaciones laborales:
+- **Alta de nuevos usuarios**: Configuración inicial de permisos según departamento
+- **Baja de usuarios**: Desactivación inmediata de cuentas cuando alguien abandona la empresa
+- **Modificación de permisos**: Cuando un empleado cambia de departamento o asciende
+
+## 2. Seguridad en las cuentas de usuario
+
+### Autenticación multifactor:
+- **Ejemplo 1 - YubiKey**: El profesor compartió su experiencia con dispositivos de seguridad físicos:
+  "En Amazon utilizábamos YubiKey, un pequeño dispositivo USB con lector de huella dactilar que costaba unos 400-500 francos"
+  
+- **Ejemplo 2 - RSA SecurID**: "Cuando trabajaba en un banco suizo, teníamos que utilizar SecurID para operar con ciertos valores y hacer modificaciones a la base de datos"
+
+### Costos ocultos de la mala gestión:
+- **Licencias sin usar**: "Si sistemáticamente vas acumulando cuentas sin parar, estás pagando costes ocultos. A lo mejor cada cuenta vale 10€ al mes multiplicado por todos los que siguen en la organización"
+  
+- **Auditorías internas**: "Luego viene auditoría interna y te dice: ¿Por qué seguimos pagando el CRM de una persona que dejó de trabajar aquí hace 3 años?"
+
+## 3. Buenas prácticas de seguridad
+
+### Bloqueo de equipos:
+- "En una de las empresas en las que trabajaba, dieron un seminario de seguridad. Cuando bajaron a fumar, varios dejaron sus equipos sin bloquear. Una firma de seguridad entró después y realizó una auditoría de todos los asientos"
+
+### Gestión de contraseñas:
+- **Mala práctica**: "Usar la misma contraseña en varios sitios"
+- **Mala práctica**: "Dejar contraseñas anotadas en post-its visibles"
+  
+- **Ejemplo real**: "Abrieron el cuaderno de un empleado y encontraron las credenciales de acceso a Sofis, un software para comprar productos estructurados. Con ese acceso se podía modificar valores y hundir el chiringuito"
+
+### Control de acceso físico:
+- Un alumno compartió: "En mi empresa damos soporte al ayuntamiento de Santa Cruz de Tenerife. Para entrar a los CPDs, antes llevábamos un registro en papel, pero ahora todo está virtualizado para tener un proceso acorde"
+  
+- Otro alumno mencionó: "Usamos Dasnet de Dorlet, donde asignamos roles a los empleados y les damos permisos según su rol, con acceso por huella dactilar o tarjeta de identificación tanto a los CPDs como a todo lo demás"
+
+## 4. Incidentes de seguridad en entornos reales
+
+### Caso de estudio - Auditoría de seguridad:
+- "Una empresa buscaba subir su nivel en el Esquema Nacional de Seguridad. Esa semana hicieron un registro a fondo, revisaron hasta debajo de los asientos por si había post-its con contraseñas"
+
+### Caso de estudio - Instalación no autorizada:
+- "Un alumno que hacía prácticas en AENA (entidad gestora de aeropuertos españoles) instaló Linux en un equipo que pertenecía a la empresa sin autorización. Tuvo que venir la policía a escoltarlo"
+
+## 5. Herramientas para la gestión de usuarios en Windows y Linux
+
+### En Windows:
+- Panel de control > Cuentas de usuario para gestión básica
+- Active Directory para entornos empresariales
+
+### Consideraciones entre sistemas:
+- "En Linux vamos a poder llegar a ciertos puntos iguales con la misma funcionalidad que Windows, a través de la consola"
+
+## Consejos y recomendaciones finales
+
+- **Para nuevos empleados**: "Pregunta antes de actuar. No es el salvaje oeste de 'dispara primero y pregunta después', porque disparar primero es ¡hala! al paro"
+  
+- **Implementación de políticas**: "Hice una lista (checklist) que el jefe puso en práctica para el onboarding y la salida de personal, tanto para la entrada como para la salida"
+  
+- **Verificación periódica**: "Coge este Excel, verifica uno a uno en el directorio de la empresa activa que es este de la derecha. Con esas pequeñas victorias iniciales vas a poder decir: aquí estoy yo, justifico mi salario"
+
+La clase combina aspectos teóricos sobre administración de usuarios con experiencias prácticas reales, enfatizando la importancia de la seguridad y las consecuencias de no seguir buenas prácticas en entornos empresariales.

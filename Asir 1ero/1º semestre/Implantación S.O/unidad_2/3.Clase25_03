@@ -1,0 +1,86 @@
+# Resumen: ASIR - Clase 25/03/2025. Configuración del protocolo TCP/IP en un cliente de red
+
+En esta clase del ciclo de ASIR, el profesor aborda la configuración del protocolo TCP/IP en clientes de red, explicando los conceptos fundamentales y preparando a los alumnos para prácticas posteriores. A continuación, presento un resumen detallado con los conceptos clave y ejemplos destacados:
+
+## 1. Conceptos fundamentales del protocolo TCP/IP
+
+### Definición y componentes básicos
+- **TCP/IP**: Es un protocolo que establece las reglas de actuación para que los datos entre redes lleguen de manera fiable
+  - **TCP**: Asegura que los datos enviados lleguen de forma fiable
+  - **IP**: Define la dirección a donde deben llegar los datos
+
+### Elementos clave en la configuración de red
+- **Dirección IP**: Identifica el equipo dentro del esquema mundial de dispositivos
+  - *Analogía del profesor*: "Como poner la dirección de la casa y el piso donde vive tu amigo al que envías una carta"
+
+- **Máscara de subred**: Determina qué parte de la dirección IP identifica la red y qué parte identifica el host
+  - *Nota*: El profesor mencionó que dedicará una clase específica para explicar su cálculo usando una tableta gráfica
+
+- **Puerta de enlace (Gateway)**: Permite la comunicación con otras redes
+  - *Ejemplo citado*: "Las puertas tienen un uso, abrir para salir o cerrar para quedarse en un sitio. La puerta de enlace habilita la salida hacia otras redes"
+
+- **Servidor DNS**: Traduce nombres de dominio a direcciones IP
+  - *Analogía usada*: Como los motes entre amigos - "A nivel local sabes que tu amigo es 'el Champi', pero a nivel más general necesitarías su nombre completo"
+
+## 2. Métodos de configuración de red
+
+### Configuración estática
+- El usuario escribe manualmente la dirección IP y demás parámetros
+- Debe seguir los parámetros del protocolo TCP/IP (no se puede poner cualquier valor)
+
+### Configuración dinámica (DHCP)
+- El servidor DHCP asigna automáticamente direcciones IP a los equipos
+- Ventaja: "Te quita la carga de tener que estar mirando qué ocurre"
+
+## 3. Resolución de nombres
+
+### Servidor DNS
+- Permite traducir nombres de dominio (www.google.com) a direcciones IP
+- Evita tener que memorizar números IP para acceder a servidores
+
+### Archivo de hosts
+- Archivo local que permite asociar nombres a direcciones IP sin depender del DNS
+- *Ubicación*: Varía según el sistema operativo (Windows/Linux)
+- Realiza un "chequeo previo" antes de consultar al servidor DNS
+
+### Personalización para diferentes perfiles
+- Permite crear diferentes configuraciones para distintos usuarios
+- *Ejemplo mencionado*: Control parental - "Puedes definir que ciertos usuarios no tengan acceso a determinadas páginas"
+
+## 4. Resolución de problemas de conectividad
+
+### Procedimiento recomendado
+1. Verificar la configuración IP local (usando ipconfig)
+2. Verificar la conectividad con el router
+3. Probar la conectividad con sitios web conocidos y estables
+   - *Ejemplo citado*: "La web de Marca tiene una disponibilidad del 99,9%, es una buena referencia para probar"
+
+### Problemas comunes
+- Configuración incorrecta de la red
+- Falta de drivers o componentes
+- Problemas con el proveedor de servicios externos
+
+## 5. Comentarios sobre implementaciones reales
+
+Durante la clase, el profesor compartió varias observaciones sobre implementaciones reales y problemas comunes:
+
+- **Crítica a webs estatales**: Mencionó especialmente la web de Renfe
+  - "Accenture recibió 70 millones para mejorar una web que falla como una escopeta de feria"
+  - "¿Cómo puede ser que una web estatal no pare año tras año de caerse?"
+
+- **Contraste con otros países**: Comentó que Reino Unido y Portugal tienen webs de servicios estatales más funcionales
+
+- **Realidad en grandes empresas**: 
+  - "Cuando entréis en proyectos de grandes consultoras, veréis cómo muchas aplicaciones están parcheadas y hay miedo a tocarlas"
+  - "Como el meme de 'el más mínimo soplo de viento la mataría'"
+
+## 6. Próximas prácticas
+
+Al final de la clase, el profesor mencionó una práctica de 14 páginas que tienen preparada para implementar lo explicado. También comentó que trabajarán con:
+
+- Máquinas virtuales
+- Packet Tracer
+- Redes departamentales (VLANs)
+  - "Son un dolor de cabeza, pero si dominas eso, tienes un skill set muy valioso"
+
+La clase combinó conceptos teóricos fundamentales con ejemplos prácticos y anécdotas reales, preparando a los estudiantes para las sesiones prácticas que seguirán en las próximas clases.

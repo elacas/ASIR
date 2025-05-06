@@ -1,0 +1,71 @@
+
+
+
+
+# Resumen: Tutoría de Implantación de Sistemas Operativos (29/04/2025)
+
+Esta tutoría complementa la clase principal de ASIR, centrándose en la implementación práctica de Active Directory y la configuración de dominios. A continuación, te presento un resumen detallado con ejemplos relevantes:
+
+## 1. Configuración de Active Directory
+
+**Objetivo principal:**
+- Continuar con la práctica de crear un dominio en Active Directory
+- Añadir un segundo equipo (DC2) al dominio creado
+
+**Pasos explicados para la creación del dominio:**
+- El profesor muestra su dominio ya configurado con nombre "SMR.local" y "JRG.local" como ejemplos
+- Explica que es fundamental terminar siempre en ".local" para diferenciar la red interna de la externa: "Para que no tengáis problemas en el futuro... muchas empresas con .com tienen luego problemas a la hora de traducir tu raíz"
+- Dejar configuraciones por defecto en rutas de instalación: "Cuando esto se queda obsoleto y quieres promocionar el servidor... si cambias estas rutas, luego muchos comandos hacen llamadas a esa ruta y dan problemas"
+
+## 2. Gestión de Usuarios y Grupos
+
+**Creación de usuarios:**
+- El profesor demuestra la creación de usuario "Pedro" en el dominio
+- Muestra buenas prácticas: "Como tengo siete Pedros diferentes, aquí en nombre de dominio le puedo dejar Pedro, pero tengo que poner Pedro.López"
+- Configura la contraseña (usa "Qwerty123" como ejemplo) y detalla opciones importantes:
+  * Deshabilitar "El usuario debe cambiar la contraseña en el siguiente inicio de sesión"
+  * Por defecto las cuentas están deshabilitadas hasta activarlas manualmente
+
+**Asignación a grupos:**
+- Muestra dos formas de agregar un usuario a un grupo:
+  1. Desde propiedades del usuario: "Miembro de" > Agregar
+  2. Desde el grupo: Agregar miembros
+- Ejemplo práctico: "Un usuario me pide acceder a programación, pues voy a ser programador, y me voy a ese grupo. Le digo pues es programador, porque previamente el grupo o la GPO del programador tiene habilitado esto, esto y esto"
+
+## 3. Conexión de un Equipo al Dominio
+
+**Procedimiento para unir un equipo al dominio:**
+- Desde el equipo cliente: Este equipo > Propiedades > Configuración avanzada del sistema
+- En "Nombre del equipo": Cambiar de Grupo de trabajo a Dominio
+- Introducir el nombre del dominio (ejemplo: JRG.local)
+- Credenciales de administrador del dominio cuando se soliciten
+
+**Requisitos previos fundamentales:**
+- IP estática en los equipos
+- Comunicación entre servidores: "Lo primero que quiero que hagáis es pin [a la IP del servidor], es importante que hagáis lo del pin porque vais a ver que vais a llegar hasta la máquina"
+- Firewall configurado correctamente: "Preferiría que configurarais el firewall de Windows para que entienda la conexión con el Active Directory principal"
+
+## 4. Dificultades Técnicas y Soluciones
+
+**Problemas de red:**
+- Un alumno menciona problemas de conexión al configurar IP estática
+- El profesor explica: "Una cosa es que tú no tengas salida a internet, pero otra cosa es que no tengas dirección lateral hacia mis servidores en mi pata LAN"
+
+**Problemas con máquinas virtuales:**
+- Durante la tutoría, el profesor intenta crear una máquina virtual nueva con Windows 11 pero encuentra problemas
+- Muestra soluciones para problemas comunes:
+  * Configuración de orden de arranque en la BIOS virtual
+  * Habilitación de TPM 2.0 para Windows 11
+  * Ajuste de memoria RAM y procesadores
+
+## 5. Recomendaciones para la Práctica
+
+**Configuración de red en máquinas virtuales:**
+- "Podéis dejar por defecto en NAT o adaptador puente si vais a utilizar esto en vuestras oficinas"
+- "Si lo dejáis en red interna, implica que toda la configuración que tengan las máquinas virtuales como DHCP, DNS no se va a expandir a través de la red a otros equipos"
+
+**Próximos pasos sugeridos:**
+- "Con que os loguéis con vuestro usuario en el dominio y que le proponáis la unidad de red que hemos visto hoy, que se crea automáticamente cada vez que se logue sesión"
+- "Lo único que hay que tener en cuenta es el rango de red, tengo que mirar en mi DC1 qué rango de red me ha dado"
+
+La tutoría finaliza con el profesor ofreciendo continuar el apoyo a través del chat y subir material adicional al Drive compartido para ayudar a los estudiantes que enfrentan dificultades técnicas debido al reciente corte de luz que afectó a varias regiones.

@@ -1,0 +1,85 @@
+
+
+# Resumen: Clase de Implantación de Sistemas Operativos (22/04/2025)
+
+En esta clase de ASIR (Administración de Sistemas Informáticos en Red), el profesor Francisco Blanco López aborda varios temas clave relacionados con la gestión de sistemas operativos, centrándose principalmente en Windows. A continuación, te presento un resumen detallado con los ejemplos más relevantes:
+
+## 1. Montaje y Desmontaje de Dispositivos
+
+**Concepto:** El montaje de dispositivos implica añadirlos al sistema para que sean reconocidos y se pueda acceder a sus archivos.
+
+**Ejemplos prácticos:**
+- En Windows, la conexión de un USB suele ser automática gracias a los drivers preinstalados
+- Para dispositivos más específicos como lectores de DNI electrónico, se requieren:
+  - Controladores del fabricante del dispositivo
+  - Software específico de la Policía Nacional para leer el chip
+
+**Diferencias entre sistemas:**
+- Windows: "La mayoría de los dispositivos son Plug and Play actualmente"
+- Linux: Requiere comandos específicos (mount/umount) para montar dispositivos
+
+## 2. Administración de Dispositivos en Windows
+
+**Herramientas principales:**
+- Panel de Configuración > Bluetooth y dispositivos
+- Administrador de dispositivos para gestionar controladores
+
+**Ejemplo práctico mencionado:**
+- El profesor comenta problemas con adaptadores de VPN: "Cuando varias VPN no funcionan, cada VPN instala un controlador TAP y se pegan entre ellos, muchas veces está aquí el problema"
+
+## 3. Automatización de Tareas
+
+**En Windows - Programador de tareas:**
+1. Crear una tarea (ejemplo: reinicio de equipo)
+2. Configurar usuario que ejecuta la tarea
+   - Puede ser un usuario normal o uno específico para servicios
+   - No necesita haber iniciado sesión nunca
+3. Establecer desencadenante (cuándo se ejecuta)
+   - Diariamente, semanalmente, al inicio, etc.
+4. Definir acción (qué hace)
+   - Ejemplo: script .bat para reiniciar equipo
+
+**Ejemplo real mencionado:**
+- "Tenemos una herramienta que se llama Click, que consume mucha RAM y no la libera. Programamos tareas para reiniciar servicios a las 6 de la mañana y así optimizar el rendimiento"
+
+**Comandos Linux:**
+- AT: Para tareas únicas (ejemplo: reinicio automático en un día específico)
+- CRON: Para tareas programadas recurrentes
+
+## 4. Herramientas de Administración de Discos
+
+**Administrador de discos Windows:**
+- Muestra particiones y volúmenes
+- Permite crear/eliminar particiones
+- Extender volúmenes
+- El profesor demuestra cómo redimensionar una partición
+
+**Herramientas de mantenimiento:**
+1. Comprobación de errores:
+   - GUI: Propiedades del disco > Herramientas > Comprobar
+   - CMD: CHKDSK - "Más riguroso pero menos intuitivo"
+   - Detecta sectores defectuosos: "Hay clusters que están dañados, algunos se pueden arreglar"
+
+2. Desfragmentación:
+   - "Ordena espacios vacíos y archivos fragmentados"
+   - "Windows va dejando huecos entre la información y se tarda más en leer"
+   - No necesario en SSD, útil en HDD
+
+3. Crystal Disk Info:
+   - Software de terceros para diagnosticar salud del disco
+   - Ejemplo del profesor: "Estado de salud 89%, yo no me fío de este equipo"
+
+**Gestión por línea de comandos:**
+- DISKPART: Herramienta para gestionar discos
+  - Comandos básicos: diskpart > list disk > select disk X
+  - "También es una forma de reparar USBs y discos duros"
+
+## 5. Tipos de Particiones
+
+**Mencionadas durante la clase:**
+- Primaria: "Donde están todas las tablas y la información importante"
+- Extendida/Secundaria: Permite crear particiones adicionales
+- Lógica: Divisiones dentro de una partición extendida
+- Cifrado BitLocker: "Para evitar que si te roban el portátil puedan acceder a tus datos"
+
+El profesor utilizó ejemplos prácticos y demostraciones en vivo para ilustrar los conceptos, mostrando las herramientas directamente en su sistema Windows.

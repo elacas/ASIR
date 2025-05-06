@@ -1,0 +1,81 @@
+
+
+# Resumen: ASIR - Clase 11/03/2025. Actualización de sistemas operativos y aplicaciones
+
+En esta clase, el profesor aborda aspectos importantes sobre la actualización de sistemas operativos y gestión de aplicaciones, centrándose principalmente en entornos Windows, con menciones a Linux y macOS. A continuación, presento un resumen detallado con los puntos más importantes y ejemplos prácticos.
+
+## 1. Importancia de las actualizaciones de sistemas operativos
+
+- **Seguridad**: Mantener el sistema actualizado ayuda a prevenir ataques aprovechando vulnerabilidades ya corregidas
+  - *Ejemplo*: "Una falla que se corrigió en 2023, si estamos en 2025 y no has aplicado los parches, sigues vulnerable"
+  
+- **Proceso de Microsoft para corregir vulnerabilidades**:
+  1. Detección y reporte de incidencias
+  2. Estudio en un entorno sandbox
+  3. Verificación del problema
+  4. Implementación de cambios
+  5. Distribución mediante actualizaciones
+
+- **Recomendación**: Configurar actualizaciones automáticas o al menos verificar periódicamente para mantener el sistema protegido
+
+## 2. Herramientas de configuración del sistema
+
+### MSConfig (Utilidad de configuración del sistema)
+- **Acceso**: Tecla Windows + R → escribir "msconfig"
+- **Funcionalidades principales**:
+  - **Pestaña General**: Opciones de inicio del sistema
+    - *Ejemplo práctico*: Usar "Diagnostic startup" (inicio con diagnóstico) para solucionar problemas, cargando solo servicios mínimos
+  
+  - **Pestaña Boot (Arranque)**: Configuración del arranque del sistema
+    - *Opción Safe Boot*: Para iniciar con servicios mínimos y diagnosticar problemas
+    - *Advertencia*: El profesor mencionó que en algunas versiones de Windows 11, Windows Hello (PIN) no funciona en modo seguro
+  
+  - **Pestaña Servicios**: Gestión de servicios en ejecución
+    - *Ejemplo*: Desactivar servicios para diagnosticar problemas de rendimiento
+  
+  - **Opciones avanzadas**:
+    - Número de procesadores para iniciar el sistema
+    - Puertos para la comunicación
+
+### Administrador de Tareas
+- **Conexión con MSConfig**: Comparten la gestión de servicios y procesos
+- **Autoarranque**: Gestión de programas que se inician con Windows
+  - *Recomendación práctica*: "Cuando vuestro PC tarda mucho en cargar, revisad qué aplicaciones se inician automáticamente"
+  - *Ejemplo mencionado*: Un usuario que tenía 90GB de música en el escritorio ralentizando todo el sistema
+
+### Gestor de arranque (Boot Manager)
+- **Funcionamiento**: Determina qué sistema operativo cargar cuando hay varios instalados
+- **Gestión mediante BCD Edit**: Herramienta para modificar la configuración del arranque
+- **Problemas comentados por alumnos**: 
+  - *Caso real*: Un alumno compartió que la instalación de Fedora (Linux) en un disco físico separado dañó el gestor de arranque de Windows, requiriendo reconstrucción manual del boot
+
+### Editor del Registro
+- **Acceso**: Escribir "regedit" en el buscador de Windows
+- **Ruta importante**: Programas de inicio en `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run`
+- **Advertencia importante**: 
+  - No manipular el registro sin conocimientos, puede dañar el sistema
+  - *Anécdota del profesor*: Comentó un caso donde un script malicioso eliminó System32, dejando el equipo inutilizable
+
+## 3. Gestión de actualizaciones en entornos empresariales
+
+- **Pequeñas empresas**: Actualización manual factible
+- **Grandes empresas**: Necesidad de herramientas de gestión centralizada
+  - Windows Server con políticas de grupo (GPO)
+  - Herramientas como Ansible para entornos Linux
+  - Creación de scripts de actualización automática
+
+- **Python como herramienta de automatización**: Recomendado para creación de scripts que automaticen tareas repetitivas
+
+## 4. Recomendaciones para solucionar problemas
+
+- **Reinstalación como última opción**: Cuando el sistema está muy dañado (ej. registro corrupto)
+- **Imágenes de sistema**: En entornos empresariales, mantener imágenes "sanas" para restaurar rápidamente
+- **Cuando hay problemas con repositorios git**: A veces es mejor eliminar y volver a crear que intentar reparar
+
+## Otros temas mencionados:
+
+- El profesor planea introducir Windows Server en futuras clases, considerándolo importante para el mercado laboral
+- Se mencionó la importancia de conocer Linux para administradores de sistemas
+- Se comentó la posibilidad de usar un simulador (PC Building Simulator) para prácticas de hardware
+
+La clase tuvo un enfoque práctico con demostraciones en vivo de varias herramientas de configuración y diagnóstico, además de valorar experiencias reales compartidas por los alumnos.

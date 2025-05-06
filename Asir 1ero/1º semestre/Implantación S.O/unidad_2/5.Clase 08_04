@@ -1,0 +1,83 @@
+
+
+# Resumen: ASIR - Clase 08/04/2025
+
+En esta clase del ciclo formativo ASIR, el profesor Francisco Blanco aborda varios temas relacionados con sistemas operativos, haciendo especial énfasis en la gestión de enlaces, estructura de directorios y herramientas de administración. A continuación, presento un resumen detallado con los conceptos clave y ejemplos prácticos mencionados:
+
+## 1. Estructura y planteamiento de las clases
+
+El profesor propone una estructura para las clases que combina teoría y práctica:
+- Primera hora: Teoría y conceptos clave del temario
+- Segunda hora: Implementación práctica en máquinas virtuales
+
+Para comenzar, comparte un documento con instrucciones paso a paso para configurar máquinas virtuales con Windows Server, mencionando las diferencias entre Hyper-V, VMware y otras soluciones de virtualización.
+
+## 2. Gestión de enlaces en sistemas operativos
+
+### Definición y tipos de enlaces
+- **Definición**: "Un enlace es un archivo que nos facilita la vida y nos guía hasta otro archivo"
+- **Tipos**:
+  - **Enlaces absolutos**: Incluyen la ruta completa (C:\Users\Usuario\Documentos\...)
+  - **Enlaces relativos**: Referencian parcialmente un destino (como lolo.es que realmente llama a https://lolo.es/index.html)
+
+### Ejemplos prácticos de enlaces
+- **Accesos directos en Windows**: Creación mediante botón derecho → Nuevo → Acceso directo
+- **Unidades de red**: Conectar a través de "Este equipo → Conectar unidad de red" usando la sintaxis `\\servidor\recurso`
+- **Credenciales**: Importancia de usar correctamente el formato `dominio\usuario` o `dominio.local\usuario`
+
+### Limitación importante
+El profesor destaca una limitación crítica: "Una ruta en Windows no puede superar los 64 caracteres"
+- *Ejemplo práctico*: "Fallan un 80% de los backups por esa tontería, porque los usuarios ponen nombres larguísimos como 'martes 8 de abril de 2025 tarea realizada contrabarrabla'"
+- Enfatiza la necesidad de educar a los usuarios sobre esta limitación
+
+## 3. Estructura de directorios en sistemas operativos Windows
+
+### Organización jerárquica
+- Estructura en forma de árbol que facilita la visualización
+- Importancia para la seguridad: "En un simple vistazo puedes ver toda la estructura, por eso para mí es seguridad"
+- *Ejemplo de uso*: Detección rápida de infecciones por malware cuando modifica la estructura de archivos
+
+### Arquitectura y curiosidades
+- **Carpeta "Program Files (x86)"**: El profesor explica que el nombre "x86" proviene de los primeros microprocesadores Intel 8086 de 16 bits, no del hecho de que sea para aplicaciones de 32 bits
+- **Disco C**: Aunque técnicamente se podría instalar Windows en otra unidad, ciertos componentes siempre requieren la unidad C
+
+## 4. Herramientas de administración y diagnóstico
+
+### Visor de eventos
+El profesor destaca esta herramienta como "el mayor aliado de un informático":
+- Acceso: Panel de Control → Herramientas administrativas → Visor de eventos
+- Utilidad: Verificar errores del sistema, problemas de seguridad y eventos críticos
+- **Filtrado de registros**: Demostración práctica de cómo filtrar por:
+  - Nivel (Crítico, Error)
+  - Fechas específicas (por ejemplo, "eventos que ocurren todos los domingos a las 12:30")
+
+### Comandos CMD para obtener información del sistema
+El profesor muestra varios comandos útiles:
+- `echo %windir%`: Mostrar directorio de Windows (normalmente C:\Windows)
+- `systeminfo`: Información completa del sistema incluyendo hotfixes, directorios de Windows y dispositivo de arranque
+- `slmgr /dli`: Comprobar el estado de la licencia de Windows
+- `ipconfig /all`: Ver configuración completa de red incluyendo direcciones MAC, útil para:
+  - *Caso práctico*: "Cuando tienes conflictos entre VPNs instaladas que se están pisando"
+  - *Caso práctico*: "Cuando necesitas la MAC para que te habiliten acceso a un portal cautivo de WiFi"
+
+### Solución de problemas frecuentes
+- **Recuperación del arranque de Windows**: 
+  - *Experiencia compartida*: "Tuve que hacer el arranque de Windows a mano desde CMD" usando comandos para restaurar el boot manager
+  - *Tip práctico*: Para pantallas negras tras iniciar sesión: "Control+Suprimir, Administrador de tareas, cerrar y esperar 5 minutos"
+
+### Herramientas de terceros
+- **CCleaner**: Útil específicamente para limpieza de registros de Windows
+  - *Caso de uso*: "Muy funcional para problemas con VPNs que se pisan entre ellas"
+  - *Advertencia*: "Para otras cosas como optimización o desfragmentación no hace nada que tú no puedas hacer mejor"
+
+## Reflexiones y consejos profesionales
+
+A lo largo de la clase, el profesor comparte varias reflexiones basadas en su experiencia:
+
+- **Sobre educar a los usuarios**: "Como buenos administradores tenemos que educar a la gente. La gente se educa solo cuando recibe palos; mientras tanto, sin sustos o sanciones económicas, no sirve de nada"
+
+- **Sobre la responsabilidad del administrador**: "En estos casos la culpa es del administrador, porque tú tienes que mirar los backups y educar a la gente"
+
+- **Sobre la resolución de problemas**: "Gracias al visor de eventos tenemos un aliado que nos ayuda y que tenemos que saber exportar y demostrar"
+
+La clase combina teoría con ejemplos prácticos y anécdotas reales del mundo laboral, ofreciendo una visión aplicada de la administración de sistemas.

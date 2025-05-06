@@ -1,0 +1,69 @@
+
+
+# Resumen: Tutoría de Implantación de Sistemas Operativos (22/04/2025)
+
+En esta tutoría complementaria a la clase principal de ASIR, el profesor Francisco Blanco profundiza en temas de administración de sistemas, centrándose especialmente en la configuración RAID y en cuestiones prácticas para los alumnos. A continuación, presento un resumen detallado con los ejemplos más relevantes:
+
+## 1. Sistemas RAID (Redundant Array of Independent Disks)
+
+**Definición y tipos principales:**
+- RAID: Agrupación lógica de discos que proporciona redundancia de datos
+- El profesor se centra en RAID 1 y RAID 5, que son los mencionados en el BOE (plan de estudios)
+
+**RAID 1 (Espejo):**
+- Consiste en dos discos idénticos que reflejan la misma información
+- **Ejemplo práctico:** "Si tienes un disco de 500GB y otro de 1TB, solo podrás utilizar 500GB en el conjunto RAID, desperdiciando la mitad del espacio en el disco más grande"
+- Tolerancia a fallos: Si falla un disco, el sistema sigue funcionando con el otro
+- Desventajas: Pérdida de velocidad de escritura (hasta 25%) y mayor coste por duplicar almacenamiento
+- Uso actual: "Está muy en desuso, sobre todo en entornos profesionales"
+
+**RAID 5:**
+- Requiere al menos tres discos
+- Distribuye la información y la paridad entre todos los discos
+- Mayor eficiencia en espacio y mejor rendimiento
+- Ejemplo visual: "Disco 0, Disco 1, Disco 2, Disco 3 distribuidos con paridad"
+- Más común en servidores empresariales
+
+## 2. Hardware de controladores RAID
+
+**Controladoras RAID:**
+- "Detrás de todo RAID tenemos una controladora que organiza y configura los discos"
+- **Ejemplo real:** "En un ayuntamiento donde trabajé, cada vez que reiniciaba un servidor me echaba a temblar porque fallaba la controladora, no la batería"
+- Incluyen batería propia para mantener la configuración
+
+**Herramienta iLO (Integrated Lights-Out):**
+- Interfaz de gestión remota para servidores
+- Permite trabajar con el servidor aunque esté apagado
+- "Es como si tuvieras tu ratón, teclado y pantalla en un CPD donde quieras tener tu servidor"
+- **Ejemplo práctico:** "Desde aquí vemos un resumen: 16GB RAM, el procesador, y te hace un chequeo del estado del hardware"
+
+**Importancia del mantenimiento:**
+- "Está muy bien tener un RAID con su redundancia, pero si lo que gestiona el RAID (la controladora) no funciona correctamente, tendremos problemas"
+- Necesidad de revisar el estado de las controladoras periódicamente
+
+## 3. Tendencias actuales en almacenamiento
+
+**Sistemas NAS (Network Attached Storage):**
+- **Ejemplo empresarial:** "Synology ha establecido que ahora solo se pueden usar discos fabricados por ellos"
+- Discusión sobre ventajas/desventajas: "A nivel profesional lo veo bien, a nivel de usuario particular es una putada"
+
+**Almacenamiento en cintas:**
+- "Empresas como Airbus y sus subcontratas siguen trabajando con cintas"
+- "Son muchísimo más fiables que cualquier sistema actual, con una fiabilidad de más del 99,9%"
+- **Ejemplo práctico:** "Durante la cuarentena tenía que ir prácticamente cada semana a cambiar las cintas en una empresa"
+
+## 4. Prácticas para los alumnos
+
+**Configuración de máquinas virtuales:**
+- Crear dos máquinas virtuales (DC1 y DC2)
+- Ejemplo de cómo añadir un nuevo disco en VirtualBox (10GB)
+- Configurar discos con GPT o MBR: "GPT permite utilizar todo el espacio que quieras, MBR está limitado"
+- Asignar letras a los volúmenes para que sean accesibles
+
+**Preparación para la próxima sesión:**
+- Configurar IP estática en las máquinas virtuales
+- Instalar roles de servidor: "DHCP, DNS y Servicio de dominio Active Directory"
+- No configurar los servicios, solo instalarlos
+- "Pondremos un dominio primario local"
+
+El profesor combina explicaciones teóricas con demostraciones prácticas, mostrando ejemplos reales de su experiencia laboral para ilustrar la importancia de los conceptos. La sesión termina con instrucciones claras para la preparación de un entorno de dominio en la próxima clase.

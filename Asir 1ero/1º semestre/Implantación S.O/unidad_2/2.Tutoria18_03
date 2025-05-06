@@ -1,0 +1,99 @@
+
+
+# Resumen: ASIR - Tutoría 18/03/2025. Ejercicios sobre usuarios
+
+En esta tutoría, el profesor desarrolla ejercicios prácticos sobre administración de usuarios en Windows, mostrando diferentes métodos para crear, modificar y borrar usuarios, así como gestionar sus permisos y grupos. A continuación, presento un resumen detallado con ejemplos concretos de los procedimientos explicados.
+
+## 1. Verificación y visualización de usuarios actuales
+
+### Verificar usuario actual y sus propiedades
+- **Acceso al Panel de Control**: El profesor muestra cómo acceder a la información del usuario desde:
+  ```
+  Panel de Control > Cuentas de usuario
+  ```
+- **Verificación por línea de comandos**: Uso del comando `net user` para ver información detallada:
+  ```
+  net user [nombre_usuario]
+  ```
+
+### Visualizar grupos y pertenencias
+- **Usando PowerShell para identificar a qué grupo pertenece un usuario**:
+  ```
+  [comando para verificar pertenencia al grupo administradores]
+  ```
+- **Verificación visual de grupos**: Acceso a la gestión de usuarios y grupos desde Windows.
+
+## 2. Creación de usuarios mediante interfaz gráfica
+
+El profesor demostró cómo crear usuarios nuevos usando la interfaz gráfica de Windows:
+
+1. Acceder a **Configuración > Cuentas > Otros usuarios**
+2. Seleccionar **"Añadir un usuario sin una cuenta de Microsoft"**
+3. Crear usuario de prueba llamado "Florentino":
+   - Establecer contraseña
+   - Responder preguntas de seguridad (obligatorio)
+   - El usuario se crea con tipo estándar por defecto
+
+### Visualización y cambio del tipo de cuenta
+1. Desde el panel de usuarios, seleccionar la cuenta
+2. Ver opción "Change account type"
+3. Se puede modificar entre:
+   - Usuario estándar
+   - Administrador
+
+## 3. Gestión de usuarios por línea de comandos
+
+### Añadir un usuario al grupo de administradores
+
+El profesor mostró varios métodos:
+
+1. **Usando NET USER**:
+   ```
+   net localgroup administrators "LaPorta" /add
+   ```
+   - Este comando añadió al usuario "LaPorta" al grupo de administradores
+
+2. **Creación de otro usuario por interfaz y modificación por PowerShell**:
+   - Creó un usuario llamado "DelNido" desde la interfaz gráfica
+   - Utilizó PowerShell como administrador para añadirlo al grupo de administradores:
+   ```
+   Add-LocalGroupMember -Group Administrators -Member "DelNido"
+   ```
+
+### Verificación de los cambios
+El profesor mostró cómo los usuarios que eran "Local account" pasaron a ser "Administrator" después de aplicar los cambios, aunque a veces hay que refrescar la página para ver las actualizaciones.
+
+## 4. Administración de contraseñas y seguridad
+
+### Consideraciones sobre expiración de contraseñas:
+- **Usuario normal**: Configurado para "Never expires"
+- **Usuario temporal**: Se puede configurar para que expire en una fecha determinada
+
+### Ejemplo mencionado sobre usuarios temporales:
+"Si sabes que necesitarás cinco ingenieros durante 18 meses para un proyecto, puedes estipular la vida útil de la cuenta hasta una fecha concreta"
+
+### Buenas prácticas de seguridad en contraseñas:
+- No usar contraseñas del diccionario (vulnerables a ataques por fuerza bruta)
+- Evitar patrones obvios
+- Discusión sobre el uso de caracteres especiales como la "ñ": 
+  "Para que el resto de personas metan esa eñe creo que tiene que hacer como control alt 1 2 y 3... es molesto"
+
+## 5. Preparación de entornos virtuales
+
+En la última parte de la tutoría, el profesor inició la descarga de ISO de Windows 10 y Windows 11 para crear entornos virtuales donde practicar:
+
+1. Acceso al sitio oficial de Microsoft
+2. Descarga de la herramienta de instalación (Media Creation Tool)
+3. Configuración para crear un archivo ISO
+4. Selección de idioma (español) y arquitectura (64 bits)
+
+El objetivo es que los estudiantes puedan instalar estas ISO en máquinas virtuales para practicar la administración de usuarios y grupos en diferentes versiones de Windows.
+
+## Consejos prácticos compartidos
+
+- **Sobre control de accesos**: "En mi empresa damos soporte al ayuntamiento de Santa Cruz de Tenerife y han obligado a virtualizar todo el proceso de registro de accesos a CPDs"
+- **Sobre políticas de usuario en empresas**: "Cuando entras por primera vez, se te da una contraseña inicial y se habilita que al primer login puedas cambiarla por una propia que solo tú conozcas"
+- **Sobre permisos y roles**: "Cada empleado tiene acceso según su rol, desde el parking hasta la zona más alta del edificio"
+- **Sobre seguridad**: "Pregunta siempre antes de actuar cuando seas nuevo en una empresa. No conectes cosas sin autorización"
+
+La tutoría ofrece una visión práctica y basada en ejemplos reales sobre la administración de usuarios en entornos Windows, combinando tanto métodos gráficos como por línea de comandos.

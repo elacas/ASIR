@@ -1,0 +1,92 @@
+
+
+# Resumen: ASIR - Tutoría 25/03/2025. Ejercicios prácticos
+
+En esta tutoría, el profesor guía a los alumnos en la instalación y configuración de máquinas virtuales para las prácticas del ciclo ASIR. El enfoque principal es resolver problemas comunes que surgen durante este proceso y comparar diferentes herramientas de virtualización. A continuación, presento un resumen detallado con ejemplos prácticos:
+
+## 1. Instalación de máquinas virtuales
+
+### Software de virtualización comparado
+- **VirtualBox**: Utilizado principalmente durante la clase
+  - *Ventajas*: Gratuito, ampliamente utilizado
+  - *Desventajas*: Algunos alumnos experimentaron errores de kernel e hipervisor
+
+- **VMware**: Alternativa sugerida por varios alumnos
+  - *Ventajas*: Mejor integración con Windows, menos errores
+  - *Experiencia compartida*: "Con VMware directamente le he metido la imagen, he hecho la instalación típica y no me ha dado error"
+
+- **Proxmox**: Mencionado por un alumno como alternativa de código abierto
+  - *Comentario del profesor*: "No la había visto nunca, tengo que darme una vuelta por Proxmox a ver qué tal es"
+
+### Paso a paso para la instalación en VirtualBox
+
+1. **Crear nueva máquina virtual**:
+   ```
+   Botón "New" → Nombre: "Windows_VM1" → Seleccionar ISO → Omitir instalación desatendida
+   ```
+
+2. **Configuración de hardware recomendada**:
+   - RAM: 4096 MB (mínimo recomendado)
+   - CPUs: 4 procesadores (hasta el límite de la barra verde)
+   - Disco duro: 50 GB
+
+3. **Proceso de instalación de Windows 10**:
+   - Seleccionar idioma y región → Instalar ahora → Aceptar términos de licencia
+   - Para la clave de producto:
+     * Opción 1: Usar clave genérica para educación (proporcionada en el chat)
+     * Opción 2: Seleccionar "No tengo clave de producto"
+   - Seleccionar Windows 10 Pro (recomendado para trabajar con redes)
+   - Tipo de instalación: Personalizada
+
+## 2. Resolución de problemas comunes
+
+### Error de kernel en VirtualBox
+Solución aplicada durante la clase:
+```
+bcdedit /set hypervisorlaunchtype off
+```
+
+Este comando debe ejecutarse como administrador en CMD para desactivar el hipervisor y permitir que VirtualBox use la virtualización.
+
+### Error "No se encuentra la ISO"
+Soluciones propuestas:
+1. Verificar el formato del archivo ISO
+2. Ubicar la ISO en una carpeta sin espacios en el nombre
+3. Seleccionar "Mostrar diálogo" al montar la ISO
+4. Probar con "Reintentar inicio"
+
+### Error al iniciar la máquina virtual
+Causa identificada: Problemas con la virtualización en la BIOS/UEFI
+```
+"Make sure the kernel is properly configured"
+```
+
+Soluciones discutidas:
+1. Activar virtualización en la BIOS/UEFI
+2. Ejecutar VirtualBox como administrador
+3. Desactivar Hyper-V si está habilitado
+
+## 3. Recomendaciones adicionales
+
+### Para mejorar la experiencia con máquinas virtuales:
+- **Extension Pack**: "Para Windows me parece importante instalar el Extension Pack para la redimensión de pantalla"
+- **Guest Additions**: "Yo siempre instalo las Guest Additions porque si no siempre falla la integración"
+- **Evitar nombres complejos**: "Para evitar problemas absurdos, ponle nombres sin espacios como Windows_VM1"
+- **Recursos adecuados**: "Si tu ordenador va un poco justo, quédate con 2 CPUs pero a ver, lo ideal es ceñirte a la barra verde"
+
+### Sobre la activación de Windows:
+- Se pueden usar claves genéricas para entornos educativos
+- El profesor sugirió: "Si por lo que sea os falla, ponéis en ChatGPT 'claves genéricas Windows 10 para aprender con máquina virtual' y os da una"
+- Al no usar clave de producto, se permite seleccionar la versión de Windows (recomendado: Windows 10 Pro para trabajo con redes)
+
+## 4. Próximos pasos mencionados
+
+El profesor comentó que en futuras sesiones trabajarán con:
+- Instalación de Linux (Ubuntu o Kali Linux) 
+- Comparación entre diferentes modos de red (NAT vs Bridge)
+- Prácticas de colisiones de red
+- Configuración de redes departamentales
+
+> "Lo bueno que tiene planificación y administración de redes es que también las cosas que vamos a hacer ahí las quiero hacer con máquina virtual, tanto fuera como dentro, para que veáis la diferencia... si modifico una cosa, estoy con el NAT o estoy con el Bridge, pasa una cosa o no pasa la otra"
+
+La tutoría se centró en resolver problemas prácticos y proporcionar una base común para todos los alumnos antes de abordar contenidos más avanzados en las próximas clases.

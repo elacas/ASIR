@@ -1,0 +1,97 @@
+
+
+
+
+# Resumen: ASIR - Tutoría 08/04/2025
+
+En esta tutoría, el profesor Francisco Blanco se centra en aspectos prácticos de la administración de sistemas Windows Server, con especial énfasis en la gestión de usuarios y dominios. A continuación, presento un resumen detallado con los conceptos clave y ejemplos prácticos.
+
+## 1. Administración de usuarios y seguridad
+
+### Política de usuario administrador
+El profesor enfatiza las buenas prácticas para gestionar usuarios administradores:
+
+- **Limitación del usuario administrador local**: "El usuario administrador local tendría que tenerlo solo el CEO de mi empresa y la documentación oportuna"
+- **Razón principal**: "Si todos los técnicos tienen el usuario administrador, no sabes quién ha instalado el programa que se ha cargado el equipo"
+- **Procedimiento recomendado**: Crear usuarios administradores específicos en lugar de compartir la cuenta de administrador genérica
+
+### Ejemplo práctico compartido:
+> "Si tenemos a tres administradores con la contraseña del usuario administrador local y uno deja la empresa diciendo 'Me han puteado, me querían dar una subida anual de 8000€ bruto y me han subido 2000, me voy de la empresa', resulta que tiene usuario administrador de todas nuestras máquinas. Ahora, ¿qué hacemos? Tenemos que cambiar el usuario administrador en todas las máquinas físicas y virtuales."
+
+## 2. Gestión de contraseñas
+
+### Política de contraseñas seguras
+Se debatió extensamente sobre las características que deben tener las contraseñas:
+
+- **Complejidad recomendada**: Mínimo 8 caracteres (aunque algunos alumnos sugerían 12-14)
+- **Caducidad**: Cambio cada 3 meses (el profesor advirtió que plazos más cortos generan resistencia)
+- **Historial de contraseñas**: Impedir la reutilización de contraseñas anteriores
+
+### Autenticación multifactor
+- Recomendada como capa adicional de seguridad
+- *Ejemplo de problema*: "El contable que te dice 'No me jodas con esto del doble factor, es mi móvil personal'"
+
+### Consideración práctica compartida:
+> "Todos los sistemas son vulnerables, todos. Siempre va a haber un tipo por detrás que va a encontrar una puerta abierta o un código que no está bien optimizado. Vamos a ponérselo difícil. Si tenemos la organización bien estructurada, a lo mejor si coge el usuario de un tipo de desarrollo que solo puede entrar en tres carpetas, pues tengo que dar explicaciones a esos tres clientes, no a 200 clientes."
+
+## 3. Creación de usuarios y grupos en Windows Server
+
+El profesor realizó una demostración práctica de:
+
+1. **Creación de grupos locales**:
+   ```
+   Botón derecho → Administración de equipo → Usuarios y grupos locales → Grupos → Nuevo grupo
+   ```
+
+2. **Creación de usuarios locales**:
+   ```
+   Botón derecho → Administración de equipo → Usuarios y grupos locales → Usuarios → Nuevo usuario
+   ```
+   - Nombre de usuario: Recomendación de usar nombres cortos (AdminLolo)
+   - Descripción: Importancia de documentar la finalidad del usuario
+   - Opciones de seguridad: Contraseña nunca expira, contraseña debe cambiarse, etc.
+
+3. **Deshabilitar cuentas**: Se mostró cómo deshabilitar cuentas en lugar de eliminarlas
+
+## 4. Preparación para creación de dominios
+
+### Configuración del nombre de servidor
+- **Importancia**: "Antes de tocar nada en Windows Server hay que cambiarle el nombre a la máquina siempre"
+- **Procedimiento demostrado**:
+  - Método 1: Panel de control → Sistema → Propiedades del sistema → Nombre de equipo
+  - Método 2: Administrador del servidor → Servidor local → Nombre del equipo
+  - Método 3: Clic derecho en el botón de inicio → Sistema → Acerca de → Cambiar nombre
+
+- **Convención recomendada**: DC1-[algo descriptivo] en lugar del nombre por defecto
+
+### Creación de instantáneas (snapshots)
+- **Utilidad**: Poder restaurar el sistema a un punto anterior si algo falla
+- **Tipos explicados**:
+  - En caliente: Con la máquina virtual en marcha
+  - En frío: Con la máquina virtual apagada
+
+### Ejemplo práctico compartido:
+> "Son las 7 y a las 9 voy a hacer una actualización de un sistema de contabilidad. Como no me fío porque son unos catetos los que van a hacer la actualización, hago mi snapshot. Si el servidor da problemas, vuelvo a la instantánea de las 7 de la tarde y mañana para la gente de contabilidad no se habrá perdido nada de producción."
+
+## 5. Conceptos sobre entornos cloud y on-premise
+
+Durante la tutoría surgió un debate sobre Azure y servicios en la nube:
+
+- **Consideraciones sobre Azure**: 
+  - "Azure es magnífico, pero va a pasar como con Amazon. Todo el mundo se fue con las máquinas virtuales a Amazon hasta que subieron los precios"
+  - "Para una gran empresa un Azure no es nada, pero para una pequeña empresa de carpintería que solo necesita contabilidad y recursos humanos, puede ser más conveniente hacer una inversión de 1000€ en un servidor local"
+
+- **Enfoque equilibrado**:
+  - "Hay que saber de dónde venimos para saber a dónde queremos llegar. Azure es a donde yo quiero llevar, pero ya tengo todo el rodaje de atrás"
+
+## 6. Tarea asignada para Semana Santa
+
+Como cierre de la tutoría, el profesor asignó:
+
+- Crear un dominio local en Windows Server (nombrándolo según preferencias personales)
+- Configurar Active Directory en el servidor
+- Añadir usuarios al dominio
+
+> "Quiero que creéis un dominio. El dominio se puede llamar como queráis. Es como decir: voy a crear una empresa que se va a llamar 'Pintura Gráfica Lolo' y vuestro dominio se va a llamar 'pinturagraficalolo'. Quiero que en vuestro servidor creéis el dominio para después añadir usuarios."
+
+La tutoría combinó aspectos teóricos esenciales sobre seguridad con demostraciones prácticas, poniendo énfasis en las buenas prácticas y en la importancia de una configuración adecuada antes de proceder a la creación de dominios y gestión de usuarios en entornos Windows Server.

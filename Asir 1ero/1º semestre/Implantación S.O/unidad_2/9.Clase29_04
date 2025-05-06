@@ -1,0 +1,112 @@
+
+
+# Resumen: Clase de Implantación de Sistemas Operativos (29/04/2025)
+
+Esta clase del ciclo formativo de ASIR (Administración de Sistemas Informáticos en Red) aborda temas fundamentales sobre el almacenamiento, copias de seguridad y creación de dominios. A continuación, te presento un resumen detallado con los puntos más relevantes y ejemplos prácticos:
+
+## 1. Montaje de Volúmenes en Carpetas
+
+**Concepto y utilidad:**
+- Forma de organizar el almacenamiento físico en áreas lógicas
+- Permite crear estructuras de directorios compartidos
+
+**Ejemplo práctico demostrado:**
+- Creación de una carpeta compartida: El profesor muestra cómo crear "Nueva carpeta" en un disco local
+- Compartirla en red: Botón derecho > Propiedades > Compartir > Elegir usuarios
+- Conectar la unidad de red: "Conectar unidad de red" + ruta de red (\\IP\carpeta)
+
+**Aplicación en entorno empresarial:**
+- En Active Directory: Organización por departamentos (marketing, ventas, desarrollo, RRHH)
+- A través de GPO: Configuración para que las unidades se monten automáticamente al iniciar sesión
+
+## 2. Tolerancia a Fallos
+
+**Definición:**
+- "Característica que permite a un sistema seguir funcionando a pesar de sufrir ciertos errores"
+
+**Principales métodos explicados:**
+- **Hardware redundante:** 
+  * Ejemplo: "Me permito que una fuente de alimentación se estropee porque tengo otra"
+  * Servidores idénticos de respaldo (failover)
+
+- **Energía:**
+  * SAI (Sistema de Alimentación Ininterrumpida)
+  * Grupos electrógenos
+  * Ejemplo práctico: "En una entidad pública, una vez al año cortamos la energía eléctrica normal y en décimas de segundo tiene que levantarse el grupo electrógeno"
+
+- **Portátiles como solución:**
+  * "Se han puesto de moda porque proporcionan tolerancia a fallos eléctricos gracias a su batería"
+
+**Pros y contras mencionados:**
+- Contra: "Reducción de nivel de producción, mayores tiempos de respuesta"
+- Ejemplo real: "En la red de un ayuntamiento, de 2 a 3 de la tarde el sistema se ralentiza porque es cuando hay mayor productividad"
+
+## 3. Tipos de Copias de Seguridad
+
+**Copia de seguridad completa:**
+- Respalda absolutamente todo el contenido
+- Contras: Necesita mucho espacio, lentitud, coste elevado
+
+**Copia incremental:**
+- Solo copia los datos que han variado desde el último respaldo
+- Ventajas: "Optimiza el espacio y el tiempo"
+- El profesor comenta: "Nosotros trabajamos con incrementales, no suelen dar fallos"
+
+**Copia diferencial:**
+- Similar a la incremental en la primera ejecución
+- Después, copia todos los archivos modificados desde la última copia completa
+- Ejemplo: "Si el lunes tengo un backup completo, los archivos del martes, miércoles y jueves se comparan siempre con los del lunes"
+
+**Estrategia recomendada:**
+- "Nosotros hacemos una completa una vez a la semana y luego incrementales diarias"
+- "Si se ha robado algo de ayer (lunes), tiro del backup del viernes"
+
+## 4. Almacenamiento y Seguridad en la Nube
+
+**Precauciones con servicios cloud:**
+- "¿Vuestra información en Drive está segura?" - El profesor plantea esta pregunta retórica
+- Microsoft no se hace responsable de la pérdida de datos
+- "Microsoft te permite recuperar hasta 21 días, pero no se hace responsable"
+
+**Solución recomendada:**
+- Software específico como Acronis para backups
+- Ejemplo: "49€ al año para cinco ordenadores"
+- "Para mí es lo que me ha dejado dormir por las noches"
+
+## 5. Planificación de Copias de Seguridad
+
+**Factores a considerar:**
+- Valor de los datos: "¿Cuánto valen tus datos en caso de pérdida?"
+- Programación: "Aprovechar que a las 7 de la tarde no hay nadie en la empresa"
+- Ancho de banda disponible: "No es lo mismo tener que mover tres teras de datos todas las noches que 20GB"
+
+**Ejemplo práctico mencionado:**
+- "En recursos humanos tengo que hacer incrementales todos los días por protección de datos, mientras que en diseño puedo hacerlo cada 3 días porque solo perderían 8 horas de trabajo"
+
+## 6. Recuperación en Caso de Fallo
+
+**Punto de control/restauración:**
+- Demostración en vivo: Crear > "Pruebas clase" > Restaurar sistema
+- Uso práctico: "Voy a hacer un punto de control porque quiero pasar de Windows 10 a Windows 11 y no me fío"
+
+**Ejemplo real compartido:**
+- "Voy a instalar un nuevo antivirus en mis servidores y no sé qué programas me van a dejar de funcionar"
+- "Si empiezan los problemas, vuelvo atrás a mi punto de restauración y recupero la productividad"
+- "Un servidor no puede estar más de 3 minutos fuera de servicio al año para cumplir con el 99,999% de disponibilidad"
+
+## 7. Iniciación a la Configuración de Active Directory
+
+**Definición de dominio:**
+- "Una unidad lógica dentro de una infraestructura que permite agrupar recursos"
+- Permite controlar usuarios, grupos y dispositivos
+
+**Pasos para crear un dominio:**
+1. Configurar IP estática
+2. Instalar servicios de dominio de Active Directory 
+3. Crear un nuevo bosque
+4. Nombre raíz siempre terminado en ".local" (no usar ".com")
+5. Establecer contraseña de modo de restauración (muy importante)
+
+El profesor enfatiza la importancia del Active Directory para la organización y seguridad de la red, permitiendo controlar quién accede a qué recursos: "Un usuario de programación no puede entrar en la carpeta de contabilidad, pero el de contabilidad sí puede entrar en la de desarrollo para ver los proyectos vendidos."
+
+La clase combina teoría con demostraciones prácticas, enfocándose en preparar a los estudiantes para situaciones reales en entornos empresariales.
