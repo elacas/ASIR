@@ -1,0 +1,96 @@
+/* Estilos base */
+:root {
+  /* Colores según tema elegido */
+  --primary-color: #3A4B3C; /* Montaraz: verde oscuro / Lothlórien: dorado #D4AF37 */
+  --secondary-color: #5E4B3E; /* Montaraz: marrón / Lothlórien: plateado #D0D5D5 */
+  --background-color: #1E1E1E; /* Montaraz: oscuro / Lothlórien: claro #F9F9F9 */
+  --text-color: #E0E0E0; /* Montaraz: claro / Lothlórien: oscuro #2C3E50 */
+  --accent-color: #C0C0C0; /* Montaraz: plateado / Lothlórien: azul #7BA7BC */
+}
+
+body {
+  font-family: 'Alegreya', serif; /* Montaraz / Lothlórien: 'Raleway', sans-serif */
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Encabezado temático */
+.portfolio-header {
+  height: 100vh;
+  background-image: url('ruta-a-tu-imagen-de-fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.theme-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5); /* Ajustar opacidad según tema */
+}
+
+.profile-intro {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.profile-intro h1 {
+  font-family: 'Cinzel', serif; /* Montaraz / Lothlórien: 'Aniron', fantasy */
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.theme-divider {
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+  margin: 1.5rem auto;
+}
+
+/* Secciones temáticas */
+section {
+  padding: 4rem 2rem;
+}
+
+section h2 {
+  font-family: 'Cinzel', serif; /* Montaraz / Lothlórien: 'Aniron', fantasy */
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+section h2::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+  margin: 1rem auto;
+}
+
+/* Estilo de grid para valores */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Estilo de tarjetas */
+.value-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px
