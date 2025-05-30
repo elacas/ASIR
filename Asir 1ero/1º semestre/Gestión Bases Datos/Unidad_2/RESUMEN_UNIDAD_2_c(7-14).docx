@@ -1,0 +1,570 @@
+# Resumen Detallado: Gestión de Bases de Datos - Unidad 2 (Documentos 7 al 14, desde "Buenas Prácticas de Seguridad")
+
+## **Buenas Prácticas de Seguridad en Bases de Datos**
+
+La seguridad es un aspecto fundamental en la gestión de bases de datos. Implementar buenas prácticas de seguridad protege la información sensible y garantiza la integridad de los datos.
+
+### **Principios fundamentales:**
+
+1. **Principio del menor privilegio:** Asignar a cada usuario únicamente los permisos mínimos necesarios para realizar sus tareas.
+
+```sql
+-- En lugar de dar todos los privilegios
+GRANT SELECT, INSERT, UPDATE ON ventas.facturas TO operador_ventas;
+-- No dar privilegios innecesarios como DELETE
+```
+
+2. **Uso de roles:** Agrupar permisos relacionados en roles para facilitar la administración.
+
+```sql
+CREATE ROLE analista_marketing;
+GRANT SELECT ON ventas.productos TO analista_marketing;
+GRANT SELECT ON ventas.facturas TO analista_marketing;
+GRANT analista_marketing TO usuario1, usuario2, usuario3;
+```
+
+3. **Auditoría regular:** Activar y revisar periódicamente los logs de auditoría para detectar actividades sospechosas.
+
+```sql
+-- En SQL Server
+CREATE SERVER AUDIT DataAudit
+TO FILE (FILEPATH = 'C:\Logs\');
+
+CREATE DATABASE AUDIT SPECIFICATION UserActivity
+FOR SERVER AUDIT DataAudit
+ADD (SELECT, INSERT, UPDATE, DELETE ON DATABASE::MiBaseDeDatos BY public);
+```
+
+4. **Revocación oportuna de permisos:** Retirar los privilegios de usuarios que ya no los necesitan, especialmente cuando cambian de puesto o abandonan la organización.
+
+```sql
+-- Revocar un rol completo
+REVOKE analista_marketing FROM usuario_transferido;
+
+-- Revocar permisos específicos
+REVOKE INSERT, UPDATE ON clientes FROM usuario_temporal;
+```
+
+5. **Evitar permisos globales:** Limitar el uso del permiso `PUBLIC` o equivalentes, ya que otorgan acceso a todos los usuarios.
+
+6. **Cifrado de datos sensibles:** Utilizar funciones de cifrado para proteger información confidencial.
+
+```sql
+-- Ejemplo en MySQL
+INSERT INTO clientes VALUES (1, 'Juan Pérez', AES_ENCRYPT('4111-1111-1111-1111', 'clave_secreta'));
+```
+
+## **Estructuras de Almacenamiento: Índices**
+
+Los índices son estructuras de datos que mejoran significativamente el rendimiento de las consultas al proporcionar acceso rápido a los registros de una tabla.
+
+### **Tipos de Índices**
+
+#### **Índices Clustered (Agrupados)**
+
+- **Definición:** Un índice clustered determina el **orden físico** en que los datos se almacenan en el disco. Las filas de la tabla se organizan físicamente según el orden de las columnas del índice.
+- **Cantidad por tabla:** Una tabla solo puede tener **un único índice clustered**.
+- **Relación con la Clave Primaria:** La mayoría de los SGBD crean automáticamente un índice clustered sobre la clave primaria por defecto.
+
+```sql
+-- Creación de un índice clustered en SQL Server
+CREATE CLUSTERED INDEX IX_Empleados_ID ON Empleados(ID);
+
+-- En MySQL (InnoDB), la clave primaria es automáticamente un índice clustered
+CREATE TABLE Productos (
+    ID INT PRIMARY KEY,  -- Crea automáticamente un índice clustered
+    Nombre VARCHAR(100),
+    Precio DECIMAL(10,2)
+);
+```
+
+#### **Índices Non-Clustered (No Agrupados)**
+
+- **Definición:** Los índices non-clustered **no afectan el orden físico** de los datos. Son estructuras separadas que contienen los valores indexados y punteros a la ubicación real de las filas.
+- **Cantidad por tabla:** Una tabla puede tener **múltiples índices non-clustered**.
+- **Funcionamiento:** El SGBD primero busca en el índice y luego utiliza el puntero para acceder directamente a la fila de datos.
+
+```sql
+-- Creación de un índice no agrupado simple
+CREATE INDEX IX_Empleados_Apellido ON Empleados(Apellido);
+
+-- Índice compuesto (múltiples columnas)
+CREATE INDEX IX_Pedidos_Cliente_Fecha ON Pedidos(ClienteID, FechaPedido);
+```
+
+#### **Otros tipos de índices:**
+
+- **Índices Únicos:** Garantizan que no existan valores duplicados en las columnas indexadas.
+
+```sql
+CREATE UNIQUE INDEX IX_Empleados_Email ON Empleados(Email);
+```
+
+- **Índices de Texto Completo:** Optimizados para búsquedas de texto avanzadas.
+
+```sql
+-- En SQL Server
+CREATE FULLTEXT INDEX ON Articulos(Contenido) 
+KEY INDEX PK_Articulos;
+```
+
+- **Índices Espaciales:** Para datos geoespaciales.
+
+### **Ventajas y Desventajas de los Índices**
+
+#### **Ventajas:**
+- Aceleran significativamente las consultas SELECT
+- Mejoran el rendimiento de las cláusulas WHERE, ORDER BY y GROUP BY
+- Optimizan la ejecución de JOINs
+- Facilitan la aplicación de restricciones UNIQUE
+
+#### **Desventajas:**
+- Ocupan espacio adicional en disco
+- Ralentizan las operaciones de inserción, actualización y eliminación
+- Requieren mantenimiento (fragmentación)
+
+### **Mantenimiento de Índices**
+
+Para mantener el rendimiento óptimo de los índices:
+
+```sql
+-- Reorganizar un índice (desfragmentación ligera)
+ALTER INDEX IX_Empleados_Apellido ON Empleados REORGANIZE;
+
+-- Reconstruir un índice (desfragmentación completa)
+ALTER INDEX IX_Empleados_Apellido ON Empleados REBUILD;
+
+-- Actualizar estadísticas
+UPDATE STATISTICS Empleados;
+```
+
+## **Particionamiento de Tablas**
+
+El particionamiento divide tablas grandes en segmentos más pequeños y manejables, mejorando el rendimiento y facilitando la administración.
+
+### **Tipos de Particionamiento**
+
+#### **Particionamiento Horizontal (Sharding)**
+Divide las filas de una tabla en múltiples particiones según un criterio.
+
+```sql
+-- Ejemplo en SQL Server
+CREATE PARTITION FUNCTION RangoPorFecha (datetime)
+AS RANGE RIGHT FOR VALUES 
+('2023-01-01', '2023-04-01', '2023-07-01', '2023-10-01');
+
+CREATE PARTITION SCHEME EsquemaPorFecha
+AS PARTITION RangoPorFecha
+TO (FG1, FG2, FG3, FG4, FG5);
+
+CREATE TABLE Ventas (
+    ID INT,
+    Fecha DATETIME,
+    Monto DECIMAL(10,2)
+) ON EsquemaPorFecha(Fecha);
+```
+
+#### **Particionamiento Vertical**
+Divide las columnas de una tabla en múltiples tablas.
+
+```sql
+-- En lugar de una tabla grande
+CREATE TABLE Cliente_Datos_Basicos (
+    ClienteID INT PRIMARY KEY,
+    Nombre VARCHAR(100),
+    Email VARCHAR(100)
+);
+
+CREATE TABLE Cliente_Datos_Detallados (
+    ClienteID INT PRIMARY KEY,
+    Direccion VARCHAR(200),
+    Historial TEXT,
+    FOREIGN KEY (ClienteID) REFERENCES Cliente_Datos_Basicos(ClienteID)
+);
+```
+
+### **Beneficios del Particionamiento**
+- Mejora el rendimiento de consultas que acceden solo a ciertas particiones
+- Facilita el mantenimiento (backup, restauración)
+- Permite distribuir los datos en diferentes dispositivos de almacenamiento
+- Mejora la escalabilidad
+
+## **Transacciones y Control de Concurrencia**
+
+Las transacciones garantizan que las operaciones en la base de datos se ejecuten de manera fiable y consistente, incluso en entornos multiusuario.
+
+### **Propiedades ACID**
+
+- **Atomicidad:** Una transacción se ejecuta completamente o no se ejecuta en absoluto.
+- **Consistencia:** La transacción lleva la base de datos de un estado válido a otro.
+- **Aislamiento:** Las transacciones concurrentes no interfieren entre sí.
+- **Durabilidad:** Una vez confirmada, los cambios son permanentes incluso ante fallos.
+
+### **Comandos de Control de Transacciones**
+
+```sql
+-- Iniciar una transacción
+BEGIN TRANSACTION;
+
+-- Ejemplo de transferencia bancaria
+UPDATE Cuentas SET Saldo = Saldo - 1000 WHERE ID = 123;
+UPDATE Cuentas SET Saldo = Saldo + 1000 WHERE ID = 456;
+
+-- Si todo está correcto
+COMMIT;
+
+-- Si hay un problema
+ROLLBACK;
+
+-- Puntos de guardado
+SAVEPOINT punto1;
+-- ... operaciones ...
+ROLLBACK TO punto1;
+```
+
+### **Niveles de Aislamiento**
+
+Los niveles de aislamiento definen cómo interactúan las transacciones concurrentes:
+
+#### **READ UNCOMMITTED**
+Permite leer datos no confirmados (dirty reads).
+
+```sql
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+BEGIN TRANSACTION;
+    SELECT * FROM Cuentas WHERE ID = 123;
+COMMIT;
+```
+
+#### **READ COMMITTED**
+Solo permite leer datos confirmados, pero permite lecturas no repetibles.
+
+```sql
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+BEGIN TRANSACTION;
+    SELECT * FROM Cuentas WHERE ID = 123;
+    -- Otra transacción podría cambiar los datos aquí
+    SELECT * FROM Cuentas WHERE ID = 123; -- Podría obtener resultados diferentes
+COMMIT;
+```
+
+#### **REPEATABLE READ**
+Garantiza que las lecturas repetidas den el mismo resultado, pero permite lecturas fantasma.
+
+```sql
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+BEGIN TRANSACTION;
+    SELECT * FROM Cuentas WHERE Saldo > 1000;
+    -- Otra transacción podría insertar nuevas filas que cumplan la condición
+    SELECT * FROM Cuentas WHERE Saldo > 1000; -- Podría ver nuevas filas (fantasmas)
+COMMIT;
+```
+
+#### **SERIALIZABLE**
+Máxima protección, aísla completamente las transacciones.
+
+```sql
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+BEGIN TRANSACTION;
+    SELECT * FROM Cuentas WHERE Saldo > 1000;
+    -- Bloquea cualquier cambio que pudiera afectar a la consulta
+COMMIT;
+```
+
+### **Problemas de Concurrencia**
+
+- **Lecturas Sucias (Dirty Reads):** Una transacción lee datos modificados pero no confirmados por otra transacción.
+- **Lecturas No Repetibles (Non-repeatable Reads):** Una transacción lee el mismo registro dos veces y obtiene valores diferentes.
+- **Lecturas Fantasma (Phantom Reads):** Una transacción ejecuta la misma consulta dos veces y obtiene un conjunto diferente de filas.
+- **Actualizaciones Perdidas (Lost Updates):** Dos transacciones modifican el mismo dato y una sobrescribe los cambios de la otra.
+
+### **Deadlocks (Interbloqueos)**
+
+Situación donde dos o más transacciones se bloquean mutuamente:
+
+```sql
+-- Transacción 1
+BEGIN TRANSACTION;
+    UPDATE CuentaA SET Saldo = Saldo - 100;
+    -- Si la Transacción 2 ya bloqueó CuentaB, se produce un interbloqueo
+    UPDATE CuentaB SET Saldo = Saldo + 100;
+COMMIT;
+
+-- Transacción 2 (simultánea)
+BEGIN TRANSACTION;
+    UPDATE CuentaB SET Saldo = Saldo - 200;
+    -- Si la Transacción 1 ya bloqueó CuentaA, se produce un interbloqueo
+    UPDATE CuentaA SET Saldo = Saldo + 200;
+COMMIT;
+```
+
+Los SGBD detectan y resuelven deadlocks automáticamente, abortando una de las transacciones.
+
+## **Procedimientos Almacenados, Funciones y Triggers**
+
+### **Procedimientos Almacenados**
+
+Un procedimiento almacenado es un conjunto de instrucciones SQL que se almacenan en la base de datos y pueden ser invocados por su nombre.
+
+```sql
+-- Procedimiento simple
+CREATE PROCEDURE ObtenerClientesPorCiudad
+    @ciudad VARCHAR(50)
+AS
+BEGIN
+    SELECT ID, Nombre, Email
+    FROM Clientes
+    WHERE Ciudad = @ciudad
+    ORDER BY Nombre;
+END;
+
+-- Ejecución
+EXEC ObtenerClientesPorCiudad @ciudad = 'Madrid';
+```
+
+#### **Procedimientos con Parámetros de Salida**
+
+```sql
+CREATE PROCEDURE CalcularEstadisticasPedidos
+    @clienteID INT,
+    @totalPedidos INT OUTPUT,
+    @valorTotal DECIMAL(10,2) OUTPUT
+AS
+BEGIN
+    SELECT @totalPedidos = COUNT(*),
+           @valorTotal = SUM(Total)
+    FROM Pedidos
+    WHERE ClienteID = @clienteID;
+END;
+
+-- Ejecución con parámetros de salida
+DECLARE @numPedidos INT, @valor DECIMAL(10,2);
+EXEC CalcularEstadisticasPedidos 
+    @clienteID = 123,
+    @totalPedidos = @numPedidos OUTPUT,
+    @valorTotal = @valor OUTPUT;
+```
+
+### **Funciones Definidas por el Usuario**
+
+#### **Funciones Escalares**
+
+```sql
+-- Función que devuelve un solo valor
+CREATE FUNCTION CalcularEdad(
+    @fechaNacimiento DATE
+)
+RETURNS INT
+AS
+BEGIN
+    RETURN DATEDIFF(YEAR, @fechaNacimiento, GETDATE()) - 
+           CASE 
+               WHEN DATEADD(YEAR, DATEDIFF(YEAR, @fechaNacimiento, GETDATE()), @fechaNacimiento) > GETDATE() 
+               THEN 1 
+               ELSE 0 
+           END;
+END;
+
+-- Uso de la función
+SELECT Nombre, dbo.CalcularEdad(FechaNacimiento) AS Edad
+FROM Empleados;
+```
+
+#### **Funciones de Tabla**
+
+```sql
+-- Función que devuelve una tabla
+CREATE FUNCTION ObtenerPedidosRecientes(
+    @dias INT
+)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT *
+    FROM Pedidos
+    WHERE FechaPedido >= DATEADD(DAY, -@dias, GETDATE())
+);
+
+-- Uso de la función
+SELECT * FROM dbo.ObtenerPedidosRecientes(30);
+```
+
+### **Triggers (Disparadores)**
+
+Los triggers son procedimientos que se ejecutan automáticamente en respuesta a ciertos eventos en la base de datos.
+
+#### **Triggers AFTER (Después del evento)**
+
+```sql
+-- Trigger que registra cambios en una tabla de auditoría
+CREATE TRIGGER TR_Empleados_Actualizacion
+ON Empleados
+AFTER UPDATE
+AS
+BEGIN
+    INSERT INTO AuditoriaEmpleados (EmpleadoID, CampoModificado, ValorAnterior, ValorNuevo, FechaModificacion)
+    SELECT 
+        i.ID,
+        'Salario',
+        d.Salario,
+        i.Salario,
+        GETDATE()
+    FROM inserted i
+    JOIN deleted d ON i.ID = d.ID
+    WHERE i.Salario <> d.Salario;
+END;
+```
+
+#### **Triggers INSTEAD OF (En lugar del evento)**
+
+```sql
+-- Trigger que reemplaza una operación de eliminación
+CREATE TRIGGER TR_Clientes_NoEliminar
+ON Clientes
+INSTEAD OF DELETE
+AS
+BEGIN
+    -- En lugar de eliminar, marcar como inactivo
+    UPDATE Clientes
+    SET Activo = 0
+    WHERE ID IN (SELECT ID FROM deleted);
+    
+    PRINT 'Los clientes han sido marcados como inactivos en lugar de ser eliminados.';
+END;
+```
+
+## **Optimización de Consultas**
+
+La optimización de consultas busca mejorar el rendimiento y eficiencia de las operaciones en la base de datos.
+
+### **Técnicas de Optimización**
+
+#### **Uso Adecuado de Índices**
+```sql
+-- Consulta que aprovecha un índice existente en ClienteID
+SELECT * FROM Pedidos WHERE ClienteID = 123;
+
+-- Creación de índices para consultas frecuentes
+CREATE INDEX IX_Pedidos_FechaEstado ON Pedidos(FechaPedido, Estado);
+```
+
+#### **Evitar SELECT ***
+```sql
+-- En lugar de
+SELECT * FROM Clientes JOIN Pedidos ON Clientes.ID = Pedidos.ClienteID;
+
+-- Especificar solo las columnas necesarias
+SELECT c.Nombre, c.Email, p.FechaPedido, p.Total
+FROM Clientes c JOIN Pedidos p ON c.ID = p.ClienteID;
+```
+
+#### **Limitar Resultados**
+```sql
+-- Usar LIMIT/TOP para reducir el conjunto de resultados
+SELECT * FROM Productos ORDER BY Precio DESC LIMIT 10;
+```
+
+#### **Usar JOINs Adecuadamente**
+```sql
+-- Preferir INNER JOIN sobre subconsultas cuando sea posible
+-- En lugar de:
+SELECT * FROM Clientes WHERE ID IN (SELECT ClienteID FROM Pedidos WHERE Total > 1000);
+
+-- Usar:
+SELECT DISTINCT c.*
+FROM Clientes c
+INNER JOIN Pedidos p ON c.ID = p.ClienteID
+WHERE p.Total > 1000;
+```
+
+#### **Evitar Funciones en Columnas Indexadas**
+```sql
+-- Evitar (no puede usar índice en Fecha):
+SELECT * FROM Pedidos WHERE YEAR(FechaPedido) = 2023;
+
+-- Preferir:
+SELECT * FROM Pedidos 
+WHERE FechaPedido >= '2023-01-01' AND FechaPedido < '2024-01-01';
+```
+
+### **Plan de Ejecución**
+
+Los SGBD generan planes de ejecución que muestran cómo se procesará una consulta:
+
+```sql
+-- En SQL Server
+SET SHOWPLAN_ALL ON;
+GO
+SELECT c.Nombre, COUNT(p.ID) AS TotalPedidos
+FROM Clientes c
+JOIN Pedidos p ON c.ID = p.ClienteID
+GROUP BY c.Nombre;
+GO
+SET SHOWPLAN_ALL OFF;
+```
+
+## **Respaldo y Recuperación**
+
+El respaldo (backup) y la recuperación (restore) son procesos esenciales para proteger la información y garantizar la continuidad del servicio.
+
+### **Tipos de Respaldo**
+
+- **Backup completo:** Copia toda la base de datos.
+```sql
+-- En SQL Server
+BACKUP DATABASE MiBaseDatos
+TO DISK = 'C:\Backups\MiBaseDatos_Full.bak';
+```
+
+- **Backup diferencial:** Copia solo los cambios desde el último respaldo completo.
+```sql
+BACKUP DATABASE MiBaseDatos
+TO DISK = 'C:\Backups\MiBaseDatos_Diff.bak'
+WITH DIFFERENTIAL;
+```
+
+- **Backup de log de transacciones:** Copia el registro de transacciones.
+```sql
+BACKUP LOG MiBaseDatos
+TO DISK = 'C:\Backups\MiBaseDatos_Log.trn';
+```
+
+### **Restauración**
+
+```sql
+-- Restaurar un backup completo
+RESTORE DATABASE MiBaseDatos
+FROM DISK = 'C:\Backups\MiBaseDatos_Full.bak'
+WITH NORECOVERY;
+
+-- Restaurar un backup diferencial
+RESTORE DATABASE MiBaseDatos
+FROM DISK = 'C:\Backups\MiBaseDatos_Diff.bak'
+WITH NORECOVERY;
+
+-- Restaurar logs de transacciones
+RESTORE LOG MiBaseDatos
+FROM DISK = 'C:\Backups\MiBaseDatos_Log.trn'
+WITH RECOVERY;
+```
+
+### **Buenas Prácticas**
+
+- Realizar respaldos periódicos y automáticos
+- Probar regularmente la restauración
+- Guardar copias en ubicaciones externas o seguras
+- Mantener registros y políticas claras de respaldo
+- Implementar estrategias de respaldo acordes a los RPO (Recovery Point Objective) y RTO (Recovery Time Objective) definidos
+
+## **Conclusión**
+
+Los conceptos abordados en los documentos 7 al 14 de la Unidad 2 son fundamentales para la administración eficiente de bases de datos. Desde la implementación de buenas prácticas de seguridad hasta la optimización del rendimiento mediante índices y particionamiento, pasando por el control de transacciones y la automatización mediante procedimientos almacenados y triggers.
+
+Dominar estas técnicas permite diseñar, implementar y mantener bases de datos que sean:
+- Seguras, protegiendo la información sensible
+- Eficientes, con un rendimiento óptimo incluso con grandes volúmenes de datos
+- Confiables, garantizando la integridad de los datos y la disponibilidad del servicio
+- Mantenibles, facilitando la administración y evolución del sistema
+
+El equilibrio entre estos aspectos es clave para el éxito de cualquier sistema de gestión de bases de datos en entornos profesionales.

@@ -1,0 +1,434 @@
+# Resumen de los Laboratorios Virtuales de Gestión de Bases de Datos
+
+Los laboratorios virtuales de la asignatura de Gestión de Bases de Datos para ASIR (Administración de Sistemas Informáticos en Red) constituyen un conjunto de prácticas guiadas para el aprendizaje de sistemas de gestión de bases de datos relacionales. Estos laboratorios están diseñados para proporcionar experiencia práctica en la instalación, configuración, administración y optimización de bases de datos, elementos fundamentales en la formación de un administrador de sistemas.
+
+El repositorio contiene una serie de laboratorios que probablemente cubren tanto MySQL/MariaDB como Microsoft SQL Server, los dos sistemas de gestión de bases de datos más utilizados en entornos empresariales. A continuación, se presenta un resumen detallado de los contenidos típicos de estos laboratorios, organizados temáticamente y con ejemplos prácticos para ambos sistemas.
+
+## **1. Instalación y Configuración Inicial**
+
+Los primeros laboratorios suelen centrarse en la instalación y configuración básica del sistema de gestión de bases de datos.
+
+### Para MySQL/MariaDB:
+
+```bash
+# Instalación en sistemas Linux
+sudo apt update
+sudo apt install mariadb-server
+
+# Iniciar el servicio
+sudo systemctl start mariadb
+
+# Configuración inicial de seguridad
+sudo mysql_secure_installation
+
+# Acceso como root
+sudo mysql -u root -p
+```
+
+### Para SQL Server:
+
+```powershell
+# Verificar que el servicio está en ejecución
+Get-Service -Name MSSQLSERVER
+
+# Habilitar protocolos de red (desde PowerShell como administrador)
+Import-Module SQLPS
+$smo = 'Microsoft.SqlServer.Management.Smo.'
+$wmi = New-Object ($smo + 'Wmi.ManagedComputer')
+$uri = "ManagedComputer[@Name='$env:COMPUTERNAME']/ServerInstance[@Name='MSSQLSERVER']/ServerProtocol[@Name='Tcp']"
+$tcp = $wmi.GetSmoObject($uri)
+$tcp.IsEnabled = $true
+$tcp.Alter()
+```
+
+Los laboratorios también incluirían la instalación y uso de herramientas de administración como MySQL Workbench para MySQL o SQL Server Management Studio (SSMS) para SQL Server.
+
+## **2. Creación y Gestión de Bases de Datos y Tablas**
+
+Estos laboratorios abordan la creación de bases de datos y tablas, la definición de tipos de datos y restricciones.
+
+### Para MySQL/MariaDB:
+
+```sql
+-- Crear una base de datos
+CREATE DATABASE biblioteca;
+USE biblioteca;
+
+-- Crear una tabla con restricciones
+CREATE TABLE libros (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(100) NOT NULL,
+    autor VARCHAR(50) NOT NULL,
+    isbn VARCHAR(13) UNIQUE,
+    publicacion DATE,
+    disponible BOOLEAN DEFAULT TRUE
+);
+```
+
+### Para SQL Server:
+
+```sql
+-- Crear una base de datos con configuración específica
+CREATE DATABASE Biblioteca
+ON PRIMARY (
+    NAME = 'Biblioteca_Data',
+    FILENAME = 'C:\SQLData\Biblioteca_Data.mdf',
+    SIZE = 100MB,
+    MAXSIZE = UNLIMITED,
+    FILEGROWTH = 10MB
+)
+LOG ON (
+    NAME = 'Biblioteca_Log',
+    FILENAME = 'C:\SQLLogs\Biblioteca_Log.ldf',
+    SIZE = 50MB,
+    MAXSIZE = UNLIMITED,
+    FILEGROWTH = 5MB
+);
+USE Biblioteca;
+
+-- Crear una tabla con restricciones
+CREATE TABLE Libros (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    Titulo NVARCHAR(100) NOT NULL,
+    Autor NVARCHAR(50) NOT NULL,
+    ISBN VARCHAR(13) UNIQUE,
+    Publicacion DATE,
+    Disponible BIT DEFAULT 1
+);
+```
+
+## **3. Manipulación de Datos (CRUD)**
+
+Estos laboratorios cubren las operaciones básicas de datos: Crear (Create), Leer (Read), Actualizar (Update) y Eliminar (Delete).
+
+### Para MySQL/MariaDB:
+
+```sql
+-- Insertar registros
+INSERT INTO libros (titulo, autor, isbn, publicacion) 
+VALUES ('Don Quijote de la Mancha', 'Miguel de Cervantes', '9788420412146', '2005-06-15');
+
+-- Consultar datos
+SELECT titulo, autor FROM libros WHERE disponible = TRUE;
+
+-- Actualizar registros
+UPDATE libros SET disponible = FALSE WHERE id = 1;
+
+-- Eliminar registros
+DELETE FROM libros WHERE id = 2;
+```
+
+### Para SQL Server:
+
+```sql
+-- Insertar registros
+INSERT INTO Libros (Titulo, Autor, ISBN, Publicacion) 
+VALUES ('Don Quijote de la Mancha', 'Miguel de Cervantes', '9788420412146', '2005-06-15');
+
+-- Consultar datos
+SELECT Titulo, Autor FROM Libros WHERE Disponible = 1;
+
+-- Actualizar registros
+UPDATE Libros SET Disponible = 0 WHERE ID = 1;
+
+-- Eliminar registros
+DELETE FROM Libros WHERE ID = 2;
+```
+
+## **4. Consultas Avanzadas y Relaciones**
+
+Estos laboratorios profundizan en consultas que involucran múltiples tablas, relaciones y operaciones de conjunto.
+
+### Para MySQL/MariaDB:
+
+```sql
+-- Crear tabla relacionada
+CREATE TABLE prestamos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_libro INT,
+    id_usuario INT,
+    fecha_prestamo DATE NOT NULL,
+    fecha_devolucion DATE,
+    FOREIGN KEY (id_libro) REFERENCES libros(id)
+);
+
+-- Consulta con JOIN
+SELECT l.titulo, l.autor, p.fecha_prestamo, p.fecha_devolucion
+FROM libros l
+INNER JOIN prestamos p ON l.id = p.id_libro
+WHERE p.fecha_devolucion IS NULL;
+
+-- Consulta con GROUP BY
+SELECT l.autor, COUNT(*) as total_libros, AVG(YEAR(CURDATE()) - YEAR(l.publicacion)) as antiguedad_promedio
+FROM libros l
+GROUP BY l.autor
+HAVING total_libros > 5;
+```
+
+### Para SQL Server:
+
+```sql
+-- Crear tabla relacionada
+CREATE TABLE Prestamos (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    ID_Libro INT,
+    ID_Usuario INT,
+    Fecha_Prestamo DATE NOT NULL,
+    Fecha_Devolucion DATE,
+    FOREIGN KEY (ID_Libro) REFERENCES Libros(ID)
+);
+
+-- Consulta con JOIN
+SELECT l.Titulo, l.Autor, p.Fecha_Prestamo, p.Fecha_Devolucion
+FROM Libros l
+INNER JOIN Prestamos p ON l.ID = p.ID_Libro
+WHERE p.Fecha_Devolucion IS NULL;
+
+-- Consulta con GROUP BY y HAVING
+SELECT l.Autor, COUNT(*) as TotalLibros, AVG(DATEDIFF(YEAR, l.Publicacion, GETDATE())) as AntiguedadPromedio
+FROM Libros l
+GROUP BY l.Autor
+HAVING COUNT(*) > 5;
+```
+
+## **5. Programación en Bases de Datos**
+
+Estos laboratorios introducen elementos de programación como procedimientos almacenados, funciones y triggers.
+
+### Para MySQL/MariaDB:
+
+```sql
+-- Procedimiento almacenado
+DELIMITER //
+CREATE PROCEDURE prestar_libro(
+    IN p_id_libro INT,
+    IN p_id_usuario INT,
+    OUT p_resultado VARCHAR(100)
+)
+BEGIN
+    DECLARE libro_disponible BOOLEAN;
+    
+    -- Verificar disponibilidad
+    SELECT disponible INTO libro_disponible FROM libros WHERE id = p_id_libro;
+    
+    IF libro_disponible = FALSE THEN
+        SET p_resultado = 'El libro no está disponible';
+    ELSE
+        -- Registrar préstamo
+        INSERT INTO prestamos (id_libro, id_usuario, fecha_prestamo)
+        VALUES (p_id_libro, p_id_usuario, CURDATE());
+        
+        -- Actualizar disponibilidad
+        UPDATE libros SET disponible = FALSE WHERE id = p_id_libro;
+        
+        SET p_resultado = 'Préstamo registrado con éxito';
+    END IF;
+END //
+DELIMITER ;
+
+-- Trigger
+DELIMITER //
+CREATE TRIGGER actualizar_disponibilidad
+AFTER UPDATE ON prestamos
+FOR EACH ROW
+BEGIN
+    IF NEW.fecha_devolucion IS NOT NULL AND OLD.fecha_devolucion IS NULL THEN
+        UPDATE libros SET disponible = TRUE WHERE id = NEW.id_libro;
+    END IF;
+END //
+DELIMITER ;
+```
+
+### Para SQL Server:
+
+```sql
+-- Procedimiento almacenado
+CREATE PROCEDURE sp_PrestarLibro
+    @ID_Libro INT,
+    @ID_Usuario INT,
+    @Resultado NVARCHAR(100) OUTPUT
+AS
+BEGIN
+    DECLARE @LibroDisponible BIT;
+    
+    -- Verificar disponibilidad
+    SELECT @LibroDisponible = Disponible FROM Libros WHERE ID = @ID_Libro;
+    
+    IF @LibroDisponible = 0
+    BEGIN
+        SET @Resultado = 'El libro no está disponible';
+        RETURN;
+    END
+    
+    BEGIN TRANSACTION;
+    
+    -- Registrar préstamo
+    INSERT INTO Prestamos (ID_Libro, ID_Usuario, Fecha_Prestamo)
+    VALUES (@ID_Libro, @ID_Usuario, GETDATE());
+    
+    -- Actualizar disponibilidad
+    UPDATE Libros SET Disponible = 0 WHERE ID = @ID_Libro;
+    
+    COMMIT;
+    SET @Resultado = 'Préstamo registrado con éxito';
+END;
+
+-- Trigger
+CREATE TRIGGER trg_ActualizarDisponibilidad
+ON Prestamos
+AFTER UPDATE
+AS
+BEGIN
+    IF UPDATE(Fecha_Devolucion)
+    BEGIN
+        UPDATE l
+        SET l.Disponible = 1
+        FROM Libros l
+        INNER JOIN inserted i ON l.ID = i.ID_Libro
+        INNER JOIN deleted d ON d.ID = i.ID
+        WHERE i.Fecha_Devolucion IS NOT NULL AND d.Fecha_Devolucion IS NULL;
+    END
+END;
+```
+
+## **6. Administración y Seguridad**
+
+Estos laboratorios abordan la gestión de usuarios, roles y permisos para controlar el acceso a las bases de datos.
+
+### Para MySQL/MariaDB:
+
+```sql
+-- Crear usuario
+CREATE USER 'bibliotecario'@'localhost' IDENTIFIED BY 'password123';
+
+-- Otorgar permisos específicos
+GRANT SELECT, INSERT ON biblioteca.libros TO 'bibliotecario'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON biblioteca.prestamos TO 'bibliotecario'@'localhost';
+
+-- Revocar permisos
+REVOKE INSERT ON biblioteca.libros FROM 'bibliotecario'@'localhost';
+
+-- Ver permisos
+SHOW GRANTS FOR 'bibliotecario'@'localhost';
+```
+
+### Para SQL Server:
+
+```sql
+-- Crear login y usuario
+CREATE LOGIN Bibliotecario WITH PASSWORD = 'Password123!';
+USE Biblioteca;
+CREATE USER Bibliotecario FOR LOGIN Bibliotecario;
+
+-- Crear rol y asignar usuario
+CREATE ROLE RolBibliotecario;
+ALTER ROLE RolBibliotecario ADD MEMBER Bibliotecario;
+
+-- Otorgar permisos al rol
+GRANT SELECT, INSERT ON Libros TO RolBibliotecario;
+GRANT SELECT, INSERT, UPDATE ON Prestamos TO RolBibliotecario;
+
+-- Revocar permisos
+REVOKE INSERT ON Libros FROM RolBibliotecario;
+```
+
+## **7. Copias de Seguridad y Restauración**
+
+Estos laboratorios enseñan a proteger los datos mediante copias de seguridad y procedimientos de restauración.
+
+### Para MySQL/MariaDB:
+
+```bash
+# Realizar copia de seguridad completa
+mysqldump -u root -p biblioteca > biblioteca_backup.sql
+
+# Realizar copia de seguridad de una tabla
+mysqldump -u root -p biblioteca libros > libros_backup.sql
+
+# Restaurar desde copia de seguridad
+mysql -u root -p biblioteca < biblioteca_backup.sql
+```
+
+### Para SQL Server:
+
+```sql
+-- Copia de seguridad completa
+BACKUP DATABASE Biblioteca
+TO DISK = 'C:\SQLBackups\Biblioteca_Full.bak'
+WITH FORMAT, INIT, NAME = 'Biblioteca-Full Database Backup';
+
+-- Copia de seguridad diferencial
+BACKUP DATABASE Biblioteca
+TO DISK = 'C:\SQLBackups\Biblioteca_Diff.bak'
+WITH DIFFERENTIAL, NAME = 'Biblioteca-Differential Backup';
+
+-- Restaurar base de datos
+RESTORE DATABASE Biblioteca
+FROM DISK = 'C:\SQLBackups\Biblioteca_Full.bak'
+WITH REPLACE, RECOVERY;
+```
+
+## **8. Alta Disponibilidad y Replicación**
+
+Los laboratorios más avanzados cubren configuraciones para garantizar la disponibilidad continua y la distribución de datos.
+
+### Para MySQL/MariaDB:
+
+```sql
+-- Configuración del servidor maestro (my.cnf)
+-- server-id = 1
+-- log_bin = mysql-bin
+-- binlog_format = ROW
+
+-- En el servidor maestro
+CREATE USER 'repl_user'@'%' IDENTIFIED BY 'repl_password';
+GRANT REPLICATION SLAVE ON *.* TO 'repl_user'@'%';
+
+-- Obtener información del binlog
+SHOW MASTER STATUS;
+
+-- En el servidor esclavo
+CHANGE MASTER TO
+    MASTER_HOST='192.168.1.10',
+    MASTER_USER='repl_user',
+    MASTER_PASSWORD='repl_password',
+    MASTER_LOG_FILE='mysql-bin.000001',
+    MASTER_LOG_POS=123;
+
+START SLAVE;
+SHOW SLAVE STATUS\G
+```
+
+### Para SQL Server:
+
+```sql
+-- Configurar grupo de disponibilidad AlwaysOn
+
+-- Habilitar AlwaysOn en SQL Server Configuration Manager
+
+-- En el nodo primario
+CREATE ENDPOINT [Hadr_endpoint]
+    STATE = STARTED
+    AS TCP (LISTENER_PORT = 5022)
+    FOR DATABASE_MIRRORING (ROLE = ALL);
+
+-- Crear el grupo de disponibilidad
+CREATE AVAILABILITY GROUP [AG_Biblioteca]
+    WITH (AUTOMATED_BACKUP_PREFERENCE = PRIMARY)
+    FOR DATABASE [Biblioteca]
+    REPLICA ON 
+        'SQLSERVER1' WITH (ENDPOINT_URL = 'TCP://SQLSERVER1:5022', 
+            FAILOVER_MODE = AUTOMATIC,
+            AVAILABILITY_MODE = SYNCHRONOUS_COMMIT),
+        'SQLSERVER2' WITH (ENDPOINT_URL = 'TCP://SQLSERVER2:5022', 
+            FAILOVER_MODE = AUTOMATIC,
+            AVAILABILITY_MODE = SYNCHRONOUS_COMMIT);
+```
+
+## **Conclusión**
+
+Los laboratorios virtuales de Gestión de Bases de Datos proporcionan un entorno práctico esencial para el aprendizaje de sistemas de gestión de bases de datos relacionales, ya sea MySQL/MariaDB o Microsoft SQL Server. Estos laboratorios siguen una progresión pedagógica desde conceptos básicos como la instalación y creación de bases de datos, hasta temas avanzados como la programación en bases de datos y configuraciones de alta disponibilidad.
+
+La experiencia práctica adquirida a través de estos laboratorios es fundamental para los futuros administradores de sistemas, ya que las bases de datos constituyen componentes críticos en prácticamente todas las infraestructuras informáticas modernas. Los conocimientos y habilidades desarrollados les permitirán diseñar, implementar, mantener y optimizar soluciones de bases de datos en entornos empresariales reales.
+
+La combinación de conceptos teóricos con ejercicios prácticos proporciona una base sólida para comprender no solo cómo ejecutar comandos SQL, sino también los principios subyacentes de diseño de bases de datos, optimización de consultas, seguridad y administración avanzada, preparando a los estudiantes para los retos que encontrarán en su carrera profesional.

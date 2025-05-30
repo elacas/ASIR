@@ -1,0 +1,249 @@
+# Resumen Detallado: Gestión de Bases de Datos - Unidad 1 (Documentos 1 al 5)
+
+## **1. Introducción a las Bases de Datos**
+
+### **Diferencia entre Datos e Información**
+
+Para comprender el concepto de bases de datos, es fundamental distinguir entre datos e información:
+
+- **Datos:** Son hechos o observaciones en bruto, sin procesar y desorganizados. Por sí solos, pueden carecer de significado. Por ejemplo, "25", "Juan Pérez", "Madrid" son datos aislados.
+
+- **Información:** Es el resultado de procesar, organizar y estructurar los datos de manera que adquieren significado y contexto, haciéndolos útiles para la toma de decisiones. Si combinamos los datos anteriores en "Juan Pérez tiene 25 años y vive en Madrid", esto se convierte en información relevante sobre una persona.
+
+### **Definición de Base de Datos**
+
+Una **base de datos** es un conjunto de datos relacionados, almacenados de forma coherente y estructurada para servir a uno o varios propósitos. Estos datos están organizados de manera que:
+- Se minimiza la redundancia
+- Se asegura la integridad
+- Se facilita su acceso y recuperación
+- Se mantienen de forma persistente hasta que se decida modificarlos o eliminarlos
+
+**Ejemplo práctico:**  
+En un hospital, se requieren registros precisos de los pacientes, sus tratamientos, diagnósticos y visitas. Sin una base de datos, el acceso a esta información sería lento y propenso a errores, afectando la calidad del servicio y la toma de decisiones clínicas.
+
+## **2. Características de una Base de Datos**
+
+Las principales características que definen una base de datos son:
+
+- **Independencia de datos:** La estructura de los datos es independiente de las aplicaciones que los usan, permitiendo modificar la base de datos sin afectar los programas que la consultan.
+
+- **Reducción de redundancias:** Los datos no se repiten innecesariamente, lo que ahorra espacio y evita inconsistencias. Por ejemplo, la dirección de un cliente se almacena una sola vez.
+
+- **Integridad:** Se establecen reglas que aseguran la validez y coherencia de los datos (por ejemplo, que no existan valores nulos donde no corresponda o que la edad sea siempre un valor positivo).
+
+- **Seguridad:** Se controla el acceso a la información, permitiendo que solo usuarios autorizados consulten o modifiquen los datos según su nivel de permisos.
+
+- **Acceso concurrente:** Varios usuarios pueden trabajar simultáneamente sobre la base de datos sin que se produzcan errores o pérdidas de información.
+
+- **Persistencia:** Los datos permanecen almacenados de forma permanente hasta que se decida modificarlos o eliminarlos.
+
+**Ejemplo práctico:**  
+En un sistema bancario, la base de datos debe garantizar que dos operaciones simultáneas sobre una misma cuenta (por ejemplo, un depósito en cajero y una transferencia online) no produzcan errores ni inconsistencias, manteniendo la integridad y seguridad de los datos.
+
+## **3. Sistemas de Gestión de Bases de Datos (SGBD)**
+
+Un **Sistema de Gestión de Bases de Datos (SGBD)** es un conjunto de programas que permiten crear, manipular, administrar y controlar el acceso a una base de datos. El SGBD actúa como intermediario entre los usuarios y la base de datos física, proporcionando herramientas para definir, manipular y consultar la información.
+
+### **Funciones principales de un SGBD:**
+
+- **Definición de datos:** Permite crear y modificar la estructura de la base de datos (tablas, vistas, índices, etc.).
+
+- **Manipulación de datos:** Proporciona lenguajes y comandos para insertar, eliminar, actualizar y consultar datos.
+
+- **Control de acceso:** Gestiona los permisos y la seguridad de los usuarios.
+
+- **Mantenimiento de la integridad:** Aplica reglas para asegurar que los datos sean correctos y coherentes.
+
+- **Gestión de concurrencia:** Permite que varios usuarios accedan al mismo tiempo sin conflictos.
+
+- **Recuperación ante fallos:** Proporciona mecanismos para restaurar la base de datos en caso de errores o caídas del sistema.
+
+- **Optimización de consultas:** Analiza y optimiza las consultas para mejorar el rendimiento.
+
+### **Ejemplos de SGBD:**
+
+- **Relacionales:** MySQL, PostgreSQL, Oracle Database, Microsoft SQL Server
+- **NoSQL:** MongoDB (orientado a documentos), Redis (clave-valor), Neo4j (grafos)
+
+## **4. Ventajas e Inconvenientes del Uso de SGBD**
+
+### **Ventajas:**
+
+- **Organización eficaz:** Permiten organizar grandes volúmenes de información de manera estructurada.
+
+- **Acceso rápido y flexible:** Facilitan la consulta y el análisis de los datos mediante lenguajes específicos como SQL.
+
+- **Reducción de la redundancia:** Evitan la duplicidad de información, lo que ahorra espacio de almacenamiento.
+
+- **Mejora de la integridad y seguridad:** Aplican políticas y restricciones para proteger y validar los datos.
+
+- **Facilidad de mantenimiento:** Los cambios estructurales se pueden hacer sin afectar a los datos ni a las aplicaciones.
+
+- **Accesibilidad multiusuario:** Permiten el acceso simultáneo de varios usuarios, manteniendo la coherencia de la información.
+
+### **Inconvenientes:**
+
+- **Coste:** Los SGBD comerciales y su mantenimiento pueden ser costosos.
+
+- **Complejidad:** Requieren personal especializado para su administración y uso eficiente.
+
+- **Consumo de recursos:** Pueden necesitar hardware potente y consumir muchos recursos del sistema.
+
+- **Riesgo de centralización:** Si falla el SGBD, toda la información puede quedar inaccesible hasta su recuperación.
+
+**Ejemplo:**  
+Una pequeña empresa podría considerar que el coste inicial de implementar un SGBD es alto, pero a largo plazo, los beneficios de tener información organizada, accesible y segura compensan ampliamente la inversión, especialmente cuando el volumen de datos crece.
+
+## **5. Arquitectura de las Bases de Datos**
+
+### **Arquitectura de Tres Esquemas (ANSI/SPARC)**
+
+La arquitectura de tres esquemas es un modelo conceptual que divide la descripción de una base de datos en tres niveles distintos, permitiendo la independencia entre ellos:
+
+1. **Esquema Interno (Nivel Físico):**
+   - Describe cómo se almacenan físicamente los datos en el hardware.
+   - Define estructuras de almacenamiento, índices, organización de archivos, etc.
+   - Es el nivel más cercano al sistema operativo y al hardware.
+   - **Ejemplo:** El esquema interno podría especificar que los registros de los estudiantes se almacenan en un archivo secuencial indexado por ID de estudiante, con índices B-tree para optimizar las búsquedas.
+
+2. **Esquema Conceptual (Nivel Lógico):**
+   - Presenta una visión global de la base de datos, mostrando qué datos existen y cómo se relacionan.
+   - Es independiente del almacenamiento físico.
+   - Define entidades, relaciones, atributos y restricciones.
+   - **Ejemplo:** En una base de datos universitaria, el esquema conceptual definiría entidades como "Estudiantes", "Profesores" y "Cursos", con sus atributos y las relaciones entre ellos.
+
+3. **Esquema Externo (Nivel de Vista):**
+   - Corresponde a las diferentes vistas que pueden tener los distintos usuarios.
+   - Personaliza la forma en que los usuarios acceden a los datos según sus necesidades o permisos.
+   - Puede haber múltiples esquemas externos para una misma base de datos.
+   - **Ejemplo:** Un profesor solo ve las calificaciones de los estudiantes de sus cursos, mientras que un estudiante solo accede a sus propias calificaciones.
+
+### **Independencia de Datos**
+
+La independencia de datos es una característica fundamental que permite modificar un nivel de la arquitectura sin afectar a los demás:
+
+1. **Independencia Lógica:**
+   - Capacidad de modificar el esquema conceptual sin tener que alterar los esquemas externos.
+   - **Ejemplo:** Si se añade un nuevo atributo "Nacionalidad" a la entidad "Estudiante", las aplicaciones existentes que no utilicen este atributo seguirán funcionando sin cambios.
+
+2. **Independencia Física:**
+   - Capacidad de modificar el esquema interno sin afectar al esquema conceptual.
+   - **Ejemplo:** Si se decide cambiar la estructura de almacenamiento o añadir índices para mejorar el rendimiento, las aplicaciones no necesitan ser modificadas.
+
+## **6. Modelos de Datos**
+
+Un **Modelo de Datos** es un conjunto de conceptos y herramientas que permiten describir los datos, sus relaciones, su semántica y las restricciones de consistencia.
+
+### **Clasificación de los Modelos de Datos**
+
+Los modelos de datos se pueden clasificar según su nivel de abstracción:
+
+1. **Modelos Conceptuales (de Alto Nivel):**
+   - Están cerca de la forma en que los usuarios perciben los datos.
+   - Describen el mundo real en términos de entidades, atributos y relaciones.
+   - Son independientes de cualquier SGBD específico.
+   - **Ejemplo:** El Modelo Entidad-Relación (MER).
+
+2. **Modelos Lógicos (Basados en Registros):**
+   - Representan los datos en una estructura lógica que puede ser implementada por un SGBD.
+   - **Ejemplos:** Modelo Relacional, Modelo Jerárquico, Modelo de Red.
+
+3. **Modelos Físicos (de Bajo Nivel):**
+   - Describen cómo los datos se almacenan realmente en el hardware.
+   - Son específicos del SGBD y del sistema operativo.
+
+### **Tipos de Modelos de Datos (Históricos y Actuales)**
+
+1. **Modelo Jerárquico:**
+   - Organiza los datos en una estructura de árbol invertido.
+   - Un padre puede tener múltiples hijos, pero un hijo solo puede tener un padre.
+   - **Ejemplo:** IMS de IBM (años 60-70).
+   - **Limitación:** Dificultad para representar relaciones de muchos a muchos.
+
+2. **Modelo de Red:**
+   - Evolución del modelo jerárquico que permite que un "hijo" tenga múltiples "padres".
+   - Puede representar relaciones de muchos a muchos.
+   - **Ejemplo:** CODASYL (años 70).
+   - **Limitación:** Complejidad en la navegación entre registros.
+
+3. **Modelo Relacional:**
+   - El modelo más utilizado actualmente.
+   - Representa los datos como tablas (relaciones) con filas y columnas.
+   - Las relaciones entre tablas se establecen mediante claves.
+   - Propuesto por E.F. Codd en 1970.
+   - **Ventajas:** Simplicidad, flexibilidad y base matemática sólida.
+
+4. **Modelos NoSQL:**
+   - Surgieron para abordar limitaciones del modelo relacional en entornos de Big Data.
+   - Tipos: documento (MongoDB), clave-valor (Redis), columnar (Cassandra), grafo (Neo4j).
+
+### **Modelo Entidad-Relación (MER)**
+
+El Modelo Entidad-Relación es una técnica de modelado conceptual que permite representar la estructura de una base de datos de forma gráfica:
+
+1. **Entidades:**
+   - Objetos o conceptos del mundo real distinguibles.
+   - Se representan con rectángulos.
+   - **Ejemplo:** ESTUDIANTE, CURSO, PROFESOR.
+
+2. **Atributos:**
+   - Propiedades que describen una entidad.
+   - Se representan con óvalos.
+   - **Tipos:**
+     - **Simples vs. Compuestos:** No divisibles vs. formados por componentes.
+     - **Monovaluados vs. Multivaluados:** Un solo valor vs. múltiples valores.
+     - **Derivados:** Calculados a partir de otros atributos.
+
+3. **Claves:**
+   - **Clave Primaria:** Identifica unívocamente cada instancia de una entidad.
+   - **Clave Alternativa:** Clave candidata no elegida como primaria.
+   - **Clave Foránea:** Referencia a la clave primaria de otra entidad.
+
+4. **Relaciones:**
+   - Asociaciones entre entidades.
+   - Se representan con rombos.
+   - **Cardinalidad:**
+     - **Uno a Uno (1:1):** Una instancia de A se relaciona con una de B.
+     - **Uno a Muchos (1:N):** Una instancia de A se relaciona con varias de B.
+     - **Muchos a Muchos (M:N):** Varias instancias de A se relacionan con varias de B.
+
+5. **Entidad Débil:**
+   - Depende de otra entidad para existir e identificarse.
+   - Se representa con doble rectángulo.
+
+### **Modelo Relacional**
+
+El Modelo Relacional representa los datos mediante relaciones (tablas) con filas y columnas:
+
+1. **Componentes básicos:**
+   - **Relación (Tabla):** Estructura bidimensional con filas y columnas.
+   - **Tupla (Fila):** Representa una instancia de una entidad.
+   - **Atributo (Columna):** Representa una propiedad de la entidad.
+   - **Dominio:** Conjunto de valores permitidos para un atributo.
+
+2. **Claves en el Modelo Relacional:**
+   - **Superclave:** Conjunto de atributos que identifica unívocamente una tupla.
+   - **Clave Candidata:** Superclave mínima.
+   - **Clave Primaria (PK):** Clave candidata elegida para identificar tuplas.
+   - **Clave Foránea (FK):** Atributo que referencia la clave primaria de otra relación.
+
+3. **Restricciones de Integridad:**
+   - **Integridad de Entidad:** La clave primaria no puede ser nula.
+   - **Integridad Referencial:** Si existe una FK con valor, debe existir una PK correspondiente.
+
+4. **Álgebra Relacional:**
+   - Lenguaje de consulta formal para el modelo relacional.
+   - Operaciones básicas: selección, proyección, unión, diferencia, producto cartesiano.
+   - Base teórica para SQL.
+
+5. **SQL (Structured Query Language):**
+   - Lenguaje estándar para interactuar con bases de datos relacionales.
+   - Componentes: DML (SELECT, INSERT, UPDATE, DELETE), DDL (CREATE, ALTER, DROP).
+
+## **Conclusión**
+
+Los cinco primeros documentos de la Unidad 1 sientan las bases teóricas fundamentales para comprender las bases de datos y su gestión. Desde la definición básica de datos e información, pasando por las características y ventajas de las bases de datos, hasta los modelos conceptuales y lógicos que permiten su diseño e implementación.
+
+La arquitectura de tres niveles proporciona un marco para entender cómo se organizan las bases de datos desde el nivel físico hasta las vistas de usuario, mientras que los modelos de datos, especialmente el Entidad-Relación y el Relacional, ofrecen las herramientas necesarias para representar la información de manera estructurada y coherente.
+
+Estos conceptos son esenciales para cualquier profesional que trabaje con sistemas de información, ya que las bases de datos constituyen el corazón de prácticamente todas las aplicaciones modernas, desde simples aplicaciones web hasta complejos sistemas empresariales.
