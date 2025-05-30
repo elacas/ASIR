@@ -1,0 +1,373 @@
+# Resumen de los Documentos de Fundamentos de Hardware - Unidad 4: Sistemas Operativos y Software
+
+La Unidad 4 del curso de Fundamentos de Hardware para ASIR (Administración de Sistemas Informáticos en Red) se centra en los Sistemas Operativos y el Software, elementos fundamentales que dan vida al hardware y permiten la interacción con los usuarios. Esta unidad abarca desde conceptos básicos hasta aspectos avanzados como virtualización, seguridad y administración. A continuación, se presenta un resumen detallado de cada documento disponible en el repositorio, con ejemplos prácticos para facilitar la comprensión.
+
+## **1. Introducción a los Sistemas Operativos**
+
+Este documento introduce el concepto de sistema operativo, su evolución histórica y su papel crucial en la interacción entre el hardware y el software de aplicación.
+
+**Conceptos clave:**
+- Definición de sistema operativo como capa intermedia entre hardware y aplicaciones
+- Componentes principales: núcleo (kernel), shell e interfaz de usuario
+- Evolución histórica: desde sistemas por lotes hasta sistemas multiusuario y multiproceso
+- Estructura interna: monolítico, microkernel, híbrido
+
+**Ejemplo práctico:**
+Cuando un usuario hace doble clic en un icono de Google Chrome en su escritorio, el sistema operativo realiza varias tareas invisibles para el usuario:
+1. Interpreta la acción del ratón como una solicitud para iniciar la aplicación
+2. Localiza el ejecutable en el sistema de archivos
+3. Carga el programa en memoria RAM
+4. Asigna recursos de CPU para su ejecución
+5. Proporciona acceso a los periféricos como la pantalla, el teclado y la red
+
+Sin el sistema operativo, el hardware sería incapaz de interpretar estas acciones o ejecutar aplicaciones.
+
+## **2. Clasificación de los Sistemas Operativos**
+
+Este documento aborda las diferentes formas de clasificar los sistemas operativos según sus características y funcionalidades.
+
+**Conceptos clave:**
+- Según el número de usuarios: monousuario vs multiusuario
+- Según el número de tareas: monotarea vs multitarea
+- Según el número de procesadores: uniproceso, multiproceso, distribuido
+- Según su estructura interna: monolíticos, por capas, microkernel
+
+**Ejemplo práctico:**
+- **Sistema multiusuario y multitarea:** Un servidor Linux ejecutando Apache (servidor web), MySQL (base de datos) y Postfix (servidor de correo) simultáneamente, mientras varios administradores acceden por SSH para realizar tareas de mantenimiento.
+- **Sistema monousuario y monotarea:** Una calculadora electrónica con sistema operativo embebido que solo puede realizar una operación a la vez para un único usuario.
+- **Sistema distribuido:** Un clúster de servidores que ejecutan un sistema de gestión de base de datos distribuida como Apache Cassandra, donde los datos se reparten entre múltiples nodos para garantizar alta disponibilidad y rendimiento.
+
+## **3. Funciones de los Sistemas Operativos**
+
+Este documento detalla las responsabilidades y servicios fundamentales que provee un sistema operativo.
+
+**Conceptos clave:**
+- Gestión de procesos: creación, planificación y terminación
+- Gestión de memoria: asignación, protección y liberación
+- Gestión de entrada/salida: control de dispositivos periféricos
+- Gestión de archivos: organización y acceso a la información
+- Gestión de seguridad: protección de recursos y datos
+
+**Ejemplo práctico:**
+Cuando un usuario abre un documento PDF almacenado en un disco externo, el sistema operativo:
+1. **Gestión de E/S:** Detecta el disco externo y carga su controlador
+2. **Gestión de archivos:** Localiza el archivo en el sistema de archivos
+3. **Gestión de memoria:** Asigna espacio en RAM para cargar el visor de PDF y el documento
+4. **Gestión de procesos:** Crea un proceso para el visor de PDF y lo programa para ejecución
+5. **Gestión de seguridad:** Verifica que el usuario tenga permisos para acceder al archivo
+
+Todas estas operaciones ocurren en milisegundos, creando una experiencia fluida para el usuario.
+
+## **4. Gestión de Procesos**
+
+Este documento se enfoca en cómo el sistema operativo administra la ejecución de programas, conocidos como procesos.
+
+**Conceptos clave:**
+- Concepto de proceso, hilo (thread) y planificador
+- Estados de un proceso: nuevo, listo, en ejecución, bloqueado, terminado
+- Algoritmos de planificación: FIFO, Round Robin, SJF (Shortest Job First), prioridades
+- Comunicación entre procesos (IPC) y sincronización
+
+**Ejemplo práctico:**
+En un sistema con un procesador de un solo núcleo ejecutando múltiples aplicaciones:
+
+```python
+# Simulación simplificada de planificación Round Robin
+procesos = ["Navegador", "Editor", "Reproductor"]
+quantum = 100  # milisegundos por proceso
+while True:
+    for proceso in procesos:
+        print(f"Ejecutando {proceso} durante {quantum}ms")
+        # Ceder CPU al siguiente proceso después del quantum
+    # El ciclo se repite continuamente
+```
+
+Este algoritmo de planificación Round Robin asigna pequeñas porciones de tiempo de CPU a cada proceso de forma rotativa, creando la ilusión de ejecución simultánea aunque realmente se estén alternando rápidamente.
+
+## **5. Gestión de Memoria**
+
+Este documento explica cómo el sistema operativo administra la memoria principal (RAM).
+
+**Conceptos clave:**
+- Jerarquía de memoria: registros, caché, RAM, almacenamiento secundario
+- Paginación y segmentación
+- Memoria virtual y archivo de paginación (swap)
+- Fragmentación interna y externa
+- Protección de memoria entre procesos
+
+**Ejemplo práctico:**
+Si un sistema tiene 8GB de RAM física pero necesita ejecutar aplicaciones que requieren en total 12GB, el sistema operativo utiliza memoria virtual:
+
+```
+Memoria total requerida = 12GB
+Memoria física disponible = 8GB
+Memoria que debe gestionarse en swap = 12GB - 8GB = 4GB
+```
+
+El sistema operativo divide la memoria en "páginas" (típicamente de 4KB) y mueve las menos utilizadas al archivo de paginación en el disco duro. Cuando un programa necesita acceder a una página que está en disco, se produce un "fallo de página" y el SO debe cargarla en RAM, posiblemente desalojando otra página para hacer espacio.
+
+## **6. Gestión de Entrada/Salida**
+
+Este documento describe cómo el sistema operativo maneja la comunicación entre el procesador y los dispositivos periféricos.
+
+**Conceptos clave:**
+- Dispositivos de E/S: bloques (discos) y caracteres (teclado, ratón)
+- Controladores de dispositivo (drivers)
+- Técnicas de E/S: programada, por interrupciones, DMA
+- Búferes y spooling
+- Interfaces de programación para E/S
+
+**Ejemplo práctico:**
+Cuando se envía un documento a imprimir, el sistema operativo utiliza spooling:
+
+1. El documento se guarda en un área temporal (spool) en el disco duro
+2. El sistema operativo notifica al servicio de impresión
+3. El servicio gestiona una cola de trabajos de impresión
+4. Los documentos se envían a la impresora secuencialmente
+5. El usuario puede seguir trabajando sin esperar a que termine la impresión
+
+Esta técnica desacopla la generación del documento de su impresión física, permitiendo que ambos procesos operen a velocidades diferentes.
+
+## **7. Gestión de Archivos**
+
+Este documento explica cómo el sistema operativo organiza, almacena y recupera la información en los dispositivos de almacenamiento.
+
+**Conceptos clave:**
+- Concepto de archivo, directorio y ruta
+- Sistemas de archivos: FAT32, NTFS, ext4, APFS, etc.
+- Operaciones básicas: crear, leer, escribir, borrar, mover
+- Permisos y atributos de archivos
+- Métodos de acceso: secuencial, directo, indexado
+
+**Ejemplo práctico:**
+En un sistema Linux, los permisos de archivo se gestionan con un sistema octal que representa permisos de lectura (4), escritura (2) y ejecución (1) para propietario, grupo y otros:
+
+```bash
+# Ver permisos actuales
+ls -l documento.txt
+# -rw-r--r-- 1 usuario grupo 1024 Oct 20 15:30 documento.txt
+
+# Cambiar permisos (dar ejecución al propietario)
+chmod 744 documento.txt
+# -rwxr--r-- 1 usuario grupo 1024 Oct 20 15:30 documento.txt
+```
+
+El comando `chmod 744` asigna permisos completos (7 = 4+2+1) al propietario y solo lectura (4) al grupo y otros usuarios.
+
+### Sistemas RAID
+
+Como parte de la gestión avanzada de archivos, los sistemas operativos pueden implementar RAID (Redundant Array of Independent Disks):
+
+**Principales niveles RAID:**
+- **RAID 0:** Distribución de datos (striping) para máximo rendimiento, sin redundancia
+- **RAID 1:** Espejado de discos para máxima seguridad
+- **RAID 5:** Distribución con paridad distribuida, buen equilibrio entre rendimiento y seguridad
+- **RAID 10:** Combinación de espejado y distribución
+
+**Ejemplo de cálculo de capacidad:**
+Para un sistema con cuatro discos de 2TB:
+
+- RAID 0: Capacidad total = n × capacidad de disco = 4 × 2TB = 8TB
+- RAID 1: Capacidad total = capacidad de disco = 2TB
+- RAID 5: Capacidad total = (n-1) × capacidad de disco = (4-1) × 2TB = 6TB
+- RAID 10: Capacidad total = (n/2) × capacidad de disco = (4/2) × 2TB = 4TB
+
+## **8. Licencias de Software**
+
+Este documento explica los diferentes tipos de licencias que regulan el uso y distribución del software.
+
+**Conceptos clave:**
+- Software propietario vs software libre y de código abierto
+- Tipos de licencias propietarias: por usuario, por dispositivo, por volumen
+- Licencias libres: GPL, BSD, MIT, Apache, Creative Commons
+- Modelos de negocio: pago único, suscripción, freemium, donación
+
+**Ejemplo práctico:**
+Comparación de licencias en software ofimático:
+
+| Característica | Microsoft Office | LibreOffice |
+|----------------|-----------------|-------------|
+| Tipo de licencia | Propietaria | MPL 2.0 (libre) |
+| Modelo de pago | Suscripción (Microsoft 365) o pago único (Office 2021) | Gratuito |
+| Acceso al código fuente | No | Sí |
+| Permiso para modificar | No | Sí |
+| Redistribución | Prohibida | Permitida |
+| Costo típico | 69€/año (personal) o 149€ (pago único) | 0€ |
+
+## **9. Sistemas Operativos Propietarios y Libres**
+
+Estos documentos exploran las características de los diferentes sistemas operativos disponibles.
+
+**Conceptos clave:**
+- Sistemas propietarios: Windows, macOS, iOS
+- Sistemas libres: GNU/Linux, FreeBSD
+- Distribuciones Linux: Debian, Ubuntu, Red Hat, SUSE, Arch
+- Estructura y componentes de cada sistema
+- Ventajas y desventajas de cada enfoque
+
+**Ejemplo práctico:**
+Actualización del sistema e instalación de software:
+
+En Windows:
+```powershell
+# Comprobar actualizaciones de Windows
+Get-WindowsUpdate
+
+# Instalar aplicación con winget
+winget install Mozilla.Firefox
+```
+
+En Ubuntu Linux:
+```bash
+# Actualizar repositorios y sistema
+sudo apt update
+sudo apt upgrade -y
+
+# Instalar aplicación
+sudo apt install firefox
+```
+
+Esta comparación muestra diferentes enfoques para tareas similares en sistemas operativos distintos.
+
+## **10. Seguridad en Sistemas Operativos**
+
+Este documento aborda las medidas y mecanismos que los sistemas operativos implementan para proteger recursos e información.
+
+**Conceptos clave:**
+- Amenazas comunes: malware, virus, ransomware, exploits
+- Mecanismos de seguridad: autenticación, autorización, cifrado
+- Control de acceso: DAC, MAC, RBAC
+- Actualizaciones y parches de seguridad
+- Cortafuegos y antivirus
+
+**Ejemplo práctico:**
+Configuración básica del cortafuegos en Windows mediante PowerShell:
+
+```powershell
+# Habilitar regla para permitir conexiones entrantes por SSH
+New-NetFirewallRule -DisplayName "SSH Inbound" -Direction Inbound -Protocol TCP -LocalPort 22 -Action Allow
+
+# Bloquear conexiones entrantes a un puerto específico
+New-NetFirewallRule -DisplayName "Block Port 1234" -Direction Inbound -Protocol TCP -LocalPort 1234 -Action Block
+```
+
+Estas reglas permiten controlar qué tipo de tráfico de red puede entrar o salir del sistema, protegiendo contra conexiones no autorizadas.
+
+## **11. Instalación y Configuración de Sistemas Operativos**
+
+Estos documentos guían a través del proceso completo de instalación y configuración inicial de un sistema operativo.
+
+**Conceptos clave:**
+- Requisitos de hardware y compatibilidad
+- Preparación: particionado, sistema de archivos, medio de instalación
+- Proceso de instalación paso a paso
+- Configuración inicial: red, usuarios, región, idioma
+- Instalación de controladores y actualizaciones
+
+**Ejemplo práctico:**
+Para crear un USB booteable con una imagen ISO de Windows:
+
+```powershell
+# Usando PowerShell y la herramienta DiskPart
+$usbDrive = "D:"  # Ajustar según corresponda
+$isoFile = "C:\ruta\a\windows.iso"
+
+# Formatear unidad USB
+diskpart
+select volume $usbDrive
+clean
+create partition primary
+select partition 1
+active
+format fs=ntfs quick
+assign letter=$usbDrive
+exit
+
+# Montar ISO y copiar archivos
+Mount-DiskImage -ImagePath $isoFile
+$mountedDrive = (Get-DiskImage -ImagePath $isoFile | Get-Volume).DriveLetter
+Copy-Item -Path "$($mountedDrive):\*" -Destination "$($usbDrive)\" -Recurse
+Dismount-DiskImage -ImagePath $isoFile
+```
+
+Este proceso crea un medio de instalación que permite arrancar un ordenador desde el USB para instalar el sistema operativo.
+
+## **12. Virtualización**
+
+Este documento introduce el concepto de crear múltiples entornos virtuales sobre un mismo hardware físico.
+
+**Conceptos clave:**
+- Tipos de hipervisores: Tipo 1 (bare-metal) y Tipo 2 (hosted)
+- Virtualización completa vs paravirtualización vs contenedores
+- Software de virtualización: VMware, VirtualBox, Hyper-V, KVM
+- Beneficios: aislamiento, optimización de recursos, entornos de prueba
+- Contenedores: Docker, Kubernetes
+
+**Ejemplo práctico:**
+Creación de una máquina virtual básica con VirtualBox mediante línea de comandos:
+
+```bash
+# Crear nueva VM
+VBoxManage createvm --name "UbuntuServer" --ostype Ubuntu_64 --register
+
+# Configurar memoria y CPU
+VBoxManage modifyvm "UbuntuServer" --memory 2048 --cpus 2
+
+# Crear disco duro virtual
+VBoxManage createhd --filename "UbuntuServer.vdi" --size 20000
+
+# Configurar controlador de almacenamiento
+VBoxManage storagectl "UbuntuServer" --name "SATA" --add sata
+VBoxManage storageattach "UbuntuServer" --storagectl "SATA" --port 0 --device 0 --type hdd --medium "UbuntuServer.vdi"
+```
+
+Este ejemplo muestra cómo se puede crear un entorno virtual completo que funciona como si fuera un ordenador independiente, permitiendo experimentar con diferentes sistemas operativos sin riesgo para el sistema principal.
+
+## **13. Mantenimiento de Sistemas Operativos**
+
+Este documento aborda las prácticas esenciales para asegurar el buen funcionamiento del sistema operativo a lo largo del tiempo.
+
+**Conceptos clave:**
+- Actualizaciones del sistema y parches de seguridad
+- Limpieza y optimización del sistema
+- Copias de seguridad y restauración
+- Monitorización del rendimiento
+- Solución de problemas comunes
+
+**Ejemplo práctico:**
+Un script básico de mantenimiento para Linux:
+
+```bash
+#!/bin/bash
+
+# Actualizar el sistema
+echo "Actualizando el sistema..."
+sudo apt update
+sudo apt upgrade -y
+
+# Limpiar paquetes no necesarios
+echo "Limpiando paquetes no necesarios..."
+sudo apt autoremove -y
+sudo apt clean
+
+# Verificar espacio en disco
+echo "Espacio en disco disponible:"
+df -h /
+
+# Crear copia de seguridad de archivos importantes
+echo "Creando copia de seguridad..."
+backup_date=$(date +%Y%m%d)
+tar -czf "/home/$USER/backup_$backup_date.tar.gz" /home/$USER/documentos
+
+echo "Mantenimiento completado"
+```
+
+Este script automatiza tareas comunes de mantenimiento, asegurando que el sistema permanezca actualizado, optimizado y con sus datos protegidos mediante copias de seguridad.
+
+## **Conclusión**
+
+La Unidad 4 de Fundamentos de Hardware proporciona una visión completa del software que da vida al hardware, centrándose en los sistemas operativos como componente fundamental. Desde su estructura interna y funciones básicas hasta conceptos avanzados como virtualización y seguridad, esta unidad establece las bases para comprender cómo el software y el hardware interactúan para crear sistemas informáticos funcionales.
+
+Los conocimientos adquiridos en esta unidad son esenciales para cualquier profesional de la administración de sistemas, ya que permiten entender el funcionamiento interno de los sistemas operativos, tomar decisiones informadas sobre qué software utilizar en diferentes escenarios, y mantener los sistemas funcionando de manera óptima y segura.
+
+La combinación de conceptos teóricos con ejemplos prácticos proporciona una base sólida tanto para el aprendizaje académico como para la aplicación en entornos profesionales reales, preparando a los estudiantes para los retos que encontrarán en su carrera como administradores de sistemas informáticos.

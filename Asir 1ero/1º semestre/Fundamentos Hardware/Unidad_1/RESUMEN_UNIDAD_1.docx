@@ -1,0 +1,259 @@
+# Resumen Detallado: Fundamentos de Hardware - Unidad 1
+
+## **Introducción al Hardware:**
+
+El hardware constituye el conjunto de elementos físicos que conforman un sistema informático. Es todo aquello tangible en un ordenador, desde la carcasa externa hasta los componentes internos y periféricos. Esta parte física es esencial, ya que sin hardware, el software (programas) no podría ejecutarse al no disponer de un soporte físico donde operar.
+
+El hardware forma parte de un sistema informático completo, que se define como la combinación integrada de componentes físicos (hardware) y lógicos (software) que trabajan en conjunto para procesar datos y generar información útil.
+
+**Ejemplos prácticos:**
+- Un teclado y un ratón son hardware de entrada que permiten introducir datos al sistema
+- Una pantalla o monitor es hardware de salida que muestra información procesada
+- La placa base y el procesador son componentes internos fundamentales para el funcionamiento del equipo
+- Un smartphone moderno es un sistema informático completo que integra múltiples componentes de hardware (pantalla táctil, procesador, memoria, cámara) con software (sistema operativo, aplicaciones)
+
+## **Clasificación del Hardware:**
+
+El hardware puede clasificarse en diferentes categorías según su función y ubicación en el sistema:
+
+### **Hardware Básico:**
+Incluye los componentes imprescindibles para el funcionamiento del ordenador:
+- **Placa base:** Circuito principal donde se conectan todos los demás componentes
+- **Memoria RAM:** Almacena temporalmente los datos con los que trabaja el procesador
+- **Procesador (CPU):** Realiza las operaciones de cálculo y control del sistema
+- **Fuente de alimentación:** Proporciona energía eléctrica a todos los componentes
+- **Dispositivos de almacenamiento:** Como discos duros o unidades SSD
+
+### **Hardware Complementario:**
+Son dispositivos opcionales que amplían las capacidades del sistema:
+- **Impresoras:** Permiten obtener copias físicas de documentos digitales
+- **Escáneres:** Digitalizan documentos físicos
+- **Cámaras web:** Capturan imágenes o vídeo para videoconferencias
+- **Unidades ópticas:** Leen o escriben en discos CD, DVD o Blu-ray
+
+### **Según su función de entrada/salida:**
+
+- **Dispositivos de Entrada:** Permiten introducir datos al ordenador
+  - Teclado (para texto)
+  - Ratón (para navegación)
+  - Escáner (para digitalizar imágenes)
+  - Micrófono (para audio)
+  
+- **Dispositivos de Salida:** Muestran o producen resultados del procesamiento
+  - Monitor (para visualización)
+  - Impresora (para copias en papel)
+  - Altavoces (para audio)
+  - Proyector (para visualización en pantalla grande)
+  
+- **Dispositivos de Entrada/Salida (E/S):** Realizan ambas funciones
+  - Discos duros (leen y escriben información)
+  - Pantallas táctiles (reciben toques y muestran información)
+  - Tarjetas de red (envían y reciben datos)
+
+## **Estructura Interna del Ordenador:**
+
+Dentro de la carcasa del ordenador se encuentran los componentes internos que trabajan en conjunto para procesar la información:
+
+### **Placa Base (Motherboard):**
+Es el circuito principal donde se conectan todos los demás componentes. Contiene:
+- **Chipset:** Controla la comunicación entre el procesador y el resto de componentes
+- **Socket del procesador:** Donde se inserta la CPU
+- **Ranuras para memoria RAM:** Donde se instalan los módulos de memoria
+- **Conectores para almacenamiento:** SATA, M.2 para discos duros y SSD
+- **Ranuras de expansión:** PCIe para tarjetas gráficas y otras expansiones
+
+**Ejemplo:** Una placa base moderna incluye socket para procesadores específicos (como AM4 para AMD Ryzen o LGA1700 para Intel de 12ª generación), múltiples ranuras para memoria DDR4 o DDR5, varios puertos SATA y M.2 para almacenamiento, y ranuras PCIe para tarjetas de expansión.
+
+### **Procesador (CPU):**
+Es el "cerebro" del ordenador. Realiza las operaciones aritméticas y lógicas necesarias para ejecutar los programas. Sus características principales son:
+- **Núcleos y subprocesos (threads):** Determinan cuántas tareas puede procesar simultáneamente
+- **Velocidad de reloj (GHz):** Indica la cantidad de ciclos por segundo que puede realizar
+- **Caché:** Memoria ultrarrápida integrada en el procesador
+- **Arquitectura:** Conjunto de instrucciones que puede ejecutar (x86, x64, ARM)
+
+**Ejemplo:** Cuando abres un programa de edición de texto, la CPU interpreta las instrucciones y las ejecuta, permitiéndote escribir, formatear y guardar documentos.
+
+### **Memoria RAM:**
+Almacena temporalmente los datos y programas que está utilizando la CPU. Sus características incluyen:
+- **Capacidad:** Medida en gigabytes (GB)
+- **Velocidad:** Medida en MHz o MT/s
+- **Tipo:** DDR4, DDR5, etc.
+- **Latencia:** Tiempo de respuesta (CL, tRAS, etc.)
+
+**Ejemplo:** Si abres varias aplicaciones a la vez, como un navegador web, un editor de texto y un reproductor de música, todas ellas utilizan parte de la RAM para funcionar simultáneamente.
+
+### **Dispositivos de Almacenamiento:**
+Guardan los datos de forma permanente, incluso cuando el equipo está apagado:
+- **Discos Duros (HDD):** Utilizan platos magnéticos giratorios, ofrecen gran capacidad a bajo costo pero son más lentos
+- **Unidades de Estado Sólido (SSD):** Sin partes móviles, más rápidos y resistentes pero más caros
+- **Unidades NVMe:** SSD que se conectan directamente al bus PCIe para máximo rendimiento
+
+**Ejemplo:** Un sistema actual podría combinar un SSD NVMe de 500GB para el sistema operativo y programas principales, con un HDD de 2TB para almacenamiento masivo de documentos, fotos y vídeos.
+
+### **Tarjetas de Expansión:**
+Añaden funcionalidades extra al ordenador:
+- **Tarjetas Gráficas (GPU):** Mejoran el rendimiento en videojuegos y aplicaciones gráficas
+- **Tarjetas de Sonido:** Ofrecen mejor calidad de audio
+- **Tarjetas de Red:** Proporcionan conectividad adicional
+
+## **Bus del Sistema:**
+
+El bus es un conjunto de conductores eléctricos que permiten la transferencia de datos entre los diferentes componentes del ordenador. Funciona como una "autopista" interna por la que circula la información.
+
+### **Tipos de buses:**
+- **Bus de Datos:** Transporta la información entre el procesador y la memoria o entre otros dispositivos
+- **Bus de Direcciones:** Indica la ubicación de los datos que se intercambian
+- **Bus de Control:** Coordina y gestiona el uso del bus de datos y direcciones
+
+**Ejemplo práctico:** Cuando guardas un archivo, el procesador utiliza estos buses para enviar los datos desde la memoria RAM al disco duro. El bus de direcciones indica dónde se debe almacenar la información, el bus de datos transporta el contenido del archivo, y el bus de control coordina todo el proceso.
+
+## **Periféricos:**
+
+Los periféricos son dispositivos externos que se conectan al ordenador para ampliar sus capacidades:
+
+### **Periféricos de Entrada:**
+- **Teclado:** Para introducir texto y comandos
+- **Ratón:** Para interacción gráfica y navegación
+- **Escáner:** Para digitalizar documentos físicos
+- **Micrófono:** Para capturar audio
+- **Cámara web:** Para videoconferencias y fotografía
+
+### **Periféricos de Salida:**
+- **Monitor:** Para visualizar la información
+- **Impresora:** Para obtener copias físicas
+- **Altavoces:** Para reproducir sonido
+- **Auriculares:** Para audio personal
+- **Proyector:** Para mostrar información en pantallas grandes
+
+### **Periféricos de Entrada/Salida:**
+- **Pantallas táctiles:** Permiten interacción directa y visualización
+- **Discos externos:** Para almacenar y recuperar información
+- **Tarjetas de red:** Para comunicación bidireccional
+
+### **Interfaces de Conexión:**
+Los periféricos se conectan al ordenador mediante diferentes interfaces:
+- **USB (Universal Serial Bus):** El más común, con diferentes versiones (2.0, 3.0, 3.1, 3.2, 4.0) y velocidades
+- **HDMI, DisplayPort, DVI:** Para conexión de monitores y dispositivos de vídeo
+- **Ethernet (RJ-45):** Para conexión a redes
+- **Audio (jack 3.5mm):** Para auriculares y micrófonos
+- **Thunderbolt:** Interfaz de alta velocidad para diversos dispositivos
+
+**Ejemplo práctico:** Un ordenador portátil moderno podría incluir varios puertos USB para conectar periféricos como ratón o disco externo, un puerto HDMI para conectar un monitor adicional, y un conector jack 3.5mm para auriculares.
+
+## **Arquitectura de von Neumann:**
+
+La arquitectura de von Neumann es el modelo básico sobre el que se diseñan la mayoría de los ordenadores modernos. Propuesta por el matemático John von Neumann en 1945, sus características principales son:
+
+- **Memoria única:** Tanto los datos como los programas se almacenan en la misma memoria
+- **Unidad de procesamiento centralizada:** La CPU extrae instrucciones y datos de la memoria, ejecuta las instrucciones y almacena los resultados
+- **Secuencialidad:** Las instrucciones se ejecutan una tras otra, en secuencia
+- **Buses de comunicación:** Conectan la CPU con la memoria y los dispositivos de E/S
+
+Esta arquitectura define el ciclo básico de funcionamiento del ordenador:
+1. Búsqueda (fetch): La CPU obtiene la instrucción de la memoria
+2. Decodificación: La CPU interpreta qué debe hacer
+3. Ejecución: La CPU realiza la operación
+4. Almacenamiento: Se guardan los resultados
+
+**Ejemplo:** Cuando ejecutas un videojuego, el programa (conjunto de instrucciones) y sus datos (gráficos, sonidos, estado del juego) residen en la misma memoria y la CPU los maneja siguiendo el esquema de von Neumann.
+
+### **Comparación con Arquitectura Harvard:**
+
+A diferencia de Von Neumann, la arquitectura Harvard separa físicamente el almacenamiento y la transferencia de instrucciones y datos. Se utiliza principalmente en sistemas embebidos y microcontroladores donde es ventajoso poder acceder simultáneamente a instrucciones y datos.
+
+**Ejemplo:** Los microcontroladores Arduino utilizan una arquitectura Harvard modificada, con memoria flash separada para el programa y memoria SRAM para los datos, lo que permite ejecutar instrucciones mientras se accede a los datos simultáneamente.
+
+## **Representación de la Información:**
+
+Los ordenadores trabajan internamente con el sistema binario, donde toda la información se codifica utilizando únicamente dos estados: 0 y 1 (bits). Existen diferentes formas de representar la información:
+
+### **Sistemas Numéricos:**
+- **Sistema Binario (base 2):** Utiliza solo 0 y 1
+- **Sistema Octal (base 8):** Utiliza dígitos del 0 al 7
+- **Sistema Decimal (base 10):** El que usamos habitualmente (0-9)
+- **Sistema Hexadecimal (base 16):** Utiliza dígitos del 0 al 9 y letras de A a F
+
+### **Representación de Datos:**
+- **Números Enteros:** El número decimal 5 se representa como $$101_2$$ en binario
+- **Números Reales:** Se utiliza el estándar IEEE 754 de coma flotante
+- **Caracteres:** Mediante códigos como ASCII o Unicode. Por ejemplo, la letra 'A' en ASCII es $$65_{10}$$ o $$01000001_2$$
+
+**Ejemplo práctico:** Cuando escribes la palabra "Hola" en un documento, el ordenador la almacena internamente como una secuencia de bits, donde cada letra es convertida a su representación binaria según un estándar como UTF-8.
+
+## **Montaje y Configuración de Equipos:**
+
+El proceso de montaje de un ordenador desde cero implica los siguientes pasos:
+
+### **Preparación:**
+- Asegurar la compatibilidad entre componentes
+- Disponer de las herramientas necesarias (destornilladores, bridas, pulsera antiestática)
+- Preparar un espacio de trabajo adecuado
+
+### **Proceso de Ensamblaje:**
+1. Instalar la placa base en la carcasa
+2. Montar el procesador en su socket y aplicar pasta térmica
+3. Instalar el sistema de refrigeración (disipador/ventilador)
+4. Insertar los módulos de memoria RAM
+5. Conectar los dispositivos de almacenamiento (discos duros, SSD)
+6. Instalar la fuente de alimentación y conectar los cables
+7. Añadir tarjetas de expansión (gráfica, sonido, red)
+8. Organizar el cableado interno
+
+### **Configuración Inicial:**
+1. Acceder a la BIOS/UEFI para configurar parámetros básicos
+2. Configurar el orden de arranque para la instalación del sistema operativo
+3. Instalar el sistema operativo desde USB o DVD
+4. Instalar los controladores de dispositivos
+5. Configurar la red y actualizaciones
+
+### **Consideraciones Importantes:**
+- **Compatibilidad:** Verificar que el procesador es compatible con el socket de la placa base, que la memoria RAM es del tipo adecuado, y que la fuente de alimentación tiene potencia suficiente
+- **Refrigeración:** Asegurar una buena ventilación con ventiladores para la caja y disipadores adecuados para la CPU
+- **Ergonomía:** Posicionar adecuadamente los periféricos para un uso cómodo
+
+## **Ejemplo Integrador: Montaje Completo de un Ordenador**
+
+Para comprender cómo se integran todos estos componentes, veamos el proceso completo de montaje y configuración de un ordenador personal:
+
+1. **Selección de componentes compatibles:**
+   - Placa base ASUS con socket AM4
+   - Procesador AMD Ryzen 5 compatible con AM4
+   - 16GB de memoria RAM DDR4 (2 módulos de 8GB)
+   - SSD NVMe de 500GB para sistema operativo y programas
+   - Disco duro de 2TB para almacenamiento masivo
+   - Tarjeta gráfica NVIDIA GeForce
+   - Fuente de alimentación de 650W
+   - Caja con buena ventilación
+
+2. **Proceso de montaje:**
+   - Instalamos la placa base en la carcasa, fijándola con tornillos
+   - Colocamos el procesador en el socket, asegurándonos de alinear correctamente las marcas
+   - Aplicamos pasta térmica sobre el procesador e instalamos el disipador/ventilador
+   - Insertamos los módulos de RAM en sus ranuras, asegurándonos de que encajan correctamente
+   - Montamos el SSD NVMe en la ranura M.2 de la placa base
+   - Instalamos el disco duro en una de las bahías y lo conectamos con cables SATA a la placa
+   - Instalamos la tarjeta gráfica en una ranura PCIe y la fijamos con tornillos
+   - Colocamos la fuente de alimentación y conectamos todos los cables necesarios
+   - Organizamos el cableado para mejorar el flujo de aire
+
+3. **Configuración inicial:**
+   - Conectamos periféricos básicos (monitor, teclado, ratón)
+   - Encendemos el equipo y accedemos a la BIOS/UEFI pulsando la tecla correspondiente
+   - Configuramos la fecha y hora, el orden de arranque y activamos la memoria XMP
+   - Insertamos el dispositivo USB con el sistema operativo y reiniciamos
+   - Seguimos el asistente de instalación del sistema operativo
+   - Una vez instalado, procedemos a instalar los controladores específicos
+   - Configuramos la red, actualizamos el sistema y realizamos ajustes personales
+
+4. **Verificación final:**
+   - Comprobamos que todos los componentes son reconocidos correctamente
+   - Verificamos las temperaturas de funcionamiento
+   - Realizamos pruebas de rendimiento para asegurar que todo funciona adecuadamente
+
+Este proceso ilustra cómo los diferentes componentes hardware se integran para formar un sistema informático completo y funcional.
+
+## **Conclusión:**
+
+La Unidad 1 de Fundamentos de Hardware proporciona una base sólida para entender cómo funcionan los ordenadores desde su estructura física. El conocimiento de los componentes hardware, su clasificación, funciones e interconexión es fundamental para cualquier profesional de la informática, especialmente en el ámbito de la Administración de Sistemas Informáticos en Red (ASIR).
+
+Comprender estos conceptos permite diagnosticar problemas, realizar actualizaciones, optimizar el rendimiento de los sistemas y tomar decisiones informadas sobre la adquisición de equipos informáticos.

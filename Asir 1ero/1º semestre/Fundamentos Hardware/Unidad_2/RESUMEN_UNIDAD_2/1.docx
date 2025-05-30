@@ -1,0 +1,506 @@
+# Resumen Detallado: Fundamentos de Hardware - Unidad 2
+
+## **Introducción a la Unidad 2**
+
+La Unidad 2 de Fundamentos de Hardware profundiza en los principios fundamentales que rigen el funcionamiento de los sistemas informáticos. Esta unidad abarca desde los conceptos teóricos básicos como los sistemas de numeración y la representación de datos, hasta los componentes físicos internos y su interconexión. El dominio de estos conceptos es esencial para cualquier profesional de la informática, ya que constituye la base para comprender cómo los ordenadores procesan información, ejecutan instrucciones y realizan operaciones complejas.
+
+## **Sistemas de Numeración y Conversión**
+
+Los sistemas de numeración son fundamentales en informática, ya que determinan cómo se representan y manipulan los datos a nivel básico. Mientras los humanos utilizamos habitualmente el sistema decimal, los ordenadores trabajan internamente con el sistema binario.
+
+### **Principales Sistemas de Numeración**
+
+#### **Sistema Decimal (Base 10)**
+El sistema que utilizamos cotidianamente, emplea diez símbolos (0-9) y el valor de cada dígito depende de su posición.
+
+**Ejemplo:** En el número 425, cada cifra tiene un valor posicional:
+- 5 × 10⁰ = 5 × 1 = 5
+- 2 × 10¹ = 2 × 10 = 20
+- 4 × 10² = 4 × 100 = 400
+- Total: 400 + 20 + 5 = 425
+
+#### **Sistema Binario (Base 2)**
+Es el sistema fundamental para los ordenadores. Utiliza solo dos símbolos (0 y 1), conocidos como bits (binary digits).
+
+**Ejemplo:** El número binario 1011 se interpreta como:
+- 1 × 2³ = 1 × 8 = 8
+- 0 × 2² = 0 × 4 = 0
+- 1 × 2¹ = 1 × 2 = 2
+- 1 × 2⁰ = 1 × 1 = 1
+- Total: 8 + 0 + 2 + 1 = 11 en decimal
+
+#### **Sistema Octal (Base 8)**
+Utiliza ocho símbolos (0-7). Es útil porque cada dígito octal representa exactamente tres dígitos binarios.
+
+**Ejemplo:** El número octal 52 equivale a:
+- 2 × 8⁰ = 2 × 1 = 2
+- 5 × 8¹ = 5 × 8 = 40
+- Total: 40 + 2 = 42 en decimal
+
+#### **Sistema Hexadecimal (Base 16)**
+Emplea dieciséis símbolos: los dígitos del 0 al 9 y las letras de la A a la F (donde A=10, B=11, C=12, D=13, E=14, F=15).
+
+**Ejemplo:** El número hexadecimal 2F equivale a:
+- F × 16⁰ = 15 × 1 = 15
+- 2 × 16¹ = 2 × 16 = 32
+- Total: 32 + 15 = 47 en decimal
+
+### **Conversiones entre Sistemas de Numeración**
+
+#### **Conversión de Decimal a Binario**
+Se realiza mediante divisiones sucesivas por 2, tomando los restos en orden inverso.
+
+**Ejemplo:** Para convertir 25 a binario:
+1. 25 ÷ 2 = 12 con resto 1
+2. 12 ÷ 2 = 6 con resto 0
+3. 6 ÷ 2 = 3 con resto 0
+4. 3 ÷ 2 = 1 con resto 1
+5. 1 ÷ 2 = 0 con resto 1
+
+Leyendo los restos de abajo hacia arriba: 11001₂
+
+#### **Conversión de Binario a Decimal**
+Se multiplica cada dígito por su valor posicional (potencias de 2) y se suman los resultados.
+
+**Ejemplo:** Para convertir 10110₂ a decimal:
+- 0 × 2⁰ = 0
+- 1 × 2¹ = 2
+- 1 × 2² = 4
+- 0 × 2³ = 0
+- 1 × 2⁴ = 16
+- Total: 0 + 2 + 4 + 0 + 16 = 22
+
+#### **Conversiones entre Binario, Octal y Hexadecimal**
+Son especialmente sencillas por la relación directa entre estos sistemas:
+
+- **Binario a Octal:** Agrupar bits de 3 en 3 desde la derecha
+  **Ejemplo:** 101011₂ = 101|011₂ = 5|3₈ = 53₈
+
+- **Binario a Hexadecimal:** Agrupar bits de 4 en 4 desde la derecha
+  **Ejemplo:** 10110111₂ = 1011|0111₂ = B|7₁₆ = B7₁₆
+
+## **Representación de la Información**
+
+### **Representación de Números Enteros**
+
+#### **Enteros Sin Signo**
+Utilizan todos los bits para representar la magnitud del número. Un entero de n bits puede representar valores de 0 a 2ⁿ-1.
+
+**Ejemplo:** Con 8 bits podemos representar números de 0 a 255.
+
+#### **Enteros Con Signo**
+Existen varios métodos para representar números con signo:
+
+1. **Signo y Magnitud:** El bit más significativo indica el signo (0 positivo, 1 negativo) y el resto representa la magnitud.
+   
+   **Ejemplo:** En 8 bits, +43 = 00101011 y -43 = 10101011
+
+2. **Complemento a 1 (C1):** Los números negativos se obtienen invirtiendo todos los bits del número positivo.
+   
+   **Ejemplo:** +43 = 00101011, entonces -43 en C1 = 11010100
+
+3. **Complemento a 2 (C2):** Es el método más utilizado. Se obtiene sumando 1 al complemento a 1.
+   
+   **Ejemplo:** -43 en C2 = 11010100 + 1 = 11010101
+
+#### **Operaciones Aritméticas en Binario**
+
+**Suma binaria:**
+```
+   1 1 (acarreos)
+   1 0 1 1
+ + 0 1 1 0
+ ---------
+   1 0 0 0 1
+```
+
+**Resta usando complemento a 2:**
+Para restar a - b, se suma a + (-b), donde -b es el complemento a 2 de b.
+
+**Ejemplo:** 7 - 3 = 7 + (-3)
+- 7 = 0111₂
+- 3 = 0011₂
+- -3 en C2 = 1101₂
+- 0111 + 1101 = 0100₂ = 4
+
+### **Representación de Números Reales**
+
+#### **Coma Fija**
+Asigna una posición fija para el punto decimal. Simple pero limitada en rango.
+
+#### **Coma Flotante**
+Utiliza el formato: $$\pm mantisa \times base^{exponente}$$
+
+El estándar IEEE 754 define formatos precisos:
+
+**Precisión simple (32 bits):**
+- 1 bit para el signo
+- 8 bits para el exponente (con exceso 127)
+- 23 bits para la mantisa (con 1 implícito)
+
+**Precisión doble (64 bits):**
+- 1 bit para el signo
+- 11 bits para el exponente (con exceso 1023)
+- 52 bits para la mantisa (con 1 implícito)
+
+**Ejemplo:** El número decimal 10.5 en precisión simple:
+1. Conversión a binario: 10.5₁₀ = 1010.1₂
+2. Normalización: 1.0101 × 2³
+3. Signo: 0 (positivo)
+4. Exponente: 3 + 127 = 130 = 10000010₂
+5. Mantisa: 0101 (seguido de ceros)
+6. Representación: 0 10000010 01010000000000000000000
+
+### **Representación de Caracteres**
+
+#### **ASCII (American Standard Code for Information Interchange)**
+Utiliza 7 bits para representar 128 caracteres, incluyendo letras, números y símbolos de control.
+
+**Ejemplo:** La letra 'A' tiene el código ASCII 65₁₀ = 1000001₂
+
+#### **Unicode**
+Estándar que asigna un número único a cada carácter utilizado en cualquier idioma.
+
+**Codificaciones comunes:**
+- **UTF-8:** Codificación de longitud variable (1 a 4 bytes)
+- **UTF-16:** Utiliza 2 o 4 bytes por carácter
+- **UTF-32:** Utiliza 4 bytes para cada carácter
+
+**Ventaja de UTF-8:** Compatible con ASCII y eficiente para textos en idiomas occidentales.
+
+## **Álgebra de Boole y Circuitos Lógicos**
+
+El álgebra de Boole es un sistema matemático que trabaja con valores binarios (0 y 1) y operaciones lógicas. Es fundamental para el diseño de circuitos digitales.
+
+### **Operaciones Lógicas Básicas**
+
+#### **AND (Conjunción)**
+La salida es 1 solo si todas las entradas son 1.
+
+| A | B | A AND B |
+|---|---|---------|
+| 0 | 0 | 0       |
+| 0 | 1 | 0       |
+| 1 | 0 | 0       |
+| 1 | 1 | 1       |
+
+#### **OR (Disyunción)**
+La salida es 1 si al menos una entrada es 1.
+
+| A | B | A OR B |
+|---|---|--------|
+| 0 | 0 | 0      |
+| 0 | 1 | 1      |
+| 1 | 0 | 1      |
+| 1 | 1 | 1      |
+
+#### **NOT (Negación)**
+Invierte el valor de la entrada.
+
+| A | NOT A |
+|---|-------|
+| 0 | 1     |
+| 1 | 0     |
+
+### **Puertas Lógicas**
+
+Las puertas lógicas son componentes electrónicos que implementan estas operaciones:
+
+- **Puerta AND:** Implementa la operación AND
+- **Puerta OR:** Implementa la operación OR
+- **Puerta NOT (Inversor):** Implementa la operación NOT
+- **Puerta NAND:** Combinación de AND seguido de NOT
+- **Puerta NOR:** Combinación de OR seguido de NOT
+- **Puerta XOR (OR exclusivo):** La salida es 1 si las entradas son diferentes
+- **Puerta XNOR:** La salida es 1 si las entradas son iguales
+
+### **Leyes y Propiedades del Álgebra de Boole**
+
+1. **Leyes conmutativas:**
+   - A AND B = B AND A
+   - A OR B = B OR A
+
+2. **Leyes asociativas:**
+   - (A AND B) AND C = A AND (B AND C)
+   - (A OR B) OR C = A OR (B OR C)
+
+3. **Leyes distributivas:**
+   - A AND (B OR C) = (A AND B) OR (A AND C)
+   - A OR (B AND C) = (A OR B) AND (A OR C)
+
+4. **Leyes de De Morgan:**
+   - NOT(A AND B) = (NOT A) OR (NOT B)
+   - NOT(A OR B) = (NOT A) AND (NOT B)
+
+### **Simplificación de Funciones Lógicas**
+
+#### **Mediante Álgebra de Boole**
+Aplicando las leyes y propiedades para reducir la expresión.
+
+**Ejemplo:** 
+$$F = A \cdot B + A \cdot \overline{B} = A \cdot (B + \overline{B}) = A \cdot 1 = A$$
+
+#### **Mapas de Karnaugh**
+Método gráfico para simplificar expresiones booleanas agrupando términos adyacentes.
+
+## **Arquitectura del Ordenador**
+
+### **Arquitectura de von Neumann**
+
+Desarrollada por John von Neumann en 1945, es el modelo básico para la mayoría de los ordenadores modernos.
+
+#### **Características principales:**
+1. **Memoria única:** Almacena tanto datos como instrucciones
+2. **Unidad de Control:** Interpreta y ejecuta las instrucciones
+3. **Unidad Aritmético-Lógica (ALU):** Realiza operaciones matemáticas y lógicas
+4. **Unidad de Entrada/Salida:** Gestiona la comunicación con el exterior
+5. **Bus del sistema:** Conecta todos los componentes
+
+#### **Ciclo de instrucción:**
+1. **Fetch (Búsqueda):** Obtiene la instrucción de la memoria
+2. **Decode (Decodificación):** Interpreta qué debe hacer
+3. **Execute (Ejecución):** Realiza la operación
+4. **Store (Almacenamiento):** Guarda el resultado
+
+### **Arquitectura Harvard**
+
+Variante que utiliza memorias físicamente separadas para instrucciones y datos.
+
+#### **Ventajas sobre von Neumann:**
+- Mayor velocidad al poder acceder simultáneamente a instrucciones y datos
+- Mayor seguridad al separar código ejecutable de datos
+
+#### **Aplicaciones:**
+- Microcontroladores
+- DSPs (Procesadores de Señal Digital)
+- Algunas CPUs modernas usan un enfoque híbrido (Harvard modificada)
+
+## **El Procesador (CPU)**
+
+### **Componentes Principales de la CPU**
+
+#### **Unidad de Control (UC)**
+Coordina y dirige todas las operaciones del procesador:
+- Extrae instrucciones de la memoria
+- Las decodifica
+- Genera las señales de control necesarias
+
+#### **Unidad Aritmético-Lógica (ALU)**
+Realiza operaciones matemáticas (suma, resta, multiplicación, división) y lógicas (AND, OR, NOT).
+
+#### **Registros**
+Pequeñas memorias ultrarrápidas dentro del procesador:
+- **Registros de propósito general:** Almacenan datos temporales
+- **Contador de programa (PC):** Contiene la dirección de la siguiente instrucción
+- **Registro de instrucción (IR):** Almacena la instrucción actual
+- **Acumulador:** Almacena resultados de operaciones
+
+#### **Memoria Caché**
+Memoria ultrarrápida que actúa como intermediaria entre la CPU y la RAM:
+- **Caché L1:** Integrada en el núcleo, muy rápida (típicamente 32-64 KB por núcleo)
+- **Caché L2:** Algo más grande y lenta (256 KB-1 MB por núcleo)
+- **Caché L3:** Compartida entre todos los núcleos (varios MB)
+
+### **Características de los Procesadores Modernos**
+
+#### **Arquitectura Multi-núcleo**
+Los procesadores actuales contienen múltiples núcleos de procesamiento independientes.
+
+**Ventajas:**
+- Mejor rendimiento en aplicaciones paralelas
+- Mayor eficiencia energética
+- Mejor respuesta en multitarea
+
+#### **Tecnologías de Hyperthreading/SMT**
+Permite que un solo núcleo físico aparezca como dos núcleos lógicos para el sistema operativo.
+
+**Funcionamiento:** Aprovecha los recursos inactivos del núcleo cuando una tarea está esperando datos.
+
+#### **Frecuencia de Reloj**
+Medida en gigahercios (GHz), indica cuántos ciclos por segundo puede realizar el procesador.
+
+**Consideraciones:**
+- No es el único factor de rendimiento (arquitectura, IPC, caché)
+- Frecuencia base vs. frecuencia turbo (boost)
+
+#### **Proceso de Fabricación**
+Medido en nanómetros (nm), indica el tamaño de los transistores.
+
+**Tendencia:** Reducir el tamaño para:
+- Aumentar la densidad de transistores
+- Reducir el consumo energético
+- Mejorar el rendimiento
+
+#### **TDP (Thermal Design Power)**
+Indica la cantidad máxima de calor que el sistema de refrigeración debe disipar.
+
+**Rangos comunes:**
+- Procesadores móviles de bajo consumo: 5-15W
+- Portátiles estándar: 15-45W
+- Sobremesa: 65-125W
+- Gama alta: 105-250W
+
+### **Familias de Procesadores**
+
+#### **Intel**
+- **Core i3:** Gama básica (4-6 núcleos)
+- **Core i5:** Gama media (6-10 núcleos)
+- **Core i7:** Alto rendimiento (8-12 núcleos)
+- **Core i9:** Máximo rendimiento (10-24 núcleos)
+
+#### **AMD**
+- **Ryzen 3:** Gama básica (4 núcleos)
+- **Ryzen 5:** Gama media (6 núcleos)
+- **Ryzen 7:** Alto rendimiento (8 núcleos)
+- **Ryzen 9:** Máximo rendimiento (12-16 núcleos)
+
+## **La Memoria**
+
+### **Jerarquía de Memoria**
+
+Los sistemas informáticos utilizan diferentes tipos de memoria organizados jerárquicamente según velocidad, capacidad y coste.
+
+1. **Registros:** Memoria ultrarrápida dentro del procesador
+   - Acceso: < 1 ns
+   - Capacidad: Bytes
+   - Coste: Muy alto
+
+2. **Caché:** Memoria rápida entre CPU y RAM
+   - Acceso: 1-10 ns
+   - Capacidad: KB a MB
+   - Coste: Alto
+
+3. **Memoria Principal (RAM):** Almacenamiento temporal de programas y datos en ejecución
+   - Acceso: 50-100 ns
+   - Capacidad: GB
+   - Coste: Medio
+
+4. **Almacenamiento Secundario:** Discos duros, SSD, etc.
+   - Acceso: ms (HDD) a µs (SSD)
+   - Capacidad: TB
+   - Coste: Bajo
+
+### **Memoria Principal (RAM)**
+
+#### **Características**
+- **Volátil:** Pierde su contenido al apagarse el equipo
+- **Acceso aleatorio:** Se puede acceder directamente a cualquier posición
+- **Lectura/escritura:** Permite ambas operaciones
+
+#### **Tipos de RAM**
+- **DRAM (Dynamic RAM):** Utiliza condensadores, requiere refresco periódico
+- **SRAM (Static RAM):** Utiliza flip-flops, más rápida pero más cara y voluminosa
+
+#### **Generaciones de RAM**
+- **DDR (Double Data Rate):** Transfiere datos dos veces por ciclo de reloj
+- **DDR2:** Doble velocidad que DDR
+- **DDR3:** Mayor velocidad y menor consumo que DDR2
+- **DDR4:** Mayor velocidad, menor consumo y mayor densidad que DDR3
+- **DDR5:** Última generación con mayores velocidades y capacidades
+
+#### **Parámetros importantes**
+- **Capacidad:** 4GB, 8GB, 16GB, 32GB, 64GB
+- **Velocidad:** Medida en MHz o MT/s (Megatransferencias por segundo)
+- **Latencia CAS (CL):** Tiempo entre solicitud y entrega de datos (menor es mejor)
+- **Configuraciones:** Single-channel, dual-channel, quad-channel
+
+### **Memoria ROM**
+
+#### **Características**
+- **No volátil:** Conserva su contenido al apagarse
+- **Solo lectura:** Originalmente no permitía escritura
+
+#### **Tipos**
+- **ROM:** Programada en fábrica, no modificable
+- **PROM:** Programable una vez
+- **EPROM:** Borrable mediante luz ultravioleta
+- **EEPROM:** Borrable eléctricamente
+- **Flash:** EEPROM avanzada, base de memorias USB, SSD, etc.
+
+### **Memoria Virtual**
+
+Técnica que utiliza espacio en disco duro como extensión de la memoria RAM.
+
+#### **Funcionamiento**
+1. El sistema operativo divide la memoria en páginas
+2. Las páginas menos utilizadas se transfieren al disco (swap)
+3. Se cargan en RAM solo cuando son necesarias
+
+#### **Ventajas**
+- Permite ejecutar más programas de los que cabrían en la RAM física
+- Aísla la memoria de cada proceso para mayor seguridad
+
+#### **Desventajas**
+- El acceso a disco es mucho más lento que a RAM
+- Puede degradar el rendimiento si hay muchos intercambios (thrashing)
+
+## **Dispositivos de Almacenamiento**
+
+### **Discos Duros (HDD)**
+
+#### **Funcionamiento**
+Almacenan datos magnéticamente en platos giratorios.
+
+#### **Características**
+- **Capacidad:** 1TB-20TB
+- **Velocidad de rotación:** 5400, 7200, 10000, 15000 RPM
+- **Tiempo de acceso:** 5-15 ms
+- **Tasa de transferencia:** 80-200 MB/s
+- **Interfaces:** SATA, SAS
+
+#### **Estructura física**
+- Platos magnéticos
+- Cabezales de lectura/escritura
+- Motor de rotación
+- Controladora
+
+### **Unidades de Estado Sólido (SSD)**
+
+#### **Funcionamiento**
+Almacenan datos en chips de memoria flash.
+
+#### **Características**
+- **Capacidad:** 128GB-8TB (consumo), hasta 100TB (empresarial)
+- **Tiempo de acceso:** 0.1-0.2 ms
+- **Tasa de transferencia:**
+  - SATA: 500-550 MB/s
+  - NVMe PCIe 3.0: 3000-3500 MB/s
+  - NVMe PCIe 4.0: 5000-7000 MB/s
+  - NVMe PCIe 5.0: hasta 14000 MB/s
+
+#### **Tipos**
+- **SATA:** Formato tradicional, limitado a ~550 MB/s
+- **M.2:** Formato compacto, puede usar interfaz SATA o PCIe
+- **NVMe:** Protocolo optimizado para SSD, mucho más rápido que SATA
+- **U.2:** Formato empresarial similar a discos de 2.5"
+
+#### **Ventajas sobre HDD**
+- Mucho más rápidos
+- Sin partes móviles (mayor resistencia a golpes)
+- Silenciosos
+- Menor consumo energético
+
+#### **Desventajas**
+- Mayor coste por GB
+- Número limitado de ciclos de escritura
+
+### **Sistemas RAID**
+
+Redundant Array of Independent Disks. Combina múltiples discos para mejorar rendimiento, capacidad o tolerancia a fallos.
+
+#### **Niveles básicos**
+- **RAID 0 (Striping):** Divide datos entre discos para mayor velocidad, sin redundancia
+- **RAID 1 (Mirroring):** Duplica datos para tolerancia a fallos
+- **RAID 5:** Distribuye datos y paridad entre discos (N-1 discos de capacidad útil)
+- **RAID 6:** Similar a RAID 5 pero con doble paridad
+- **RAID 10:** Combina RAID 1 y RAID 0
+
+#### **Implementación**
+- **Hardware RAID:** Mediante controladora dedicada
+- **Software RAID:** Gestionado por el sistema operativo
+
+## **La Placa Base**
+
+### **Función y Componentes**
+
+La placa base es el circuito imp

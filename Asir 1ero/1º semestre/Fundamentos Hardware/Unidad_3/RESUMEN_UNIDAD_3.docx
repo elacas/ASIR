@@ -1,0 +1,229 @@
+# Resumen de los Documentos de Fundamentos de Hardware - Unidad 3
+
+La Unidad 3 del curso de Fundamentos de Hardware para ASIR (Administración de Sistemas Informáticos en Red) abarca un estudio completo de los componentes físicos que conforman un ordenador, desde sus elementos internos básicos hasta conceptos avanzados como virtualización y mantenimiento. A continuación, se presenta un resumen detallado de cada documento disponible en el repositorio, con ejemplos prácticos para facilitar la comprensión.
+
+## **1. Procesadores (Unidad_3_01_Procesadores.pdf)**
+
+Este documento analiza el componente central de cualquier ordenador: la CPU (Central Processing Unit).
+
+**Conceptos clave:**
+- Arquitectura interna: Unidad Aritmético-Lógica (ALU), Unidad de Control y registros
+- Características técnicas: frecuencia de reloj, número de núcleos e hilos, caché
+- Tipos de zócalos (sockets) y compatibilidad con placas base
+- Fabricantes principales: Intel y AMD con sus respectivas familias
+
+**Ejemplo práctico:** 
+Un procesador Intel Core i7-13700K cuenta con 16 núcleos (8 de rendimiento + 8 eficientes), 24 hilos, frecuencia base de 3.4 GHz con capacidad turbo hasta 5.4 GHz, y utiliza el zócalo LGA 1700. Este diseño híbrido permite gestionar eficientemente tanto tareas intensivas (con los núcleos de rendimiento) como operaciones ligeras de fondo (con los núcleos eficientes).
+
+## **2. Memoria (Unidad_3_02_Memoria.pdf)**
+
+Este documento profundiza en los sistemas de memoria del ordenador, elemento crucial para el rendimiento global.
+
+**Conceptos clave:**
+- Tipos de memoria principal: RAM (volátil) y ROM (no volátil)
+- Características técnicas: capacidad, velocidad, latencia y volatilidad
+- Tecnologías: DDR4, DDR5 y sus diferencias
+- Configuraciones: formatos DIMM/SO-DIMM, canales simples/duales/cuádruples
+
+**Ejemplo práctico:**
+Un módulo de memoria RAM DDR4-3200 CL16 de 16GB funciona a una frecuencia efectiva de 3200 MHz con una latencia CAS de 16 ciclos. Si instalamos dos módulos idénticos en configuración de doble canal, duplicamos el ancho de banda teórico, permitiendo transferencias de hasta 51,200 MB/s (2 × 3200 MHz × 8 bytes).
+
+**Cálculo de capacidad:**
+Para calcular la capacidad total de una memoria con $$2^{20}$$ direcciones donde cada dirección almacena 8 bytes:
+
+$$\text{Capacidad Total} = \text{Nº de Direcciones} \times \text{Tamaño por dirección}$$
+$$\text{Capacidad Total} = 2^{20} \times 8 \text{ bytes} = 8.388.608 \text{ bytes} = 8 \text{ MB}$$
+
+## **3. Placa Base (Unidad_3_03_PlacaBase.pdf)**
+
+Este documento examina la placa base o motherboard, el componente que interconecta todos los elementos del sistema.
+
+**Conceptos clave:**
+- Formatos estándar: ATX, Micro-ATX, Mini-ITX
+- Componentes principales: zócalo del procesador, chipset, ranuras de memoria
+- Conectores internos: SATA, M.2, cabeceras USB, conectores de ventiladores
+- Panel de E/S: puertos USB, audio, red, vídeo (en placas con gráficos integrados)
+
+**Ejemplo práctico:**
+Una placa base ASUS ROG Strix Z790-E Gaming WiFi con factor de forma ATX incorpora un zócalo LGA 1700 compatible con procesadores Intel de 12ª y 13ª generación, cuatro ranuras DDR5 que soportan hasta 128GB de RAM, múltiples ranuras PCIe 5.0/4.0, y conectores para almacenamiento de alta velocidad como M.2 NVMe. El chipset Z790 permite overclocking y funciones avanzadas de conectividad.
+
+## **4. Buses (Unidad_3_04_Buses.pdf)**
+
+Este documento analiza los sistemas de comunicación interna que permiten la transferencia de datos entre componentes.
+
+**Conceptos clave:**
+- Tipos de buses: datos, direcciones y control
+- Buses internos (dentro del procesador) y externos (entre componentes)
+- Estándares: PCI Express, SATA, USB, etc.
+- Características: ancho de banda, velocidad y latencia
+
+**Ejemplo práctico:**
+Una tarjeta gráfica conectada a una ranura PCIe 4.0 x16 dispone de 16 líneas de datos que funcionan a 16 GT/s (Gigatransferencias por segundo), proporcionando un ancho de banda teórico de 32 GB/s bidireccional. Esta capacidad permite transferir rápidamente grandes volúmenes de datos entre la GPU y la memoria principal, esencial para aplicaciones gráficas intensivas.
+
+## **5. Periféricos (Unidad_3_05_Perifericos.pdf)**
+
+Este documento estudia los dispositivos que permiten la interacción entre el usuario y el ordenador.
+
+**Conceptos clave:**
+- Clasificación: periféricos de entrada, salida y entrada/salida
+- Periféricos de entrada: teclado, ratón, escáner, micrófono
+- Periféricos de salida: monitor, impresora, altavoces
+- Periféricos mixtos: pantallas táctiles, impresoras multifunción
+
+**Ejemplo práctico:**
+Un sistema de realidad virtual combina periféricos de entrada (controladores con sensores de movimiento y posición) y salida (pantallas montadas en el visor) para crear una experiencia inmersiva. Los controladores detectan los movimientos del usuario en el espacio tridimensional, mientras que las pantallas de alta resolución (normalmente dos paneles OLED o LCD) muestran imágenes ligeramente diferentes para cada ojo, creando la sensación de profundidad.
+
+## **6. Conectores (Unidad_3_06_Conectores.pdf)**
+
+Este documento detalla los diferentes tipos de conectores presentes en un ordenador moderno.
+
+**Conceptos clave:**
+- Conectores de alimentación: ATX 24 pines, EPS 8 pines, PCIe, SATA, Molex
+- Conectores de datos: SATA, M.2, USB internos
+- Conectores de vídeo: HDMI, DisplayPort, DVI, VGA
+- Conectores de audio: jack 3.5mm, S/PDIF, HDMI-ARC
+
+**Ejemplo práctico:**
+Para conectar un SSD M.2 NVMe, se inserta la unidad en ángulo en la ranura M.2 de la placa base y se fija con un tornillo. A diferencia de los discos SATA tradicionales, no requiere cables adicionales ya que tanto la alimentación como la transferencia de datos se realizan directamente a través del conector M.2, simplificando la instalación y reduciendo el desorden de cables.
+
+## **7. Tarjetas de Expansión (Unidad_3_07_TarjetasExpansion.pdf)**
+
+Este documento explora las tarjetas que se añaden a las ranuras de expansión para ampliar las capacidades del sistema.
+
+**Conceptos clave:**
+- Tipos de tarjetas: gráficas, sonido, red, capturadoras, controladoras
+- Interfaces de conexión: PCIe (diferentes versiones y configuraciones)
+- Características técnicas específicas de cada tipo
+- Compatibilidad con la placa base y requisitos de alimentación
+
+**Ejemplo práctico:**
+Una tarjeta gráfica NVIDIA GeForce RTX 4070 ocupa una ranura PCIe 4.0 x16 y requiere un conector de alimentación adicional de 8 o 12 pines desde la fuente de alimentación. Con 12GB de memoria GDDR6X y una arquitectura de 5.888 núcleos CUDA, ofrece un rendimiento muy superior a los gráficos integrados en el procesador, permitiendo ejecutar juegos en alta resolución y con efectos avanzados como ray tracing en tiempo real.
+
+## **8. Caja y Fuente de Alimentación (Unidad_3_08_CajaFuenteAlimentacion.pdf)**
+
+Este documento analiza el chasis del ordenador y su sistema de alimentación eléctrica.
+
+**Conceptos clave:**
+- Tipos de cajas: torre completa, media torre, mini-ITX
+- Refrigeración: posiciones de ventiladores, flujo de aire
+- Fuentes de alimentación: potencia, eficiencia (certificaciones 80 Plus)
+- Modularidad de cables y distribución de potencia en raíles
+
+**Ejemplo práctico:**
+Para un sistema con procesador de gama alta (150W), tarjeta gráfica potente (250W) y varios componentes adicionales (100W), podemos calcular la potencia recomendada para la fuente de alimentación:
+
+$$\text{Potencia estimada} = 150\text{W} + 250\text{W} + 100\text{W} = 500\text{W}$$
+$$\text{Potencia recomendada} = 500\text{W} \times 1.3 = 650\text{W}$$
+
+Una fuente de 650W con certificación 80 Plus Gold garantiza eficiencia superior al 90% en cargas típicas, reduciendo el consumo eléctrico y la generación de calor.
+
+## **9. Montaje de PC (Unidad_3_09_MontajePC.pdf)**
+
+Este documento proporciona una guía paso a paso para el ensamblaje de un ordenador completo.
+
+**Conceptos clave:**
+- Preparación y verificación de componentes
+- Secuencia de instalación recomendada
+- Técnicas de aplicación de pasta térmica
+- Gestión de cableado y comprobaciones finales
+
+**Ejemplo práctico:**
+Proceso básico de montaje:
+1. Instalar el procesador en el zócalo de la placa base
+2. Aplicar pasta térmica y montar el sistema de refrigeración
+3. Instalar los módulos de memoria RAM en las ranuras adecuadas
+4. Fijar la placa base en la caja usando los separadores metálicos
+5. Conectar la fuente de alimentación y sus cables principales
+6. Instalar unidades de almacenamiento (SSD, HDD)
+7. Insertar tarjetas de expansión (gráfica, red, etc.)
+8. Conectar todos los cables internos (alimentación, datos, panel frontal)
+9. Organizar el cableado para optimizar el flujo de aire
+10. Realizar la primera puesta en marcha y verificar el funcionamiento
+
+## **10. BIOS y UEFI (Unidad_3_10_BIOS_UEFI.pdf)**
+
+Este documento explica el firmware básico que controla el hardware antes de cargar el sistema operativo.
+
+**Conceptos clave:**
+- Diferencias entre BIOS tradicional y UEFI moderno
+- Funciones principales: POST, configuración de hardware, secuencia de arranque
+- Acceso y navegación por la interfaz
+- Configuraciones habituales: memoria XMP, virtualización, arranque seguro
+
+**Ejemplo práctico:**
+Al encender un ordenador con UEFI, este realiza un test de componentes (POST) y muestra brevemente una tecla para acceder a la configuración (normalmente F2, F10, Supr o Esc). En la interfaz gráfica del UEFI se pueden ajustar parámetros como activar los perfiles XMP para que la memoria RAM funcione a su velocidad nominal (en lugar de la estándar JEDEC), habilitar las tecnologías de virtualización para máquinas virtuales o modificar la secuencia de dispositivos de arranque para instalar un sistema operativo desde una unidad USB.
+
+## **11. Mantenimiento (Unidad_3_11_Mantenimiento.pdf)**
+
+Este documento aborda las prácticas necesarias para mantener el ordenador en óptimas condiciones.
+
+**Conceptos clave:**
+- Mantenimiento preventivo físico: limpieza de componentes
+- Mantenimiento preventivo lógico: actualizaciones, optimización
+- Herramientas de diagnóstico y monitorización
+- Solución de problemas comunes
+
+**Ejemplo práctico:**
+Plan básico de mantenimiento trimestral:
+- Limpieza física: usar aire comprimido para eliminar polvo de ventiladores y disipadores
+- Verificar temperaturas de funcionamiento con herramientas como HWiNFO o Core Temp
+- Actualizar controladores de dispositivos y BIOS/UEFI si hay versiones nuevas
+- Comprobar el estado de los discos con herramientas como CrystalDiskInfo
+- Realizar análisis antivirus y antimalware completos
+- Verificar que las copias de seguridad funcionan correctamente
+
+## **12. Virtualización (Unidad_3_12_Virtualizacion.pdf)**
+
+Este documento introduce el concepto de crear máquinas virtuales dentro de un sistema físico.
+
+**Conceptos clave:**
+- Tipos de hipervisores: Tipo 1 (bare-metal) y Tipo 2 (hosted)
+- Ventajas: aislamiento, optimización de recursos, entornos de prueba
+- Software de virtualización: VirtualBox, VMware, Hyper-V
+- Requisitos de hardware: CPU con soporte de virtualización, RAM suficiente
+
+**Ejemplo práctico:**
+Un administrador de sistemas utiliza Oracle VirtualBox para crear una máquina virtual con 4GB de RAM y 2 núcleos virtuales, donde instala Ubuntu Server para probar la configuración de un servidor web Apache antes de implementarlo en producción. La máquina anfitrión ejecuta Windows 10 y tiene 16GB de RAM, permitiendo que tanto el sistema principal como el virtualizado funcionen simultáneamente sin problemas de rendimiento.
+
+## **13. Sistemas de Almacenamiento (Unidad_3_13_SistemasAlmacenamiento.pdf)**
+
+Este documento examina las tecnologías para almacenar datos de forma permanente.
+
+**Conceptos clave:**
+- Tipos de almacenamiento: HDD, SSD SATA, SSD NVMe
+- Interfaces de conexión: SATA, M.2, PCIe
+- Sistemas RAID: niveles 0, 1, 5, 10 y sus características
+- Almacenamiento en red: NAS, SAN
+
+**Ejemplo práctico:**
+Cálculo de capacidad en diferentes configuraciones RAID:
+- RAID 0 (4 discos de 1TB): 4TB útiles, máximo rendimiento, sin redundancia
+- RAID 1 (4 discos de 1TB): 1TB útil, máxima redundancia (3 copias)
+- RAID 5 (4 discos de 1TB): 3TB útiles, redundancia distribuida
+
+$$\text{Capacidad RAID 5} = (n-1) \times \text{capacidad de disco}$$
+$$\text{Capacidad RAID 5} = (4-1) \times 1\text{TB} = 3\text{TB}$$
+
+- RAID 10 (4 discos de 1TB): 2TB útiles, alta redundancia y rendimiento
+
+$$\text{Capacidad RAID 10} = (n/2) \times \text{capacidad de disco}$$
+$$\text{Capacidad RAID 10} = (4/2) \times 1\text{TB} = 2\text{TB}$$
+
+## **14. Sistemas de Refrigeración (Unidad_3_14_SistemasRefrigeracion.pdf)**
+
+Este documento analiza las soluciones para mantener temperaturas adecuadas en los componentes.
+
+**Conceptos clave:**
+- Refrigeración por aire: disipadores, ventiladores, pasta térmica
+- Refrigeración líquida: AIO (All-In-One), circuitos personalizados
+- Conceptos térmicos: TDP, temperatura de funcionamiento, throttling
+- Diseño de flujo de aire en la caja: presión positiva vs. negativa
+
+**Ejemplo práctico:**
+Un procesador Intel Core i9-13900K con un TDP de 125W (que puede aumentar significativamente en cargas intensas) requiere un sistema de refrigeración capaz de disipar más de 200W de calor. Una solución adecuada sería un sistema de refrigeración líquida AIO con radiador de 360mm (3 ventiladores de 120mm) que mantendrá la temperatura por debajo de 80°C incluso en cargas sostenidas, evitando el throttling térmico que reduciría automáticamente la frecuencia del procesador para protegerlo de sobrecalentamiento.
+
+## **Conclusión**
+
+La Unidad 3 de Fundamentos de Hardware proporciona una visión completa y detallada de los componentes físicos que conforman un sistema informático moderno. Desde los elementos básicos como el procesador y la memoria, hasta conceptos avanzados como la virtualización y los sistemas RAID, estos documentos constituyen una base sólida para comprender el funcionamiento interno de los ordenadores.
+
+Los conocimientos presentados son fundamentales para cualquier técnico o administrador de sistemas, ya que permiten tomar decisiones informadas sobre selección de componentes, resolución de problemas, optimización de rendimiento y mantenimiento preventivo. La combinación de teoría con ejemplos prácticos facilita la aplicación de estos conceptos en entornos reales de trabajo.

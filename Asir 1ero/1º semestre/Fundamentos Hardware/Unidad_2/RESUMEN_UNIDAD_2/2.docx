@@ -1,0 +1,260 @@
+# Resumen Detallado: Fundamentos de Hardware - Unidad 2 (Placas Base y Componentes)
+
+## **La Placa Base: El Centro Neurálgico del Ordenador**
+
+La placa base (o motherboard) es el componente fundamental de cualquier sistema informático. Actúa como la columna vertebral que interconecta todos los elementos del ordenador, permitiendo que se comuniquen entre sí y distribuyendo la energía eléctrica necesaria para su funcionamiento. Sin la placa base, los componentes individuales serían incapaces de trabajar de forma coordinada.
+
+### **Componentes Principales de la Placa Base**
+
+#### **Socket del Procesador**
+Es el zócalo donde se instala la CPU. Cada fabricante y generación de procesadores utiliza un socket específico:
+
+- **Sockets AMD actuales:**
+  - **AM4:** Compatible con procesadores Ryzen 1000 hasta 5000
+  - **AM5:** Para Ryzen 7000 en adelante, con soporte para DDR5 y PCIe 5.0
+
+- **Sockets Intel actuales:**
+  - **LGA1700:** Para procesadores de 12ª y 13ª generación
+  - **LGA1200:** Para procesadores de 10ª y 11ª generación
+
+**Ejemplo práctico:** Un procesador AMD Ryzen 5 5600X requiere una placa base con socket AM4, mientras que un Intel Core i7-13700K necesita una placa con socket LGA1700.
+
+#### **Chipset**
+Es el conjunto de circuitos integrados que controlan el flujo de datos entre el procesador, la memoria y los periféricos. Determina muchas de las características de la placa base:
+
+- **Chipsets AMD:** X570, B550, A520, etc.
+- **Chipsets Intel:** Z790, B760, H610, etc.
+
+El chipset define qué características tendrá la placa: cantidad de puertos USB, soporte para overclocking, número de ranuras PCIe, etc.
+
+#### **Ranuras de Memoria RAM**
+Son los conectores donde se instalan los módulos de memoria. Aspectos importantes:
+
+- **Tipo de memoria:** DDR4, DDR5
+- **Número de ranuras:** Típicamente 2, 4 u 8
+- **Configuraciones:** Single-channel (un módulo), Dual-channel (dos módulos trabajando en paralelo), Quad-channel (cuatro módulos en paralelo)
+
+**Ejemplo:** Una placa base gaming moderna suele tener cuatro ranuras DDR4, permitiendo hasta 128GB de RAM en configuración dual-channel para mayor rendimiento.
+
+#### **Ranuras de Expansión**
+Permiten añadir tarjetas adicionales para ampliar la funcionalidad del sistema:
+
+- **PCIe (PCI Express):** El estándar actual
+  - **PCIe x1:** Para tarjetas sencillas (red, sonido)
+  - **PCIe x16:** Para tarjetas gráficas
+  - **Generaciones:** PCIe 3.0, 4.0, 5.0 (cada generación duplica el ancho de banda)
+
+#### **Conectores de Almacenamiento**
+Para conectar dispositivos donde se guardarán los datos:
+
+- **SATA:** Para discos duros y SSD tradicionales (velocidad: 6 Gb/s)
+- **M.2:** Para SSD en formato compacto, puede usar interfaz SATA o PCIe (NVMe)
+- **U.2:** Para SSD empresariales de alto rendimiento
+
+**Ejemplo práctico:** Un sistema moderno puede combinar un SSD NVMe M.2 para el sistema operativo (con velocidades de hasta 7000 MB/s) y un disco duro SATA tradicional para almacenamiento masivo.
+
+#### **BIOS/UEFI**
+Firmware que proporciona las instrucciones básicas para iniciar el hardware:
+
+- **Funciones principales:**
+  - Realizar un test de los componentes al encender (POST)
+  - Configurar parámetros básicos (orden de arranque, velocidad de memoria, etc.)
+  - Iniciar la carga del sistema operativo
+
+#### **Conectores de Alimentación**
+Reciben la energía de la fuente de alimentación:
+
+- **ATX de 24 pines:** Alimentación principal
+- **CPU de 4+4 o 8 pines:** Alimentación específica para el procesador
+
+#### **Panel de Conexiones Trasero**
+Incluye puertos accesibles desde la parte trasera:
+
+- **USB:** Diferentes versiones (2.0, 3.0, 3.1, 3.2)
+- **Audio:** Conectores para altavoces, auriculares, micrófono
+- **Red:** Ethernet RJ-45
+- **Video:** HDMI, DisplayPort, DVI (en placas con gráficos integrados)
+
+### **Factores de Forma**
+
+Determinan el tamaño y la disposición de los componentes:
+
+- **ATX:** Estándar más común (305 × 244 mm)
+- **Micro-ATX:** Más compacto (244 × 244 mm)
+- **Mini-ITX:** Muy pequeño para sistemas compactos (170 × 170 mm)
+- **E-ATX:** Formato extendido para placas de gama alta (305 × 330 mm)
+
+**Consideración práctica:** El factor de forma debe ser compatible con la caja del ordenador. Una placa ATX no cabrá en una caja diseñada solo para Mini-ITX.
+
+## **Tarjetas Gráficas (GPU)**
+
+Las tarjetas gráficas son componentes especializados en procesar y generar imágenes. Son esenciales para gaming, diseño gráfico, edición de vídeo y otras aplicaciones visuales exigentes.
+
+### **Componentes de una Tarjeta Gráfica**
+
+1. **Procesador gráfico (GPU):** El "cerebro" de la tarjeta, con miles de núcleos pequeños para procesamiento paralelo
+2. **Memoria de vídeo (VRAM):** Almacena texturas, modelos 3D y datos de imagen
+   - Tipos: GDDR6, GDDR6X
+   - Capacidades: Desde 4GB hasta 24GB o más
+3. **Sistema de refrigeración:** Disipadores, ventiladores o sistemas líquidos
+4. **Conectores de salida:** HDMI, DisplayPort, DVI, USB-C
+
+### **Tipos de Tarjetas Gráficas**
+
+- **Integradas:** Incorporadas en el procesador o placa base
+  - Ventajas: Bajo consumo, sin coste adicional
+  - Limitaciones: Rendimiento reducido, comparten memoria del sistema
+
+- **Dedicadas:** Tarjetas independientes con mayor rendimiento
+  - Fabricantes principales: NVIDIA (GeForce) y AMD (Radeon)
+  - Ventajas: Alto rendimiento, memoria dedicada
+  - Usos: Gaming, renderizado 3D, edición de vídeo
+
+**Ejemplo comparativo:** Una tarjeta gráfica dedicada como la NVIDIA RTX 4070 puede ser hasta 10 veces más potente que una GPU integrada, permitiendo jugar a títulos modernos en alta resolución o reducir drásticamente los tiempos de renderizado en aplicaciones profesionales.
+
+## **Dispositivos de Almacenamiento**
+
+### **Discos Duros (HDD)**
+
+Almacenan datos magnéticamente en platos giratorios:
+
+- **Características:**
+  - Capacidades: 1TB-20TB
+  - Velocidades: 5400-7200 RPM
+  - Ventaja: Mayor capacidad por euro
+  - Desventaja: Más lentos, sensibles a golpes
+
+### **Unidades de Estado Sólido (SSD)**
+
+Utilizan chips de memoria flash sin partes móviles:
+
+- **Tipos:**
+  - **SATA SSD:** Formato tradicional, velocidades hasta 550 MB/s
+  - **M.2 SSD:** Formato compacto que se instala directamente en la placa base
+  - **NVMe SSD:** Utiliza PCIe para mayor velocidad (hasta 7000 MB/s)
+
+- **Ventajas:**
+  - Mucho más rápidos que los HDD
+  - Silenciosos y resistentes a golpes
+  - Menor consumo energético
+
+**Ejemplo práctico:** Un sistema con SSD NVMe puede arrancar Windows en 10-15 segundos, mientras que con un disco duro tradicional tardaría 30-60 segundos. Las aplicaciones también se abren casi instantáneamente.
+
+### **Sistemas RAID**
+
+Combinan múltiples discos para mejorar rendimiento o seguridad:
+
+- **RAID 0:** Divide datos entre discos para mayor velocidad, sin redundancia
+- **RAID 1:** Duplica datos para mayor seguridad
+- **RAID 5:** Distribuye datos y paridad para balance entre rendimiento y seguridad
+- **RAID 10:** Combina RAID 1 y RAID 0 para alto rendimiento y redundancia
+
+## **Fuentes de Alimentación**
+
+La fuente de alimentación (PSU) convierte la corriente alterna en continua para los componentes del ordenador.
+
+### **Características Principales**
+
+#### **Potencia**
+Medida en vatios (W), indica cuánta energía puede suministrar:
+
+- **Equipos básicos:** 300-450W
+- **Gaming medio:** 550-750W
+- **Gaming alto/Workstation:** 850-1200W
+
+**Cálculo aproximado:** Sumar el consumo de todos los componentes y añadir un 20-30% de margen.
+
+#### **Eficiencia**
+Certificaciones 80 PLUS que garantizan un porcentaje mínimo de eficiencia:
+
+- **80 PLUS Standard:** 80% de eficiencia
+- **80 PLUS Bronze/Silver/Gold/Platinum/Titanium:** Niveles crecientes de eficiencia
+
+Una fuente más eficiente desperdicia menos energía en forma de calor y reduce el consumo eléctrico.
+
+#### **Modularidad**
+Define cómo se conectan los cables:
+
+- **No modular:** Todos los cables vienen fijos
+- **Semi-modular:** Cables esenciales fijos, resto desmontables
+- **Totalmente modular:** Todos los cables son desmontables
+
+**Ventaja práctica:** Las fuentes modulares permiten instalar solo los cables necesarios, mejorando el flujo de aire y la organización interna.
+
+## **Sistemas de Refrigeración**
+
+Mantienen los componentes dentro de temperaturas operativas seguras.
+
+### **Refrigeración por Aire**
+
+- **Disipadores:** Estructuras metálicas que absorben el calor
+- **Ventiladores:** Mueven el aire para acelerar la disipación
+- **Tipos:**
+  - Stock (incluido con el procesador)
+  - Torre (más grandes y eficientes)
+  - Low-profile (para cajas compactas)
+
+### **Refrigeración Líquida**
+
+- **AIO (All-In-One):** Sistemas cerrados pre-ensamblados
+  - Tamaños: 120mm, 240mm, 280mm, 360mm
+  - Fácil instalación y mantenimiento
+
+- **Custom loop:** Circuitos personalizados
+  - Mayor rendimiento y flexibilidad
+  - Puede refrigerar múltiples componentes
+
+### **Consideraciones de Refrigeración**
+
+- **Flujo de aire:** Entrada frontal/inferior, salida posterior/superior
+- **Temperaturas ideales:** CPU < 75-80°C, GPU < 80-85°C bajo carga
+
+## **Proceso Básico de Ensamblaje**
+
+1. **Preparación:**
+   - Verificar compatibilidad entre componentes
+   - Preparar herramientas necesarias
+   - Organizar espacio de trabajo
+
+2. **Instalación en placa base:**
+   - Colocar procesador (alineando marcas)
+   - Aplicar pasta térmica
+   - Instalar sistema de refrigeración
+   - Insertar módulos de memoria
+
+3. **Instalación en caja:**
+   - Montar placa base con separadores
+   - Instalar fuente de alimentación
+   - Conectar cables principales (alimentación, panel frontal)
+
+4. **Componentes adicionales:**
+   - Instalar dispositivos de almacenamiento
+   - Montar tarjeta gráfica
+   - Organizar cables para mejorar flujo de aire
+
+5. **Configuración inicial:**
+   - Acceder a BIOS/UEFI
+   - Verificar que todos los componentes son detectados
+   - Configurar secuencia de arranque
+   - Activar perfiles XMP para la memoria
+
+## **Mantenimiento Básico**
+
+- **Limpieza periódica:**
+  - Eliminar polvo con aire comprimido
+  - Limpiar ventiladores y disipadores
+  - Revisar filtros de polvo
+
+- **Monitorización:**
+  - Controlar temperaturas regularmente
+  - Reemplazar pasta térmica cada 1-2 años
+
+- **Actualización de software:**
+  - Mantener controladores al día
+  - Actualizar BIOS cuando sea necesario (no rutinariamente)
+
+## **Conclusión**
+
+La placa base y los componentes internos del ordenador trabajan en conjunto para crear un sistema funcional. Comprender sus características, compatibilidades y funcionamiento es fundamental para ensamblar, mantener y actualizar equipos informáticos de manera efectiva. Cada componente juega un papel crucial en el rendimiento global del sistema, y la elección adecuada de cada uno permite crear un ordenador equilibrado que se adapte a las necesidades específicas de cada usuario.
+
+Esta parte de la Unidad 2 proporciona los conocimientos esenciales sobre hardware que todo profesional de informática debe dominar, sentando las bases para el diagnóstico de problemas, la optimización de sistemas y la toma de decisiones informadas sobre configuraciones de equipos.
