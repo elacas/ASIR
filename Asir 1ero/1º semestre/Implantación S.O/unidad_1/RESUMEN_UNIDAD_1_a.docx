@@ -1,0 +1,315 @@
+# Resumen Detallado: Implantación de Sistemas Operativos - Unidad 1 (Documentos 1-4)
+
+## **Introducción a los Sistemas Operativos**
+
+Un **sistema operativo (SO)** es el software fundamental que actúa como intermediario entre el hardware del ordenador y los programas de aplicación o el usuario. Sin un sistema operativo, un ordenador sería simplemente un conjunto de componentes electrónicos sin utilidad práctica.
+
+### **Definición y Propósito**
+
+El sistema operativo es un conjunto de programas que gestiona los recursos hardware del ordenador y proporciona servicios para los programas de aplicación. Sus propósitos principales son:
+
+- **Gestionar los recursos hardware:** Asignar eficientemente CPU, memoria, dispositivos de entrada/salida y almacenamiento.
+- **Proporcionar una interfaz de usuario:** Facilitar la interacción entre el usuario y el hardware.
+- **Ejecutar y gestionar aplicaciones:** Permitir la carga, ejecución y finalización de programas.
+- **Proporcionar servicios comunes:** Ofrecer funciones que las aplicaciones utilizan repetidamente.
+
+**Ejemplo práctico:** Cuando un usuario hace clic en el icono de un navegador web, el sistema operativo localiza el programa en el disco, lo carga en la memoria RAM, le asigna tiempo de CPU para su ejecución, gestiona su acceso a la red y muestra su interfaz en la pantalla.
+
+### **Funciones Principales**
+
+1. **Gestión de procesos:** Crear, planificar, sincronizar y finalizar procesos (programas en ejecución).
+2. **Gestión de memoria:** Asignar y liberar memoria, implementar memoria virtual y proteger espacios de memoria.
+3. **Gestión de archivos:** Organizar datos en dispositivos de almacenamiento mediante sistemas de archivos.
+4. **Gestión de dispositivos de E/S:** Controlar periféricos mediante controladores (drivers).
+5. **Gestión de seguridad:** Autenticar usuarios, controlar accesos y proteger recursos.
+
+## **Evolución Histórica de los Sistemas Operativos**
+
+La evolución de los sistemas operativos ha estado estrechamente ligada al desarrollo del hardware y a las necesidades cambiantes de los usuarios.
+
+### **Primera Generación (1940s-1950s)**
+
+- **Características:** Ausencia de sistemas operativos propiamente dichos.
+- **Funcionamiento:** Programación directa del hardware mediante cables, interruptores y tarjetas perforadas.
+- **Operación:** Un solo programa a la vez, configurado manualmente.
+- **Limitaciones:** Tiempo de configuración extenso, uso ineficiente de recursos.
+
+### **Segunda Generación (1950s-1960s)**
+
+- **Características:** Aparición de los primeros monitores residentes y sistemas de procesamiento por lotes (batch processing).
+- **Innovación:** Los trabajos se agrupaban en lotes para su ejecución secuencial.
+- **Ejemplos:** FMS (Fortran Monitor System), IBSYS.
+- **Avance:** Reducción del tiempo muerto entre trabajos.
+
+### **Tercera Generación (1960s-1970s)**
+
+- **Características:** Aparición de la multiprogramación y el tiempo compartido.
+- **Multiprogramación:** Varios programas residían en memoria simultáneamente.
+- **Tiempo compartido:** Múltiples usuarios podían interactuar concurrentemente con el sistema.
+- **Ejemplos:** OS/360 de IBM, Multics, UNIX (1969).
+- **Avance clave:** Mejor aprovechamiento de recursos y respuesta interactiva.
+
+### **Cuarta Generación (1970s-1980s)**
+
+- **Características:** Surgimiento de los ordenadores personales y las primeras interfaces gráficas.
+- **Innovación:** Sistemas operativos orientados al usuario individual.
+- **Ejemplos:** CP/M, MS-DOS, primeras versiones de Windows, Apple Macintosh.
+- **Avance clave:** Democratización de la informática.
+
+### **Quinta Generación (1980s-Actualidad)**
+
+- **Características:** Sistemas en red, distribuidos, móviles y en la nube.
+- **Innovaciones:** Interfaces gráficas avanzadas, conectividad permanente, virtualización.
+- **Ejemplos:** Windows modernos, macOS, distribuciones Linux, Android, iOS.
+- **Avances clave:** Computación ubicua, servicios en la nube, Internet de las Cosas.
+
+## **Clasificación de los Sistemas Operativos**
+
+Los sistemas operativos pueden clasificarse según diferentes criterios:
+
+### **Según el número de usuarios**
+
+- **Monousuario:** Permiten que solo un usuario utilice el sistema a la vez.
+  - **Ejemplo:** MS-DOS, primeras versiones de Windows.
+- **Multiusuario:** Permiten que varios usuarios trabajen simultáneamente en el sistema.
+  - **Ejemplo:** UNIX, Linux, Windows Server, macOS.
+
+### **Según el número de tareas**
+
+- **Monotarea:** Solo pueden ejecutar un programa a la vez.
+  - **Ejemplo:** MS-DOS.
+- **Multitarea:** Pueden ejecutar varios programas concurrentemente.
+  - **Ejemplo:** Todos los sistemas operativos modernos (Windows, Linux, macOS).
+
+### **Según su estructura interna**
+
+- **Monolíticos:** Todo el código del SO se ejecuta en modo kernel, con acceso completo al hardware.
+  - **Ventaja:** Mayor rendimiento.
+  - **Desventaja:** Menos modularidad, mayor dificultad de mantenimiento.
+  - **Ejemplo:** Núcleo de Linux tradicional.
+
+- **Microkernel:** El núcleo contiene solo las funciones esenciales, y otros servicios se ejecutan como procesos en modo usuario.
+  - **Ventaja:** Mayor modularidad y estabilidad.
+  - **Desventaja:** Posible pérdida de rendimiento por la comunicación entre procesos.
+  - **Ejemplo:** MINIX, QNX.
+
+- **Híbridos:** Combinan características de ambos enfoques.
+  - **Ejemplo:** Windows NT (base de Windows modernos), macOS (basado en Darwin/XNU).
+
+### **Según su ámbito de aplicación**
+
+- **Sistemas Operativos de Escritorio:** Para ordenadores personales.
+  - **Ejemplo:** Windows 11, macOS, Ubuntu Desktop.
+
+- **Sistemas Operativos de Servidor:** Optimizados para servicios de red y aplicaciones empresariales.
+  - **Ejemplo:** Windows Server, Red Hat Enterprise Linux, Ubuntu Server.
+
+- **Sistemas Operativos Embebidos:** Para dispositivos con propósito específico y recursos limitados.
+  - **Ejemplo:** Sistemas en electrodomésticos, automóviles, routers.
+
+- **Sistemas Operativos Móviles:** Para smartphones y tablets.
+  - **Ejemplo:** Android, iOS.
+
+- **Sistemas Operativos en Tiempo Real (RTOS):** Garantizan tiempos de respuesta predecibles.
+  - **Ejemplo:** VxWorks, FreeRTOS, QNX.
+
+## **Componentes Internos de un Sistema Operativo**
+
+### **Núcleo o Kernel**
+
+El **kernel** es el componente central del sistema operativo, responsable de las funciones más críticas:
+
+- **Gestión del procesador:** Asignación de tiempo de CPU a los procesos.
+- **Gestión de memoria:** Control del espacio de direcciones y memoria virtual.
+- **Gestión de dispositivos:** Comunicación con el hardware.
+- **Servicios del sistema:** Implementación de llamadas al sistema.
+
+### **Modos de Operación**
+
+Los procesadores modernos ofrecen al menos dos niveles de privilegio:
+
+- **Modo Kernel (Modo Supervisor):**
+  - Nivel de privilegio máximo.
+  - Acceso completo a todo el hardware y todas las instrucciones.
+  - Ejecución de código del sistema operativo.
+
+- **Modo Usuario:**
+  - Nivel de privilegio restringido.
+  - Las aplicaciones no pueden acceder directamente al hardware ni ejecutar instrucciones privilegiadas.
+  - Deben solicitar servicios al kernel mediante llamadas al sistema.
+
+Esta separación protege al sistema operativo y evita que programas mal diseñados o maliciosos comprometan la estabilidad del sistema.
+
+### **Llamadas al Sistema (System Calls)**
+
+Las **llamadas al sistema** son la interfaz entre las aplicaciones y el kernel:
+
+- **Gestión de procesos:** `fork()`, `exec()`, `exit()`, `wait()`
+- **Gestión de archivos:** `open()`, `close()`, `read()`, `write()`
+- **Gestión de directorios:** `mkdir()`, `rmdir()`, `readdir()`
+- **Gestión de memoria:** `malloc()`, `free()`, `mmap()`
+- **Comunicaciones:** `socket()`, `connect()`, `send()`, `recv()`
+
+**Ejemplo:** Cuando una aplicación necesita leer un archivo, no accede directamente al disco, sino que realiza una llamada al sistema `read()` que el kernel procesa de forma segura.
+
+### **Gestores de Recursos**
+
+#### **Gestor de Procesos**
+
+Se encarga de administrar los procesos en el sistema:
+
+- **Creación y terminación de procesos**
+- **Planificación (scheduling):** Determina qué proceso utiliza la CPU en cada momento
+- **Sincronización y comunicación entre procesos**
+- **Control de estados de los procesos**
+
+#### **Gestor de Memoria**
+
+Administra la memoria principal (RAM) del sistema:
+
+- **Asignación y liberación de memoria**
+- **Memoria virtual:** Uso del disco como extensión de la RAM
+- **Técnicas de gestión:**
+  - **Particionamiento:** División de memoria en bloques fijos o variables
+  - **Paginación:** División en páginas de tamaño fijo
+  - **Segmentación:** División en segmentos lógicos (código, datos, pila)
+
+#### **Sistema de Archivos**
+
+Organiza y gestiona datos en dispositivos de almacenamiento:
+
+- **Tipos comunes:**
+  - **Windows:** NTFS, FAT32, exFAT
+  - **Linux:** ext4, XFS, Btrfs
+  - **macOS:** APFS, HFS+
+- **Funciones:**
+  - Organización jerárquica en directorios
+  - Control de acceso y permisos
+  - Operaciones básicas (crear, leer, escribir, eliminar)
+
+#### **Gestor de Dispositivos**
+
+Controla el acceso a periféricos:
+
+- **Controladores (drivers):** Software específico para cada tipo de hardware
+- **Spooling:** Para dispositivos que no pueden atender múltiples solicitudes simultáneas
+- **Manejador de interrupciones:** Gestiona señales de los dispositivos al CPU
+
+### **Interfaz de Usuario**
+
+Permite la interacción entre el usuario y el sistema operativo:
+
+- **CLI (Command Line Interface):** Interfaz basada en comandos textuales
+  - **Ejemplo:** Terminal de Linux, PowerShell, CMD
+  - **Ventajas:** Potente, automatizable mediante scripts
+
+- **GUI (Graphical User Interface):** Interfaz gráfica con ventanas, iconos y menús
+  - **Ejemplo:** Escritorio de Windows, macOS, GNOME
+  - **Ventajas:** Intuitiva, fácil de aprender
+
+## **Gestión de Procesos**
+
+### **Concepto de Proceso**
+
+Un **proceso** es un programa en ejecución, que incluye:
+- Código ejecutable (text)
+- Datos (variables globales y estáticas)
+- Pila (variables locales y control de llamadas)
+- Montículo (heap, memoria dinámica)
+- Recursos asignados (archivos abiertos, etc.)
+
+### **Estados de un Proceso**
+
+Un proceso puede encontrarse en diferentes estados a lo largo de su ciclo de vida:
+
+1. **Nuevo:** Recién creado, aún no admitido en el sistema.
+2. **Listo:** Preparado para ejecutarse, esperando tiempo de CPU.
+3. **En ejecución:** Utilizando actualmente la CPU.
+4. **Bloqueado (Esperando):** Esperando algún evento (E/S, recursos, señales).
+5. **Terminado:** Ha finalizado su ejecución o ha sido abortado.
+
+**Ejemplo:** Cuando un usuario inicia un programa, este comienza en estado "nuevo", pasa a "listo", luego a "en ejecución" cuando obtiene la CPU. Si necesita leer datos del disco, pasa a "bloqueado" mientras espera la operación de E/S, vuelve a "listo" cuando los datos están disponibles, y finalmente a "terminado" cuando completa su ejecución.
+
+### **Bloque de Control de Proceso (PCB)**
+
+El **PCB** es una estructura de datos que mantiene toda la información sobre un proceso:
+- Identificador de proceso (PID)
+- Estado del proceso
+- Contador de programa
+- Registros de CPU
+- Información de planificación
+- Información de gestión de memoria
+- Recursos asignados
+
+### **Hilos (Threads)**
+
+Un **hilo** es una unidad básica de ejecución dentro de un proceso:
+
+- **Características:**
+  - Comparten código, datos y recursos del proceso
+  - Cada hilo tiene su propio contador de programa, registros y pila
+  - Comunicación más sencilla que entre procesos
+  - Cambio de contexto más eficiente
+
+- **Tipos:**
+  - **Hilos a nivel de usuario:** Gestionados por una biblioteca en espacio de usuario
+  - **Hilos a nivel de kernel:** Gestionados directamente por el sistema operativo
+
+### **Planificación de Procesos (Scheduling)**
+
+La **planificación** determina qué proceso se ejecuta en cada momento:
+
+- **Objetivos:**
+  - Maximizar uso de CPU
+  - Minimizar tiempo de respuesta
+  - Equidad entre procesos
+  - Evitar inanición (starvation)
+
+- **Algoritmos principales:**
+  - **FCFS (First-Come, First-Served):** El primer proceso en llegar es el primero en ejecutarse.
+  - **SJF (Shortest Job First):** Prioriza procesos con menor tiempo de ejecución.
+  - **Round Robin:** Asigna un quantum (intervalo de tiempo) a cada proceso y rota.
+  - **Prioridades:** Asigna CPU según nivel de prioridad de los procesos.
+
+## **Gestión de Memoria**
+
+### **Técnicas de Gestión de Memoria**
+
+1. **Particionamiento:**
+   - **Particiones fijas:** Memoria dividida en bloques de tamaño fijo
+   - **Particiones variables:** Tamaño adaptado a las necesidades
+   - **Problema:** Fragmentación interna y externa
+
+2. **Paginación:**
+   - Divide la memoria física en marcos (frames) de tamaño fijo
+   - Divide la memoria lógica en páginas del mismo tamaño
+   - Utiliza tabla de páginas para mapear páginas a marcos
+   - **Ventaja:** Elimina fragmentación externa
+
+3. **Segmentación:**
+   - Divide la memoria lógica en segmentos de tamaño variable (código, datos, pila)
+   - Cada segmento tiene base y límite
+   - **Ventaja:** Refleja la visión lógica del programador
+
+### **Memoria Virtual**
+
+La **memoria virtual** permite ejecutar programas más grandes que la memoria física disponible:
+
+- Utiliza almacenamiento secundario (disco) como extensión de la RAM
+- Implementada mediante paginación bajo demanda
+- Solo las partes activamente utilizadas del programa residen en memoria física
+
+### **Algoritmos de Reemplazo de Páginas**
+
+Determinan qué página se elimina de memoria cuando se necesita espacio:
+
+- **FIFO (First-In, First-Out):** Elimina la página más antigua
+- **LRU (Least Recently Used):** Elimina la página no utilizada por más tiempo
+- **LFU (Least Frequently Used):** Elimina la página menos utilizada
+- **Algoritmo Óptimo:** Elimina la página que no se utilizará por más tiempo (teórico)
+
+## **Conclusión**
+
+Los documentos 1 a 4 de la Unidad 1 de "Implantación de Sistemas Operativos" proporcionan los fundamentos teóricos esenciales sobre los sistemas operativos. Comprender estos conceptos es crucial antes de abordar aspectos prácticos de instalación y configuración, ya que permiten entender el funcionamiento interno, la evolución histórica y la clasificación de los diferentes tipos de sistemas operativos.
+
+La gestión de procesos y memoria constituye el núcleo de funcionamiento de cualquier sistema operativo moderno, mientras que la interfaz de usuario y el sistema de archivos proporcionan los medios para que los usuarios interactúen con el sistema y almacenen su información. Esta base conceptual es fundamental para cualquier profesional de TI que necesite seleccionar, instalar, configurar y administrar sistemas operativos en entornos tanto personales como empresariales.

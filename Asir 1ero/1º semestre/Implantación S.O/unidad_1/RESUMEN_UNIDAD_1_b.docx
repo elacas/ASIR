@@ -1,0 +1,434 @@
+# Resumen Detallado: Implantación de Sistemas Operativos - Unidad 1 (A partir del Documento 4)
+
+## **Gestión de Memoria**
+
+La gestión de memoria es una función crítica de los sistemas operativos, encargada de administrar eficientemente la memoria principal (RAM) y proporcionar a cada proceso el espacio necesario para su ejecución.
+
+### **Técnicas de Asignación de Memoria**
+
+#### **Asignación Contigua**
+
+- **Particiones fijas:** La memoria se divide en bloques de tamaño predeterminado.
+  - **Ventaja:** Implementación sencilla.
+  - **Desventaja:** Causa fragmentación interna (espacio desperdiciado dentro de particiones).
+  - **Ejemplo:** Un proceso de 25KB asignado a una partición de 32KB desperdicia 7KB.
+
+- **Particiones variables:** El tamaño de las particiones se adapta a las necesidades de cada proceso.
+  - **Ventaja:** Minimiza la fragmentación interna.
+  - **Desventaja:** Produce fragmentación externa (espacios libres dispersos que no pueden utilizarse).
+  - **Algoritmos de asignación:** First Fit (primer hueco suficiente), Best Fit (hueco más ajustado), Worst Fit (hueco más grande).
+
+#### **Asignación No Contigua**
+
+- **Paginación:**
+  - La memoria física se divide en **marcos** (frames) de tamaño fijo.
+  - La memoria lógica de cada proceso se divide en **páginas** del mismo tamaño.
+  - Una **tabla de páginas** mapea las páginas a los marcos físicos.
+  - **Ventaja:** Elimina la fragmentación externa.
+  - **Desventaja:** Puede causar fragmentación interna en la última página.
+
+- **Segmentación:**
+  - Divide la memoria lógica en **segmentos** de tamaño variable (código, datos, pila).
+  - Cada dirección lógica consta de un número de segmento y un desplazamiento.
+  - **Ventaja:** Se adapta a la visión lógica del programador.
+  - **Desventaja:** Puede producir fragmentación externa.
+
+- **Segmentación paginada:** Combina ambos enfoques dividiendo los segmentos en páginas.
+
+### **Memoria Virtual**
+
+La **memoria virtual** permite ejecutar programas más grandes que la memoria física disponible:
+
+- Utiliza el almacenamiento secundario (disco duro) como extensión de la RAM.
+- Solo las partes activamente utilizadas del programa residen en memoria física.
+- **Paginación bajo demanda:** Las páginas se cargan en RAM solo cuando son necesarias.
+- Cuando se accede a una página no presente en memoria, se produce un **fallo de página (page fault)**.
+
+### **Algoritmos de Reemplazo de Páginas**
+
+Cuando ocurre un fallo de página y no hay marcos libres, estos algoritmos deciden qué página reemplazar:
+
+- **FIFO (First-In, First-Out):** Reemplaza la página más antigua en memoria.
+- **LRU (Least Recently Used):** Reemplaza la página no utilizada durante más tiempo.
+- **LFU (Least Frequently Used):** Reemplaza la página menos utilizada.
+- **Algoritmo Óptimo:** Reemplaza la página que no se utilizará durante el período más largo (teórico, sirve como referencia).
+
+### **Problemas de Rendimiento**
+
+- **Thrashing:** Condición en que el sistema pasa la mayor parte del tiempo intercambiando páginas entre RAM y disco, en lugar de ejecutar programas.
+- **Soluciones:** Ajustar el grado de multiprogramación, implementar algoritmos de reemplazo eficientes, asignar más memoria física.
+
+## **Gestión de Procesos**
+
+### **Concepto de Proceso**
+
+Un **proceso** es un programa en ejecución, que incluye:
+- Código del programa (text)
+- Datos (variables globales y estáticas)
+- Pila (variables locales y control de llamadas)
+- Montículo (heap, memoria dinámica)
+- Recursos asignados (archivos abiertos, etc.)
+
+Cada proceso tiene un identificador único (PID).
+
+### **Estados de un Proceso**
+
+Un proceso puede encontrarse en diferentes estados durante su ciclo de vida:
+
+1. **Nuevo:** Recién creado, aún no admitido en el sistema.
+2. **Listo:** Preparado para ejecutarse, esperando tiempo de CPU.
+3. **En ejecución:** Utilizando actualmente la CPU.
+4. **Bloqueado (Esperando):** Esperando algún evento (E/S, recursos, señales).
+5. **Terminado:** Ha finalizado su ejecución o ha sido abortado.
+
+**Ejemplo práctico:** Un programa de edición de texto está en estado "en ejecución" mientras el usuario escribe. Si el usuario guarda el archivo, el proceso pasa a "bloqueado" mientras el sistema operativo escribe en el disco, y vuelve a "listo" cuando la operación de E/S finaliza.
+
+### **Bloque de Control de Proceso (PCB)**
+
+El **PCB** es una estructura de datos que contiene toda la información sobre un proceso:
+- Identificador de proceso (PID)
+- Estado del proceso
+- Contador de programa
+- Registros de CPU
+- Información de planificación
+- Información de gestión de memoria
+- Recursos asignados
+
+### **Planificación de Procesos (Scheduling)**
+
+La planificación determina qué proceso se ejecuta en cada momento:
+
+- **Objetivos:**
+  - Maximizar uso de CPU
+  - Minimizar tiempo de respuesta
+  - Equidad entre procesos
+  - Evitar inanición (starvation)
+
+- **Algoritmos principales:**
+  - **FCFS (First-Come, First-Served):** El primer proceso en llegar es el primero en ejecutarse.
+  - **SJF (Shortest Job First):** Prioriza procesos con menor tiempo de ejecución.
+  - **Round Robin:** Asigna un quantum (intervalo de tiempo) a cada proceso y rota.
+  - **Prioridades:** Asigna CPU según nivel de prioridad de los procesos.
+
+### **Hilos (Threads)**
+
+Un **hilo** es una unidad básica de ejecución dentro de un proceso:
+
+- **Características:**
+  - Comparten código, datos y recursos del proceso
+  - Cada hilo tiene su propio contador de programa, registros y pila
+  - Comunicación más sencilla que entre procesos
+  - Cambio de contexto más eficiente
+
+- **Tipos:**
+  - **Hilos a nivel de usuario:** Gestionados por una biblioteca en espacio de usuario
+  - **Hilos a nivel de kernel:** Gestionados directamente por el sistema operativo
+
+**Ejemplo:** Un navegador web puede usar un hilo para renderizar una página, otro para descargar imágenes y otro para gestionar la interfaz de usuario, todo dentro del mismo proceso.
+
+### **Comunicación entre Procesos (IPC)**
+
+Mecanismos que permiten que los procesos se comuniquen y sincronicen:
+
+- **Pipes:** Canales de comunicación unidireccionales o bidireccionales.
+- **Memoria compartida:** Área de memoria accesible por múltiples procesos.
+- **Semáforos:** Mecanismo de sincronización basado en contadores.
+- **Colas de mensajes:** Permiten intercambiar mensajes estructurados.
+- **Sockets:** Para comunicación entre procesos en diferentes máquinas.
+
+### **Problemas Clásicos de Sincronización**
+
+- **Productor-Consumidor:** Procesos productores generan datos que los consumidores procesan.
+- **Lectores-Escritores:** Múltiples procesos leen datos, algunos los modifican.
+- **Cena de los Filósofos:** Ilustra problemas de interbloqueo y inanición.
+
+### **Interbloqueo (Deadlock)**
+
+Situación donde dos o más procesos esperan indefinidamente por recursos que poseen los otros:
+
+- **Condiciones necesarias:**
+  1. **Exclusión mutua:** Recursos no compartibles
+  2. **Retención y espera:** Procesos mantienen recursos mientras esperan otros
+  3. **No expropiación:** Recursos solo se liberan voluntariamente
+  4. **Espera circular:** Cadena cerrada de procesos esperando recursos
+
+- **Estrategias para manejar interbloqueos:**
+  - **Prevención:** Eliminar al menos una de las condiciones necesarias
+  - **Evasión:** Asignación cuidadosa de recursos (algoritmo del banquero)
+  - **Detección y recuperación:** Permitir interbloqueos pero detectarlos y resolverlos
+  - **Ignorar el problema:** Enfoque práctico en algunos sistemas
+
+## **Gestión de Entrada/Salida (E/S)**
+
+La gestión de E/S controla la comunicación con los dispositivos periféricos (impresoras, discos, teclados, ratones, monitores, etc.).
+
+### **Controladores de Dispositivo**
+
+- **Controladores hardware:** Componentes electrónicos que gestionan la comunicación física con el dispositivo.
+- **Drivers:** Software que traduce las órdenes del sistema operativo a instrucciones comprensibles para el hardware.
+
+### **Técnicas de Entrada/Salida**
+
+- **E/S programada:** La CPU controla y gestiona directamente cada operación de E/S, comprobando repetidamente el estado del dispositivo (polling).
+  - **Desventaja:** Mantiene la CPU ocupada mientras espera.
+
+- **E/S por interrupciones:** El dispositivo notifica a la CPU mediante una interrupción cuando está listo.
+  - **Ventaja:** La CPU puede realizar otras tareas mientras espera.
+  - **Proceso:** 
+    1. CPU inicia operación de E/S
+    2. CPU continúa con otras tareas
+    3. Dispositivo genera interrupción al terminar
+    4. CPU atiende la interrupción y procesa los datos
+
+- **DMA (Acceso Directo a Memoria):** Un controlador DMA transfiere datos directamente entre el dispositivo y la memoria sin intervención continua de la CPU.
+  - **Ventaja:** Muy eficiente para grandes volúmenes de datos.
+  - **Proceso:**
+    1. CPU configura el controlador DMA
+    2. DMA gestiona la transferencia completa
+    3. DMA notifica a la CPU cuando termina
+
+### **Buffering y Spooling**
+
+- **Buffering:** Uso de memoria intermedia para almacenar datos temporalmente durante transferencias.
+  - **Función:** Compensa diferencias de velocidad entre dispositivos.
+
+- **Spooling:** Técnica para dispositivos que no pueden atender múltiples solicitudes a la vez (como impresoras).
+  - **Ejemplo:** Cola de impresión que almacena documentos en disco hasta que la impresora está disponible.
+
+## **Sistemas de Archivos**
+
+El sistema de archivos organiza y gestiona los datos en dispositivos de almacenamiento persistente.
+
+### **Conceptos Básicos**
+
+- **Archivo:** Colección nombrada de información relacionada.
+- **Atributos:** Nombre, tipo, ubicación, tamaño, protección, fecha, propietario.
+- **Operaciones:** Crear, leer, escribir, posicionar, eliminar, truncar, renombrar.
+
+### **Estructura Jerárquica y Rutas**
+
+- **Directorio raíz (/ o C:\):** Punto de partida del árbol de directorios.
+- **Rutas absolutas y relativas:**  
+  - **Absoluta:** Comienza desde la raíz (ej: `/home/usuario/documento.txt` o `C:\Usuarios\usuario\documento.txt`)
+  - **Relativa:** Depende del directorio actual (ej: `documentos/informe.docx`)
+
+### **Tipos de Sistemas de Archivos**
+
+#### **Windows:**
+- **FAT/FAT32/exFAT:** Simples y compatibles, pero con limitaciones de tamaño y seguridad.
+- **NTFS:** Sistema moderno con permisos avanzados, journaling, compresión, cifrado y soporte para archivos grandes.
+
+#### **Linux:**
+- **ext2/ext3/ext4:** Estándar en la mayoría de distribuciones. ext4 ofrece mejor rendimiento y características avanzadas.
+- **XFS, Btrfs, ZFS:** Sistemas avanzados con características como snapshots y pools de almacenamiento.
+
+#### **macOS:**
+- **HFS+:** Sistema tradicional de Apple.
+- **APFS:** Sistema moderno optimizado para SSD, con cifrado y snapshots.
+
+### **Gestión del Espacio de Almacenamiento**
+
+- **Asignación de espacio:**
+  - **Contigua:** Bloques consecutivos, rápido pero causa fragmentación.
+  - **Enlazada:** Bloques dispersos con punteros entre ellos.
+  - **Indexada:** Usa bloques índice para localizar los bloques de datos.
+
+- **Fragmentación:**
+  - **Fragmentación interna:** Espacio desperdiciado dentro de bloques asignados.
+  - **Fragmentación externa:** Espacio libre disponible pero no contiguo.
+  - **Desfragmentación:** Proceso de reorganizar archivos para optimizar el rendimiento.
+
+- **Journaling:** Registro de operaciones pendientes para evitar pérdida de datos en caso de fallo.
+
+### **Gestión de Archivos y Directorios**
+
+#### **Comandos en Windows:**
+```cmd
+dir                 :: Lista archivos y carpetas
+copy archivo1 archivo2 :: Copia archivos
+del archivo.txt     :: Elimina archivos
+mkdir carpeta       :: Crea un directorio
+rmdir carpeta       :: Elimina un directorio vacío
+```
+
+#### **Comandos en Linux/Unix:**
+```bash
+ls                  # Lista archivos y carpetas
+cp archivo1 archivo2 # Copia archivos
+rm archivo.txt      # Elimina archivos
+mkdir carpeta       # Crea un directorio
+rmdir carpeta       # Elimina un directorio vacío
+```
+
+### **Permisos y Seguridad en Sistemas de Archivos**
+
+#### **Windows (NTFS):**
+- Permisos detallados para cada usuario o grupo (lectura, escritura, ejecución, modificación, control total).
+- Herencia de permisos desde carpetas superiores.
+- Listas de Control de Acceso (ACLs) para control granular.
+
+#### **Linux/Unix:**
+- Permisos básicos: lectura (r), escritura (w), ejecución (x) para propietario, grupo y otros.
+- Representación numérica: 755 = rwxr-xr-x
+- Permisos especiales: SUID, SGID, Sticky Bit.
+
+## **Proceso de Arranque del Sistema Operativo**
+
+El **proceso de arranque (boot)** es la secuencia de pasos que realiza un ordenador desde que se enciende hasta que el sistema operativo está listo para su uso.
+
+### **Etapas del Arranque**
+
+1. **POST (Power-On Self Test):** 
+   - Verificación inicial del hardware básico.
+   - Comprueba CPU, memoria, dispositivos de entrada/salida.
+   - Si detecta errores, puede emitir pitidos o códigos de error.
+
+2. **Carga del firmware (BIOS/UEFI):** 
+   - **BIOS (Basic Input/Output System):** Sistema tradicional, limitado a 2TB de disco y particiones MBR.
+   - **UEFI (Unified Extensible Firmware Interface):** Firmware moderno que soporta discos grandes, particiones GPT y características avanzadas como Secure Boot.
+   - Inicializa dispositivos y busca el dispositivo de arranque según la secuencia configurada.
+
+3. **Cargador de arranque (Bootloader):**
+   - **Windows:** BOOTMGR o Windows Boot Manager.
+   - **Linux:** GRUB (GRand Unified Bootloader) o LILO.
+   - **macOS:** Boot.efi
+   - Localiza el núcleo del sistema operativo y lo carga en memoria.
+   - Puede presentar menús para seleccionar entre varios sistemas operativos.
+
+4. **Inicialización del kernel:** 
+   - El kernel detecta hardware, carga controladores necesarios.
+   - Monta el sistema de archivos raíz.
+   - Inicia el primer proceso (init en Linux/Unix, smss.exe en Windows).
+
+5. **Inicio de servicios y entorno de usuario:** 
+   - Se inician servicios del sistema (daemons/servicios).
+   - Se carga el entorno gráfico o la interfaz de línea de comandos.
+   - Se presentan las opciones de inicio de sesión.
+
+### **Herramientas de Recuperación**
+
+- **Windows:**
+  - Entorno de recuperación de Windows (WinRE)
+  - Opciones de inicio avanzado (F8 durante el arranque)
+  - Comandos de reparación: `bootrec /fixmbr`, `bootrec /fixboot`, `sfc /scannow`
+
+- **Linux:**
+  - Modo de rescate desde medio de instalación
+  - Modo de recuperación (opción en GRUB)
+  - Comandos de reparación: `fsck`, reinstalación de GRUB con `grub-install`
+
+- **macOS:**
+  - Modo de recuperación (Command+R durante el arranque)
+  - Utilidad de Discos con First Aid
+  - Terminal para reparaciones avanzadas
+
+## **Virtualización**
+
+La virtualización permite ejecutar múltiples sistemas operativos o entornos aislados en un mismo hardware físico.
+
+### **Tipos de Virtualización**
+
+- **Virtualización de hardware/plataforma:**
+  - Simula hardware completo para ejecutar sistemas operativos sin modificaciones.
+  - Ejemplos: VMware, VirtualBox, Hyper-V, KVM.
+
+- **Virtualización a nivel de sistema operativo:**
+  - Múltiples entornos aislados comparten un mismo kernel.
+  - Ejemplos: Docker, LXC (Linux Containers).
+
+- **Paravirtualización:**
+  - El sistema operativo invitado se modifica para cooperar con el hipervisor.
+  - Mejor rendimiento que la virtualización completa.
+  - Ejemplo: Xen.
+
+### **Hipervisores**
+
+- **Tipo 1 (bare-metal):**
+  - Se ejecuta directamente sobre el hardware.
+  - Mayor rendimiento y seguridad.
+  - Ejemplos: VMware ESXi, Microsoft Hyper-V Server, Citrix Hypervisor.
+
+- **Tipo 2 (hosted):**
+  - Se ejecuta sobre un sistema operativo anfitrión.
+  - Más fácil de instalar y usar.
+  - Ejemplos: VMware Workstation/Player, Oracle VirtualBox, Parallels Desktop.
+
+### **Ventajas de la Virtualización**
+
+- Consolidación de servidores (mejor aprovechamiento del hardware).
+- Aislamiento entre sistemas.
+- Facilidad para crear entornos de prueba y desarrollo.
+- Recuperación ante desastres mejorada.
+- Posibilidad de migración en vivo entre hosts físicos.
+- Instantáneas (snapshots) para backup y recuperación rápida.
+
+## **Seguridad en Sistemas Operativos**
+
+### **Principios Fundamentales de Seguridad (Tríada CIA)**
+
+- **Confidencialidad:** Proteger la información de accesos no autorizados.
+- **Integridad:** Asegurar que la información no ha sido alterada sin autorización.
+- **Disponibilidad:** Garantizar que los usuarios autorizados tengan acceso a la información cuando la necesiten.
+
+### **Amenazas Comunes**
+
+- **Malware:** Software malicioso como virus, gusanos, troyanos, ransomware, spyware.
+- **Ataques de Denegación de Servicio (DoS/DDoS):** Intentos de hacer que un servicio sea inaccesible.
+- **Acceso no autorizado:** Intrusos que obtienen acceso a sistemas o datos sin permiso.
+- **Ingeniería Social:** Manipulación psicológica para obtener información confidencial.
+- **Vulnerabilidades de software:** Fallos en el código que pueden ser explotados.
+
+### **Mecanismos de Protección**
+
+#### **Autenticación:**
+
+Verificar la identidad del usuario mediante:
+- **Algo que sabes:** Contraseña, PIN.
+- **Algo que tienes:** Tarjeta inteligente, token, teléfono.
+- **Algo que eres:** Biometría (huella dactilar, reconocimiento facial).
+- **Autenticación Multifactor (MFA):** Combinación de dos o más factores.
+
+#### **Autorización (Control de Acceso):**
+
+- **Discrecional (DAC):** El propietario del recurso decide quién accede.
+- **Obligatorio (MAC):** Una autoridad central impone las políticas de acceso.
+- **Basado en Roles (RBAC):** Los permisos se asignan a roles, y los usuarios se asignan a roles.
+
+#### **Protección contra Malware:**
+
+- Mantener el sistema actualizado.
+- Utilizar software antivirus/antimalware.
+- Implementar firewalls.
+- Realizar copias de seguridad regulares.
+- Educar a los usuarios sobre amenazas.
+
+#### **Firewalls:**
+
+- **Tipos:**
+  - **Filtro de paquetes:** Examina encabezados de paquetes.
+  - **Con estado (Stateful):** Rastrea conexiones activas.
+  - **Capa de aplicación (Proxy):** Inspecciona contenido de paquetes.
+
+- **Configuración básica en Windows:**
+```powershell
+# Habilitar firewall
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True
+
+# Crear regla para permitir tráfico
+New-NetFirewallRule -DisplayName "Permitir SSH" -Direction Inbound -Protocol TCP -LocalPort 22 -Action Allow
+```
+
+- **Configuración básica en Linux (UFW):**
+```bash
+sudo ufw enable
+sudo ufw allow ssh
+sudo ufw allow 80/tcp
+```
+
+### **Buenas Prácticas de Seguridad**
+
+- **Principio del menor privilegio:** Otorgar solo los permisos mínimos necesarios.
+- **Actualizaciones regulares:** Mantener el sistema y aplicaciones con los últimos parches.
+- **Contraseñas fuertes:** Utilizar contraseñas largas, complejas y únicas.
+- **Copias de seguridad:** Realizar copias periódicas y verificar su restauración.
+-

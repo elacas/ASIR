@@ -1,0 +1,429 @@
+# Resumen Detallado: Implantación de Sistemas Operativos - Unidad 2
+
+## **Introducción a la Unidad 2**
+
+La Unidad 2 de "Implantación de Sistemas Operativos" proporciona una visión integral de los sistemas operativos, abordando tanto sus fundamentos teóricos como los aspectos prácticos de su instalación y configuración. Comprender estos conceptos es esencial para cualquier profesional de la informática, ya que el sistema operativo constituye la base sobre la que funcionan todas las aplicaciones y servicios informáticos.
+
+## **Historia y Tipos de Sistemas Operativos**
+
+### **Evolución Histórica**
+
+La historia de los sistemas operativos refleja la evolución del hardware y las necesidades de los usuarios:
+
+- **Primera Generación (1940s-1950s):** Sin sistemas operativos. Programación directa del hardware mediante interruptores y tarjetas perforadas.
+
+- **Segunda Generación (1950s-1960s):** Aparecen los primeros monitores residentes y sistemas de procesamiento por lotes (batch processing).
+
+- **Tercera Generación (1960s-1970s):** Surge la multiprogramación y el tiempo compartido. Nacen sistemas como OS/360 de IBM.
+
+- **Cuarta Generación (1970s-1980s):** Con la llegada de los microprocesadores, surgen los ordenadores personales y sistemas operativos como CP/M, MS-DOS y las primeras interfaces gráficas.
+
+- **Quinta Generación (1980s-Actualidad):** Desarrollo de sistemas en red, distribuidos, móviles y en la nube.
+
+### **Clasificación de Sistemas Operativos**
+
+Los sistemas operativos pueden clasificarse según varios criterios:
+
+- **Según el número de usuarios:**
+  - **Monousuario:** Un solo usuario a la vez (MS-DOS, Windows 95)
+  - **Multiusuario:** Varios usuarios simultáneamente (Unix, Linux, Windows Server)
+
+- **Según el número de tareas:**
+  - **Monotarea:** Una sola tarea a la vez (MS-DOS)
+  - **Multitarea:** Varias tareas concurrentemente (la mayoría de los sistemas actuales)
+
+- **Según su estructura interna:**
+  - **Monolíticos:** Todo el SO en un bloque de código
+  - **Microkernel:** Núcleo mínimo con servicios adicionales como procesos
+  - **Híbridos:** Combinan características de ambos (Windows NT, Linux moderno)
+
+- **Según su ámbito de aplicación:**
+  - **De escritorio:** Windows, macOS, Ubuntu Desktop
+  - **De servidor:** Windows Server, Red Hat Enterprise Linux
+  - **Embebidos:** Para dispositivos específicos con recursos limitados
+  - **Móviles:** Android, iOS
+  - **En tiempo real (RTOS):** Para aplicaciones críticas con tiempos de respuesta garantizados
+
+## **Estructura y Componentes de un Sistema Operativo**
+
+Un sistema operativo moderno está compuesto por diversos módulos que realizan funciones específicas:
+
+### **Componentes Clave**
+
+- **Núcleo (Kernel):** El corazón del sistema operativo. Gestiona el hardware, la memoria, los procesos y la comunicación entre componentes.
+
+- **Interfaz de Usuario:**
+  - **CLI (Command Line Interface):** Interfaz basada en comandos de texto
+  - **GUI (Graphical User Interface):** Interfaz gráfica basada en ventanas, iconos y menús
+
+- **Gestores de Recursos:**
+  - **Gestor de Procesos:** Crea, planifica y finaliza procesos
+  - **Gestor de Memoria:** Asigna y libera memoria, implementa memoria virtual
+  - **Gestor de E/S:** Controla los dispositivos periféricos y sus controladores
+  - **Sistema de Archivos:** Organiza y gestiona los datos en medios de almacenamiento
+
+### **Modos de Operación**
+
+- **Modo Kernel (Supervisor):** Acceso total al hardware y operaciones privilegiadas
+- **Modo Usuario:** Acceso restringido, protege la integridad del sistema
+
+## **Gestión de Recursos del Sistema**
+
+### **Gestión de Procesos**
+
+Un proceso es un programa en ejecución. El sistema operativo debe gestionarlos eficientemente:
+
+- **Estados de un Proceso:**
+  - **Nuevo:** En creación
+  - **Listo:** Esperando tiempo de CPU
+  - **En ejecución:** Usando la CPU
+  - **Bloqueado:** Esperando un evento (E/S, recursos)
+  - **Terminado:** Finalizado o abortado
+
+- **Planificación de Procesos (Scheduler):**
+  - **Algoritmos de planificación:** FIFO, SJF, Round Robin, Prioridades
+  - **Objetivo:** Maximizar el uso de la CPU y minimizar tiempos de respuesta
+
+- **Comunicación entre Procesos (IPC):**
+  - Pipes, memoria compartida, semáforos, colas de mensajes
+
+### **Gestión de Memoria**
+
+La memoria es un recurso limitado que debe administrarse eficientemente:
+
+- **Técnicas de Gestión:**
+  - **Particiones fijas o variables**
+  - **Paginación:** División de memoria en páginas de tamaño fijo
+  - **Segmentación:** División en segmentos lógicos (código, datos, pila)
+
+- **Memoria Virtual:**
+  - Usa el almacenamiento secundario como extensión de la RAM
+  - Permite ejecutar programas más grandes que la memoria física disponible
+  - Implementada mediante paginación bajo demanda o segmentación
+
+### **Gestión de E/S**
+
+Maneja la comunicación con los dispositivos periféricos:
+
+- **Controladores de Dispositivo (Drivers):** Software que permite al SO comunicarse con hardware específico
+
+- **Técnicas de E/S:**
+  - **E/S Programada:** La CPU controla directamente la transferencia
+  - **E/S por Interrupciones:** El dispositivo avisa cuando completa una operación
+  - **DMA (Direct Memory Access):** Transferencia directa entre dispositivo y memoria sin intervención de la CPU
+
+### **Gestión de Ficheros y Sistemas de Archivos**
+
+Organiza el almacenamiento persistente de información:
+
+- **Sistemas de Archivos Comunes:**
+  - **Windows:** NTFS, FAT32, exFAT
+  - **Linux:** ext4, XFS, Btrfs, ZFS
+  - **macOS:** APFS, HFS+
+
+- **Estructura de Directorios:**
+  - Organización jerárquica en forma de árbol
+  - Rutas absolutas y relativas
+
+- **Protección de Ficheros:**
+  - Permisos básicos (lectura, escritura, ejecución)
+  - Listas de control de acceso (ACLs)
+
+## **Planificación de la Instalación de Sistemas Operativos**
+
+Antes de instalar un sistema operativo, es fundamental realizar una planificación adecuada:
+
+### **Análisis de Requisitos**
+
+- **Requisitos Hardware:**
+  - Arquitectura del procesador (x86, x64, ARM)
+  - Memoria RAM mínima y recomendada
+  - Espacio en disco necesario
+  - Dispositivos periféricos compatibles
+
+- **Requisitos Software:**
+  - Compatibilidad con aplicaciones necesarias
+  - Dependencias y controladores requeridos
+
+- **Requisitos Organizativos:**
+  - Propósito del sistema (servidor, estación de trabajo, etc.)
+  - Número y perfil de usuarios
+  - Integración con infraestructura existente
+
+### **Selección del Sistema Operativo**
+
+Factores a considerar:
+
+- **Compatibilidad hardware:** Verificar que el SO elegido sea compatible con los componentes del equipo
+
+- **Tipo de sistema operativo:** Escritorio, servidor, embebido, etc.
+
+- **Licenciamiento y coste:** Sistemas comerciales vs. libres/gratuitos
+
+- **Soporte y actualizaciones:** Ciclo de vida y disponibilidad de actualizaciones
+
+- **Requisitos de las aplicaciones:** Software específico que deberá ejecutarse
+
+### **Documentación del Proceso**
+
+Es recomendable crear documentación que incluya:
+
+- Inventario de hardware y software
+- Diagrama de red (si aplica)
+- Plan de particionamiento
+- Lista de software a instalar post-instalación
+- Procedimientos de backup y recuperación
+
+## **Preparación del Entorno para la Instalación**
+
+### **Verificación de Compatibilidad de Hardware**
+
+- Consultar la lista de compatibilidad de hardware (HCL) del sistema operativo
+- Verificar que todos los componentes cumplen los requisitos mínimos
+- Comprobar el funcionamiento correcto de todos los dispositivos
+
+### **Preparación de Medios de Instalación**
+
+- **DVD/Blu-ray:** Método tradicional, requiere unidad óptica
+- **USB booteable:** Método más común actualmente
+  - Descargar la imagen ISO oficial
+  - Utilizar herramientas como Rufus (Windows) o dd (Linux)
+- **Instalación por red:** Preparar servidores DHCP, TFTP y archivos necesarios
+
+### **Configuración del BIOS/UEFI**
+
+- Acceder a la configuración del BIOS/UEFI (generalmente con F2, F10, Del durante el arranque)
+- Ajustar la secuencia de arranque para iniciar desde el medio de instalación
+- Configurar el modo de arranque (UEFI o Legacy BIOS) según el sistema operativo
+- Activar o desactivar Secure Boot según sea necesario
+- Habilitar virtualización si se planea usar máquinas virtuales
+
+### **Consideraciones de Particionado**
+
+Planificar la estructura de particiones según las necesidades:
+
+- **Esquema de tabla de particiones:**
+  - **MBR:** Compatible con sistemas antiguos, limitado a 2TB y 4 particiones primarias
+  - **GPT:** Para discos grandes, sin límite práctico de particiones, requiere UEFI
+
+- **Particionamiento básico:**
+  - Partición del sistema (SO y programas)
+  - Partición de datos (archivos de usuario)
+  - Partición de recuperación
+
+- **Particionamiento avanzado (común en servidores y Linux):**
+  - Partición `/boot`: Archivos de arranque
+  - Partición swap: Memoria virtual
+  - Partición `/`: Sistema operativo (raíz)
+  - Partición `/home`: Datos de usuarios
+  - Partición `/var`: Logs y archivos variables
+
+## **Métodos de Instalación**
+
+### **Instalación desde Medios Físicos**
+
+- **Proceso general:**
+  1. Insertar el medio (USB/DVD) y reiniciar el equipo
+  2. Arrancar desde el medio de instalación
+  3. Seguir el asistente de instalación
+  4. Completar la configuración inicial
+
+### **Instalación desde la Red**
+
+- **PXE (Preboot Execution Environment):**
+  - Permite arrancar e instalar desde la red sin medio físico local
+  - Requiere servidor DHCP, servidor TFTP y servidor de archivos
+
+- **Requisitos:**
+  - Tarjeta de red compatible con PXE
+  - Servidor DHCP configurado para ofrecer información de arranque
+  - Servidor TFTP con archivos de arranque
+  - Servidor de archivos (HTTP, FTP, NFS) con los archivos de instalación
+
+### **Instalaciones Automatizadas**
+
+Permiten instalar múltiples sistemas sin intervención manual:
+
+- **Archivos de respuesta:** Contienen configuraciones predefinidas para el instalador
+  - **Windows:** archivos `unattend.xml`
+  - **Linux:** archivos Kickstart (Red Hat), Preseed (Debian/Ubuntu)
+
+- **Imágenes de sistema:** Copias exactas de sistemas ya configurados
+  - Herramientas: Clonezilla, FOG, Norton Ghost
+
+- **Tecnologías de despliegue:**
+  - **Windows:** WDS (Windows Deployment Services), MDT (Microsoft Deployment Toolkit), SCCM
+  - **Linux:** FAI (Fully Automatic Installation), Cobbler
+
+### **Virtualización**
+
+Instalación en entornos virtuales:
+
+- **Hipervisores tipo 1 (bare-metal):** VMware ESXi, Microsoft Hyper-V Server, Citrix Hypervisor
+- **Hipervisores tipo 2 (hosted):** VMware Workstation/Player, VirtualBox, Parallels
+
+- **Ventajas:**
+  - Aislamiento entre sistemas
+  - Mejor aprovechamiento del hardware
+  - Facilidad para crear entornos de prueba
+  - Posibilidad de snapshots (instantáneas)
+
+## **Proceso de Instalación por Sistema Operativo**
+
+### **Instalación de Windows**
+
+1. **Arranque desde el medio de instalación**
+2. **Selección de idioma, formato de hora y teclado**
+3. **Introducción de la clave de producto (o selección para hacerlo más tarde)**
+4. **Selección del tipo de instalación:**
+   - Actualización (conserva archivos y aplicaciones)
+   - Personalizada (instalación limpia)
+5. **Particionamiento del disco:**
+   - Creación, eliminación y formato de particiones
+6. **Copia e instalación de archivos**
+7. **Configuración inicial:**
+   - Creación de cuenta de usuario
+   - Configuración de red
+   - Configuración de privacidad
+
+### **Instalación de Linux**
+
+1. **Arranque desde el medio de instalación**
+2. **Selección de idioma y ubicación**
+3. **Configuración de teclado**
+4. **Configuración de red**
+5. **Particionamiento:**
+   - Automático
+   - Manual (creación de particiones específicas como /, /home, /boot, swap)
+6. **Selección de paquetes de software**
+7. **Configuración de usuario y contraseñas**
+8. **Instalación del gestor de arranque (GRUB)**
+
+**Ejemplo básico de archivo Kickstart (Red Hat/CentOS):**
+```
+lang en_US.UTF-8
+keyboard es
+timezone Europe/Madrid
+rootpw --plaintext password
+bootloader --location=mbr
+clearpart --all --initlabel
+part / --fstype=ext4 --size=10000
+part swap --size=2048
+```
+
+### **Instalación de macOS**
+
+1. **Arranque desde Recovery Mode o medio de instalación**
+2. **Uso de Utilidad de Discos para preparar el disco**
+3. **Selección del disco destino**
+4. **Proceso de instalación (puede requerir varios reinicios)**
+5. **Configuración inicial:**
+   - Selección de país y teclado
+   - Configuración de red
+   - Inicio de sesión con ID de Apple
+   - Creación de cuenta de usuario
+
+## **Configuración Post-Instalación**
+
+### **Actualización del Sistema**
+
+- **Windows:** Windows Update
+- **Linux:** apt, dnf, zypper, pacman (según distribución)
+- **macOS:** Actualización de Software
+
+### **Instalación de Controladores**
+
+- **Windows:** Windows Update, sitios web de fabricantes
+- **Linux:** Repositorios, controladores propietarios (NVIDIA, AMD)
+- **macOS:** Generalmente incluidos o a través de Actualización de Software
+
+### **Configuración de Usuarios y Permisos**
+
+- Creación de cuentas adicionales
+- Establecimiento de contraseñas seguras
+- Configuración de políticas de acceso
+- Asignación de permisos y roles
+
+### **Configuración de Red**
+
+- Configuración IP (estática o DHCP)
+- Nombre de equipo y dominio/grupo de trabajo
+- Configuración de DNS
+- Configuración de firewall
+- Compartición de recursos en red
+
+### **Instalación de Software Básico**
+
+- Suites ofimáticas
+- Navegadores web
+- Clientes de correo
+- Software antivirus/seguridad
+- Utilidades básicas
+
+## **Seguridad en Sistemas Operativos**
+
+### **Principios de Seguridad**
+
+- **Confidencialidad:** Proteger la información de accesos no autorizados
+- **Integridad:** Asegurar que la información no ha sido alterada
+- **Disponibilidad:** Garantizar el acceso a la información cuando se necesite
+
+### **Mecanismos de Protección**
+
+- **Autenticación:** Verificar la identidad (contraseñas, biometría, tokens)
+- **Autorización:** Determinar qué recursos puede acceder un usuario
+- **Control de Acceso:** Implementar políticas de autorización
+- **Cifrado:** Proteger la confidencialidad de los datos
+- **Auditoría:** Registrar actividades para detectar incidentes
+
+### **Buenas Prácticas de Seguridad**
+
+- Mantener el sistema actualizado
+- Usar contraseñas fuertes y autenticación multifactor
+- Limitar privilegios de usuarios
+- Realizar copias de seguridad regularmente
+- Configurar correctamente el firewall
+- Instalar solo software de fuentes confiables
+- Deshabilitar servicios innecesarios
+- Cifrar información sensible
+
+## **Resolución de Problemas Comunes**
+
+### **Problemas de Arranque**
+
+- **Windows:** 
+  - Uso de opciones de recuperación (F8 durante el arranque)
+  - Reparación de inicio con medio de instalación
+  - Comandos bootrec, bcdedit
+
+- **Linux:** 
+  - Modo de rescate desde medio de instalación
+  - Reinstalación de GRUB desde live CD/USB
+  - Edición de parámetros de arranque
+
+- **macOS:** 
+  - Arranque en modo seguro (mantener Shift durante el inicio)
+  - Modo de recuperación (Command+R durante el arranque)
+  - First Aid en Utilidad de Discos
+
+### **Problemas de Controladores**
+
+- Identificación del hardware problemático mediante el administrador de dispositivos
+- Búsqueda de controladores alternativos o actualizados
+- Uso del modo seguro para diagnóstico
+- Desinstalación y reinstalación de controladores
+
+### **Problemas de Red**
+
+- Verificación de configuración IP (ipconfig/ifconfig)
+- Pruebas de conectividad (ping, traceroute/tracert)
+- Verificación de configuración DNS
+- Comprobación de firewall y reglas de acceso
+
+## **Conclusión**
+
+La Unidad 2 de "Implantación de Sistemas Operativos" proporciona una visión integral de los sistemas operativos, desde sus fundamentos teóricos hasta los aspectos prácticos de su instalación y configuración. El conocimiento de la estructura interna, la gestión de recursos y los procesos de instalación es fundamental para cualquier administrador de sistemas.
+
+La correcta implantación de un sistema operativo es la base para un entorno informático estable, seguro y eficiente. Una planificación adecuada, la selección del sistema operativo apropiado, una instalación cuidadosa y una configuración óptima son elementos clave para garantizar el éxito en la implementación de infraestructuras informáticas.
+
+Este conocimiento permite no solo realizar instalaciones efectivas, sino también diagnosticar problemas, optimizar el rendimiento y administrar de manera eficiente los recursos informáticos en cualquier entorno, desde equipos personales hasta complejas infraestructuras empresariales.
