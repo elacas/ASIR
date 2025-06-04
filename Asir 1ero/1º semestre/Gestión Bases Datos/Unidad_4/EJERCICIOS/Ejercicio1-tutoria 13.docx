@@ -1,0 +1,74 @@
+Manual de Instalación de DBeaver
+
+Introducción
+
+DBeaver es una herramienta de administración de bases de datos de código abierto que ofrece una interfaz gráfica para trabajar con diversas bases de datos. Este manual proporciona una guía paso a paso para instalar DBeaver en diferentes sistemas operativos.
+
+Requisitos del Sistema
+
+Para instalar DBeaver, asegúrese de que su sistema cumpla con los siguientes requisitos:
+
+Sistema Operativo:
+Windows 7 o superior
+macOS 10.11 o superior
+Linux (basado en Debian o RPM)
+Java:
+DBeaver requiere Java Runtime Environment (JRE) 1.8 o superior. Si no tiene Java instalado, puede descargarlo desde aquí.
+Espacio en Disco:
+Al menos 200 MB de espacio libre en disco.
+Descargar DBeaver
+
+Siga estos pasos para descargar DBeaver:
+
+Abra su navegador web y vaya a la página oficial de DBeaver: https://dbeaver.io/
+Haga clic en el botón "Download" en la página principal.
+Seleccione la versión adecuada para su sistema operativo (Windows, macOS, Linux).
+Descargue el archivo de instalación correspondiente.
+Instalar DBeaver en Windows
+
+La instalación de DBeaver varía según el sistema operativo (Windows, macOS, Linux).
+
+Siga estos pasos para instalar DBeaver en Windows:
+
+Abra el archivo de instalación descargado (por ejemplo, dbeaver-ce-<version>.exe).
+Siga las instrucciones del asistente de instalación:
+Acepte los términos de la licencia.
+Seleccione el directorio de instalación.
+Elija las opciones de instalación adicionales (crear accesos directos, etc.). Si no modificas nada, la instalación se realizará correctamente también.
+Haga clic en "Install" para comenzar la instalación.
+Una vez completada la instalación, haga clic en "Finish" para cerrar el asistente.
+Instalar DBeaver en macOS
+
+Siga estos pasos para instalar DBeaver en macOS:
+
+Abra el archivo DMG descargado (por ejemplo, dbeaver-ce-<version>.dmg).
+Arrastre y suelte el icono de DBeaver en la carpeta "Applications".
+Abra la carpeta "Applications" y haga doble clic en el icono de DBeaver para iniciar la aplicación.
+Instalar DBeaver en Linux
+
+Para distribuciones basadas en Debian (Ubuntu, etc.):
+
+Abra una terminal.
+Instale DBeaver con los siguientes comandos:
+   sudo apt update
+   sudo apt install dbeaver-ce
+Para distribuciones basadas en RPM (Fedora, CentOS, etc.):
+
+Abra una terminal.
+Instale DBeaver con los siguientes comandos:
+   sudo yum install dbeaver-ce
+Configurar Conexión a una Base de Datos
+
+Siga estos pasos para configurar una conexión a una base de datos en DBeaver:
+
+Abra DBeaver.
+Haga clic en el botón "New Database Connection" en la barra de herramientas.
+Seleccione el tipo de base de datos (por ejemplo, MySQL, PostgreSQL, Oracle, etc.) y haga clic en "Next".
+Ingrese los detalles de la conexión:
+Host: la dirección del servidor de la base de datos.
+Port: el puerto de la base de datos.
+Database: el nombre de la base de datos.
+User: el nombre de usuario.
+Password: la contraseña.
+Haga clic en "Test Connection" para verificar la conexión.
+Si la conexión es exitosa, haga clic en "Finish" para guardar la configuración.

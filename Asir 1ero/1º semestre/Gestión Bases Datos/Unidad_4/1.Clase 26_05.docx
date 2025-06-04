@@ -1,0 +1,219 @@
+## Resumen del Video: Introducción a SQL - Gestión de Bases de Datos
+
+Este video corresponde a una **clase práctica de Gestión de Bases de Datos** donde se enseñan los **fundamentos de SQL** y los primeros comandos para crear y manipular bases de datos.
+
+### 🎯 **Objetivo de la Clase**
+Introducir los **conceptos fundamentales de SQL** y enseñar los **comandos básicos del DDL** (Data Definition Language) para crear bases de datos y tablas, preparando para la implementación práctica del modelo entidad-relación.
+
+### 📚 **Conceptos Fundamentales de SQL**
+
+#### **Definición y Origen:**
+> "SQL es un lenguaje que nace en los años 70... desarrollado por IBM... se ha convertido en un estándar para gestionar y manipular bases de datos"
+
+#### **Naturaleza del lenguaje:**
+> "No podemos considerarlo exactamente como un lenguaje de programación al uso sino como un lenguaje de consulta estructurada"
+
+#### **Longevidad y estabilidad:**
+> "Es el lenguaje que desde que apareció hace más de 50 años sigue siendo y seguirá siendo... no ha sido sustituido ni apunta que vaya a ser sustituido"
+
+### 🔧 **Características Clave de SQL**
+
+#### **1. Facilidad de Uso:**
+- **Estructuras sencillas y repetitivas**
+- **Curva de aprendizaje accesible**
+- **Flexibilidad:** "Las consultas complejas se componen de subconsultas simples"
+
+#### **2. Estandarización:**
+- **Estándar de facto** para el 90% de sistemas de bases de datos
+- **Amplia adopción** en sistemas relacionales y no relacionales
+- **Integridad de datos** garantizada por el sistema
+
+#### **3. Demanda Laboral:**
+- **Alta demanda** por boom de inteligencia artificial
+- **Big Data y Business Intelligence**
+- **Data Analysis** y sistemas modernos
+
+### 🏗️ **Estructura Gramatical de SQL**
+
+#### **Componentes principales:**
+
+**1. Comandos:** Instrucciones principales
+- **DDL (Data Definition Language):** CREATE, ALTER, DROP
+- **DML (Data Manipulation Language):** SELECT, INSERT, UPDATE, DELETE  
+- **DCL (Data Control Language):** GRANT, REVOKE
+
+**2. Cláusulas:** Modificadores de comandos
+- **WHERE:** Filtros de condición
+- **GROUP BY:** Agrupación de resultados
+- **ORDER BY:** Ordenación de datos
+
+**3. Operadores:**
+- **Aritméticos:** +, -, *, /, %
+- **Comparación:** =, !=, <, >, <=, >=
+- **Lógicos:** AND, OR, NOT
+
+### 💻 **Comandos DDL Fundamentales**
+
+#### **1. CREATE DATABASE**
+**Sintaxis básica:**
+```sql
+CREATE DATABASE nombre_de_la_base;
+```
+
+**Con verificación de existencia:**
+```sql
+CREATE DATABASE IF NOT EXISTS nombre_de_la_base;
+```
+
+**Ejemplo práctico en clase:**
+```sql
+CREATE DATABASE test_teoria3;
+```
+> "Lo ejecuto y veis aquí se ha creado... refresco mi esquema"
+
+**Manejo de errores:**
+> "Si la vuelvo a ejecutar me da un error... si pongo IF NOT EXISTS me da simplemente un warning"
+
+#### **2. CREATE TABLE**
+**Sintaxis básica:**
+```sql
+CREATE TABLE nombre_tabla (
+    columna01 INTEGER,
+    columna02 CHAR(3),
+    columna03 VARCHAR(50)
+);
+```
+
+**Ejemplo práctico ejecutado:**
+```sql
+CREATE TABLE tabla01 (
+    columna01 INTEGER,
+    columna02 CHAR(3)
+);
+```
+> "Lo ejecuto y me da un OK"
+
+### 📊 **Tipos de Datos Principales**
+
+#### **Numéricos:**
+- **INTEGER:** Números enteros
+- **DECIMAL/NUMERIC:** Números decimales
+
+#### **Texto:**
+- **CHAR(n):** Longitud fija
+- **VARCHAR(n):** Longitud variable
+- **TEXT:** Texto largo
+
+**Diferencia clave explicada:**
+> "CHAR es longitud fija, VARCHAR es longitud variable"
+
+#### **Fecha y Hora:**
+- **DATE:** Solo fecha
+- **DATETIME:** Fecha y hora
+- **TIMESTAMP:** Marca temporal
+
+#### **Otros:**
+- **BOOLEAN:** Verdadero/falso
+- **ENUM:** Valores predefinidos
+
+### 🔍 **Funciones SQL Importantes**
+
+#### **Funciones de Agregación:**
+- **SUM():** Sumatorio de valores
+- **AVG():** Promedio/media
+- **COUNT():** Contar filas
+- **MAX():** Valor máximo
+- **MIN():** Valor mínimo
+
+**Ejemplo de uso:**
+```sql
+SELECT departamento, SUM(salario) 
+FROM empleados 
+GROUP BY departamento;
+```
+
+#### **Funciones de Fecha:**
+- **NOW():** Fecha y hora actual
+- **DATE():** Extraer solo fecha
+
+**Explicación práctica:**
+> "Con NOW obtengo fecha y hora actuales... con DATE le paso como argumento y me extrae solamente la parte de fecha"
+
+#### **Funciones de Texto:**
+- **CONCAT():** Concatenar cadenas
+- **UPPER():** Convertir a mayúsculas  
+- **LOWER():** Convertir a minúsculas
+
+### 📝 **Ejemplo Práctico Completo**
+
+**Consulta con múltiples elementos:**
+```sql
+SELECT departamento, SUM(salario)
+FROM empleados  
+WHERE salario > 50000 AND departamento = 'ventas'
+GROUP BY departamento;
+```
+
+**Explicación del profesor:**
+> "El comando se trae toda la tabla, la cláusula filtra por estas condiciones, y finalmente agrupa por departamento sumando los salarios"
+
+### 🎯 **Reglas para Identificadores**
+
+#### **Normas de nomenclatura:**
+- **Comenzar por letra**
+- **No usar palabras reservadas** (SELECT, WHERE, etc.)
+- **Pueden contener:** letras, números, guiones bajos
+- **Sensibilidad:** Depende del sistema gestor
+
+### 💡 **Recursos Recomendados**
+
+**Referencia principal:**
+> "W3Schools... aquí hay información completa de SQL... está en inglés pero le dais a traducir"
+
+**Filosofía de aprendizaje:**
+> "No es necesario que conozcáis de memoria todos los detalles... pero que sepáis dónde buscar lo que no recordéis"
+
+### 🔧 **Herramientas y Clientes**
+
+**Opciones recomendadas:**
+- **WorkBench:** Cliente oficial de MySQL
+- **Biber:** Cliente alternativo
+- **Otras aplicaciones** con interfaz gráfica
+
+**Compatibilidad:**
+> "No hay diferencia en cuanto a la ejecución de SQL... puede haber algunos matices en comandos específicos"
+
+### 🚀 **Metodología de la Clase**
+
+#### **Enfoque híbrido:**
+> "Mi idea era adelantar un poco el contenido de la unidad cuatro... llevar estas dos unidades en paralelo"
+
+#### **Aprendizaje práctico:**
+- **Ejecución en tiempo real** de comandos
+- **Verificación visual** de resultados
+- **Manejo de errores** en vivo
+- **Ejemplos incrementales** de complejidad
+
+#### **Resolución de problemas:**
+> "Cuando surjan errores... copiar el comando que da error más el código... metérselo a una IA y que os diga cuál es el matiz"
+
+### 📈 **Progresión del Curso**
+
+**Conexión con unidades:**
+- **Unidad 3:** Modelo entidad-relación
+- **Unidad 4:** Implementación en SQL
+- **Futuro:** Comandos DML (SELECT, INSERT, UPDATE, DELETE)
+
+**Objetivo final:**
+> "Podemos ir transformando el modelo entidad-relación al modelo relacional mediante implementación de tablas... e ir picando código"
+
+### 🎓 **Conclusiones Clave**
+
+1. **SQL es un estándar consolidado** con más de 50 años de vigencia
+2. **La estructura es simple pero flexible** mediante anidación de consultas
+3. **Los comandos DDL básicos** permiten crear la estructura de datos
+4. **La práctica inmediata** es fundamental para el aprendizaje
+5. **Las herramientas gráficas** facilitan la visualización de resultados
+6. **La documentación online** es esencial como referencia
+
+Esta clase establece los **cimientos sólidos** para el trabajo con bases de datos, combinando teoría fundamental con práctica inmediata y proporcionando las herramientas necesarias para continuar con implementaciones más complejas.

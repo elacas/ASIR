@@ -1,0 +1,137 @@
+## Resumen del Video: Tutoría Práctica de Gestión de Bases de Datos - Ejercicio Concesionario
+
+Este video corresponde a una **tutoría práctica** donde se desarrolla un **ejercicio completo** de modelado entidad-relación y su implementación en SQL para un sistema de gestión de concesionario de coches.
+
+### 🎯 **Objetivo de la Tutoría**
+Realizar un **ejercicio integral** que combine:
+1. **Análisis de requisitos** de un sistema real
+2. **Diseño del modelo entidad-relación**
+3. **Implementación en SQL** con comandos prácticos
+4. **Creación de tablas** con claves primarias y foráneas
+
+### 📋 **Enunciado del Ejercicio Práctico**
+
+**Sistema a modelar:** Base de datos para un concesionario de coches
+
+**Requisitos especificados:**
+> "Hay que implementar una base de datos para un concesionario de coches al que llegan clientes para comprar automóviles. De cada coche interesa saber la matrícula, modelo, marca y color. Un cliente puede comprar varios coches y cuando compra se le hace una ficha. Los coches pueden ser nuevos o usados, de los nuevos se quiere saber cuántas unidades hay
+
+## Resumen del Ejemplo del Video: Sistema de Concesionario de Coches
+
+### 📝 **Enunciado del Problema**
+**Crear una base de datos para un concesionario de coches** donde:
+- Llegan **clientes** para comprar **automóviles**
+- De cada coche se necesita: **matrícula, modelo, marca y color**
+- Un **cliente puede comprar varios coches**
+- Cuando compra, se le hace una **ficha con sus datos**
+- Los coches pueden ser **nuevos** (registrar unidades disponibles) o **usados** (registrar kilómetros)
+
+### 🏗️ **Modelo Entidad-Relación Diseñado**
+
+#### **Entidades Identificadas:**
+1. **CLIENTES**
+   - DNI (clave primaria)
+   - Nombre
+   - Apellidos  
+   - Dirección
+   - Teléfono
+
+2. **COCHES**
+   - Matrícula (clave primaria)
+   - Marca
+   - Modelo
+   - Color
+
+3. **COCHES_NUEVOS** (entidad débil)
+   - Unidades
+
+4. **COCHES_USADOS** (entidad débil)
+   - Kilómetros
+
+#### **Relaciones:**
+- **COMPRAR** (Cliente ↔ Coche): **1:N**
+  - Un cliente puede comprar varios coches
+  - Un coche solo puede ser comprado por un cliente
+  
+- **SER** (Coche ↔ Nuevo/Usado): **1:1**
+  - Un coche puede ser nuevo O usado
+  - Cada registro de nuevo/usado pertenece a un coche específico
+
+### 💻 **Implementación SQL Completa**
+
+```sql
+-- 1. Crear la base de datos
+CREATE DATABASE IF NOT EXISTS ejercicio_10_1;
+USE ejercicio_10_1;
+
+-- 2. Tabla Clientes
+CREATE TABLE clientes (
+    dni CHAR(9) PRIMARY KEY,
+    nombre VARCHAR(20),
+    apellidos VARCHAR(30),
+    direccion VARCHAR(50),
+    telefono INTEGER
+);
+
+-- 3. Tabla Coches (con referencia a cliente)
+CREATE TABLE coches (
+    matricula CHAR(7) PRIMARY KEY,
+    marca VARCHAR(20),
+    modelo VARCHAR(20),
+    color VARCHAR(20),
+    dni_fk CHAR(9),
+    FOREIGN KEY (dni_fk) REFERENCES clientes(dni)
+);
+
+-- 4. Tabla Coches Nuevos (entidad débil)
+CREATE TABLE coches_nuevos (
+    matricula CHAR(7) PRIMARY KEY,
+    unidades INTEGER,
+    FOREIGN KEY (matricula) REFERENCES coches(matricula)
+);
+
+-- 5. Tabla Coches Usados (entidad débil)
+CREATE TABLE coches_usados (
+    matricula CHAR(7) PRIMARY KEY,
+    kilometros INTEGER,
+    FOREIGN KEY (matricula) REFERENCES coches(matricula)
+);
+```
+
+### 🔗 **Estructura Final de Relaciones**
+
+```
+CLIENTES (1) ----compran----> (N) COCHES
+    ↑                           ↓
+   DNI                     matricula
+                              ↓
+                         ┌─────────┐
+                         ↓         ↓
+              COCHES_NUEVOS  COCHES_USADOS
+              (unidades)     (kilómetros)
+```
+
+### 🎯 **Puntos Clave del Ejemplo**
+
+#### **Decisiones de Diseño:**
+- **DNI como clave primaria:** Único e inmutable para cada cliente
+- **Entidades débiles:** Nuevos y usados dependen de coches para existir
+- **Relación 1:N:** Un cliente puede tener múltiples coches
+- **Claves foráneas:** Para mantener integridad referencial
+
+#### **Tipos de Datos Elegidos:**
+- **CHAR(9):** DNI (longitud fija)
+- **CHAR(7):** Matrícula (longitud fija) 
+- **VARCHAR:** Texto variable (nombres, direcciones)
+- **INTEGER:** Números (teléfono, unidades, kilómetros)
+
+### ✅ **Resultado Funcional**
+El sistema permite:
+- **Registrar clientes** con datos completos
+- **Gestionar inventario** de coches nuevos y usados
+- **Vincular compras** cliente-vehículo
+- **Mantener integridad** de datos mediante claves foráneas
+- **Consultar** qué coches tiene cada cliente
+- **Diferenciar** entre vehículos nuevos (stock) y usados (kilometraje)
+
+Este ejemplo demuestra la **transformación completa** desde requisitos del negocio hasta implementación SQL funcional, siguiendo metodología de modelado entidad-relación.

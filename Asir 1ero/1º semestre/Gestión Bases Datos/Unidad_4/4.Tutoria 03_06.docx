@@ -1,0 +1,211 @@
+## Resumen Extendido: Tutoría de Triggers y Restricciones - Sistema de Reservas de Hotel
+
+Este video corresponde a una **tutoría práctica avanzada** sobre **triggers y restricciones de bases de datos**, donde se desarrolla paso a paso un **sistema completo de reservas hoteleras** implementando validaciones complejas de datos.
+
+### 🎯 **Objetivos de la Tutoría**
+1. **Refrescar conceptos** de restricciones mediante test interactivo
+2. **Desarrollar un caso práctico completo** de sistema hotelero
+3. **Implementar triggers avanzados** para validación de datos
+4. **Comparar métodos alternativos** de validación (CHECK vs TRIGGER)
+5. **Aplicar conceptos teóricos** en código SQL funcional
+
+### 📝 **Fase 1: Repaso Teórico Mediante Test Interactivo**
+
+#### **Metodología del Repaso:**
+> "Os he preparado unos test para un test ligerito así para a modo de recordatorio de la teoría de ayer... hacemos un test así rapidillo de los siete ocho conceptos que vimos de restricciones"
+
+#### **Conceptos Clave Revisados:**
+
+**1. Restricciones Inherentes vs Semánticas**
+- **Inherentes:** Programadas por el sistema, no modificables
+- **Semánticas:** Definidas por el usuario según necesidades
+
+**2. Primary Key - Características Fundamentales**
+**Pregunta analizada:** ¿Cuál afirmación es correcta sobre PRIMARY KEY?
+- ✅ **No permite valores nulos ni repetidos**
+- ❌ Puede haber varias claves primarias por tabla
+- ❌ Solo aplicable a una columna
+- ✅ **Puede aplicarse sobre múltiples columnas (clave compuesta)**
+
+**Explicación del profesor:**
+> "La clave primaria puede estar formada por el atributo uno y el atributo tres por ejemplo... son dos columnas de la tabla y todo esto forma parte de la única clave primaria que hay"
+
+**3. UNIQUE vs PRIMARY KEY**
+**Diferencias fundamentales:**
+- **UNIQUE:** Permite valores NULL múltiples
+- **PRIMARY KEY:** No permite NULL, automáticamente UNIQUE
+
+> "Si yo definía una restricción unique no se van a repetir los valores donde haya valores pero si defino algunas filas con esa columna en null no hay problema... puede haber dos tres cinco nulls en esa columna"
+
+**4. Triggers - Eventos y Temporización**
+**Pregunta práctica:** ¿Cuándo activar trigger para recalcular salario medio?
+- **AFTER INSERT/UPDATE/DELETE:** Después de modificar datos
+- **Justificación:** Para actualizar cálculos derivados
+
+### 🏨 **Fase 2: Desarrollo del Sistema de Reservas Hoteleras**
+
+#### **Especificaciones del Sistema:**
+```
+ENTIDADES IDENTIFICADAS:
+- CLIENTES: id_cliente, nombre, dni
+- HABITACIONES: numero, tipo, precio_noche  
+- RESERVAS: cliente_id, habitacion_id, fecha_entrada, fecha_salida
+- TIPOS: individual, doble, suite
+
+RESTRICCIONES DE NEGOCIO:
+- Una habitación no puede estar reservada dos veces para las mismas fechas
+- El precio de la reserva debe ser positivo
+- No se permiten reservas con fecha salida anterior a fecha de entrada
+- Las habitaciones tipo suite deben tener precio mínimo de 100€
+- Un cliente puede realizar múltiples reservas
+- Una habitación puede ser reservada por varios clientes (fechas diferentes)
+```
+
+#### **Diseño Entidad-Relación:**
+```
+CLIENTES (1) ----reservan----> (N) HABITACIONES
+     ↓                              ↓
+Relación muchos a muchos se descompone en:
+CLIENTES (1)--->(N) RESERVAS (N)<---(1) HABITACIONES
+```
+
+### 💻 **Fase 3: Implementación SQL Paso a Paso**
+
+#### **3.1 Creación de la Base de Datos**
+```sql
+-- Eliminar si existe y crear nueva
+DROP DATABASE IF EXISTS triggers_301;
+CREATE DATABASE triggers_301;
+USE triggers_301;
+```
+
+#### **3.2 Tabla CLIENTES - Implementación Completa**
+```sql
+CREATE TABLE clientes (
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(30) NOT NULL,
+    dni VARCHAR(9) NOT NULL UNIQUE
+);
+```
+
+**Decisiones de diseño explicadas:**
+- **AUTO_INCREMENT:** "Para no tener que estar preocupándonos de su valor"
+- **NOT NULL en nombre/DNI:** "El cliente debe registrarse con su nombre y su DNI"
+- **UNIQUE en DNI:** "Sabemos que el DNI no se puede repetir... es una forma de reforzar su sistema ante errores"
+
+#### **3.3 Tabla HABITACIONES - Restricciones Avanzadas**
+```sql
+CREATE TABLE habitaciones (
+    numero INT PRIMARY KEY AUTO_INCREMENT,
+    tipo ENUM('individual', 'doble', 'suite') NOT NULL,
+    precio_noche DECIMAL(10,2) NOT NULL
+);
+```
+
+**Innovaciones técnicas:**
+- **ENUM:** "Automáticamente el sistema solamente va a admitir como valores válidos... los que están dentro de esta lista"
+- **DECIMAL(10,2):** Para precios con decimales
+- **NOT NULL obligatorio:** "Tenemos que ser capaces de identificar en esa reserva el tipo de habitación porque eso nos va a fijar también el precio"
+
+### 🔧 **Fase 4: Implementación de Triggers Avanzados**
+
+#### **4.1 Trigger para Validación de Precio Suite**
+
+**Problema a resolver:**
+> "Las habitaciones tipo suite deben tener un precio mínimo de 100€"
+
+**Implementación del Trigger:**
+```sql
+DELIMITER $$
+
+CREATE TRIGGER precio_suite 
+BEFORE INSERT ON habitaciones 
+FOR EACH ROW 
+BEGIN 
+    IF (NEW.tipo = 'suite' AND NEW.precio_noche < 100) THEN 
+        SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'El precio de una Suite no puede ser inferior a 100 €'; 
+    END IF; 
+END$$
+
+DELIMITER ;
+```
+
+**Explicación detallada del profesor:**
+> "Quiero asegurarme de que la información que van a introducir sea correcta luego lo tengo que validar antes, de que se ejecute la escritura... IF new.tipo = 'suite' AND new.precio_noche < 100"
+
+#### **4.2 Componentes del Trigger Explicados**
+
+**A) Cambio de Delimitador:**
+```sql
+DELIMITER $$
+-- ... código del trigger ...
+DELIMITER ;
+```
+**Propósito:** Permitir el uso de `;` dentro del código del trigger
+
+**B) Declaración del Evento:**
+- **BEFORE INSERT:** Se ejecuta antes de insertar
+- **FOR EACH ROW:** Se ejecuta por cada fila afectada
+
+**C) Manejo de Errores:**
+- **SIGNAL SQLSTATE '45000':** Código de error personalizado
+- **MESSAGE_TEXT:** Mensaje descriptivo del error
+
+**D) Referencia a Datos:**
+- **NEW.campo:** Valor que se va a insertar
+- **OLD.campo:** Valor anterior (en UPDATE/DELETE)
+
+### 🔀 **Fase 5: Método Alternativo - Restricción CHECK**
+
+#### **5.1 Implementación con CHECK**
+```sql
+ALTER TABLE habitaciones 
+ADD CONSTRAINT habitacion_suite_check 
+CHECK (tipo <> 'suite' OR precio_noche >= 100);
+```
+
+#### **5.2 Análisis Lógico de la Restricción**
+
+**Tabla de verdad explicada:**
+```
+tipo = 'suite'  |  precio >= 100  |  Resultado CHECK
+----------------|------------------|------------------
+    FALSE       |     FALSE        |     TRUE ✅
+    FALSE       |     TRUE         |     TRUE ✅  
+    TRUE        |     FALSE        |     FALSE ❌
+    TRUE        |     TRUE         |     TRUE ✅
+```
+
+**Explicación del profesor:**
+> "Si tipo no es suite (primera parte TRUE), no importa el precio → se acepta
+> Si tipo es suite, entonces precio debe ser ≥ 100 para que se acepte"
+
+### 📊 **Fase 6: Comparación de Métodos de Validación**
+
+#### **6.1 Cuándo Usar TRIGGER vs CHECK**
+
+**TRIGGER - Ventajas:**
+- **Lógica compleja:** Múltiples condiciones, validaciones entre tablas
+- **Mensajes personalizados:** Error descriptivo para el usuario
+- **Flexibilidad:** Acceso a OLD y NEW, consultas a otras tablas
+
+**CHECK - Ventajas:**
+- **Simplicidad:** Validaciones directas en la definición de tabla
+- **Performance:** Evaluación más rápida
+- **Mantenimiento:** Menos código que mantener
+
+**Recomendación del profesor:**
+> "Lo que te resulte más cómodo... habrá ocasiones en las que te resulte más cómodo tirar de trigger porque necesitas combinar dos condiciones"
+
+#### **6.2 Casos de Uso Específicos**
+
+**Usar CHECK cuando:**
+- Validación simple de un atributo
+- Condiciones lógicas directas
+- No se requieren mensajes personalizados
+
+**Usar TRIGGER cuando:**
+- Validaciones entre múltiples tablas
+- Lógica de negocio compleja
+...sigue en la parte 2

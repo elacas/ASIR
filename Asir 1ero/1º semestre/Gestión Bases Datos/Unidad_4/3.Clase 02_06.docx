@@ -1,0 +1,323 @@
+## Resumen Extendido: Restricciones de Bases de Datos - Gestión de Bases de Datos
+
+Este video corresponde a una **clase teórica y práctica** sobre **restricciones de integridad** en bases de datos relacionales, donde se explican los diferentes tipos de restricciones y se demuestran con **ejemplos prácticos de código SQL**.
+
+### 🎯 **Objetivo de la Clase**
+Comprender y aplicar las **restricciones de integridad** en bases de datos como herramientas para **ajustar el modelo al minimundo real** y garantizar la **calidad y consistencia** de los datos.
+
+### 🌍 **Marco Conceptual: Minimundo y Abstracciones**
+
+#### **Analogía del Papel de Aluminio**
+El profesor utiliza una **metáfora visual** para explicar el concepto:
+
+> "Imaginaros que tenemos una figura... y lo queremos envolver con papel albal. Cuanto más podamos apretar ese aluminio y ajustar a cada uno de los perfiles... nuestro papel albal va a haber cogido con mejor medida la forma de nuestro minimundo"
+
+#### **Evolución del Modelado:**
+```
+MINIMUNDO → MODELO E-R → MODELO RELACIONAL → NORMALIZACIÓN
+    ↓            ↓             ↓                ↓
+ Realidad    Conceptual     Lógico          Optimizado
+```
+
+**Propósito de las restricciones:**
+> "Las restricciones son condiciones de condicionado que nosotros añadimos... para tratar de ajustar aún más... a ese minimundo"
+
+### 📊 **Clasificación de Restricciones**
+
+Las restricciones se dividen en **dos grandes categorías**:
+
+#### **1. RESTRICCIONES INHERENTES (del Sistema)**
+Son **automáticas e intrínsecas** al sistema de bases de datos:
+
+##### **A) No Duplicidad de Tuplas**
+- **Principio:** No pueden existir dos filas idénticas en una tabla
+- **Consecuencia:** Obliga a tener clave primaria
+- **Justificación:** Elemento diferenciador esencial
+
+##### **B) Atomicidad de Atributos**
+- **Definición:** Cada valor debe ser indivisible
+- **Relación:** Primera Forma Normal (1FN)
+- **Impacto:** Base del proceso de normalización
+
+##### **C) Regla de Integridad de Entidad**
+- **Principio:** Ningún componente de clave primaria puede ser NULL
+- **Aplicación:** Tanto claves simples como compuestas
+
+**Ejemplo práctico demostrado:**
+```sql
+-- Clave primaria compuesta
+CREATE TABLE estudiantes_curso (
+    estudiante_id INTEGER,
+    curso_id INTEGER,
+    fecha_inscripcion DATE,
+    calificacion INTEGER,
+    PRIMARY KEY (estudiante_id, curso_id)
+);
+```
+
+**Error al insertar NULL:**
+> "Si yo lanzo esta sentencia me va a decir que la columna curso_id no puede ser nul... viene implícito en el momento que la he definido como primary key"
+
+##### **D) Unicidad de Nombres**
+- **Regla:** Cada tabla debe tener nombre único en la BD
+- **Regla:** Cada columna debe tener nombre único en su tabla
+- **Excepción:** Columnas con mismo nombre en diferentes tablas (permitido)
+
+#### **2. RESTRICCIONES SEMÁNTICAS (del Usuario)**
+Son **opcionales y definibles** por el desarrollador:
+
+##### **A) UNIQUE (Unicidad)**
+**Definición:** No permite valores duplicados excepto NULL
+
+**Código de ejemplo ejecutado en clase:**
+```sql
+CREATE DATABASE unica02;
+USE unica02;
+
+CREATE TABLE tabla1 (
+    atributo1 INTEGER UNIQUE,
+    atributo2 INTEGER
+);
+
+INSERT INTO tabla1 (atributo1, atributo2) VALUES 
+(0, 1), (2, 3), (3, 44);
+```
+
+**Error al duplicar:**
+```sql
+INSERT INTO tabla1 (atributo1, atributo2) VALUES (3, 77);
+-- Error: Entrada duplicada para la clave 'atributo1'
+```
+
+**Características importantes:**
+- **NULL permitido:** Múltiples valores NULL son válidos
+- **Diferencia con PRIMARY KEY:** UNIQUE permite NULL, PRIMARY KEY no
+
+##### **B) NOT NULL**
+**Propósito:** Obliga a tener siempre un valor
+
+**Aplicaciones principales:**
+- **Automático en PRIMARY KEY**
+- **Necesario en claves candidatas**
+- **Recomendado para datos esenciales**
+
+##### **C) PRIMARY KEY**
+**Comportamiento integral:**
+> "Al definirla se impone el not null, el unique y si además es entera es buena práctica definirla como autoincrementable"
+
+**Ejemplo de clave compuesta funcional:**
+```sql
+CREATE TABLE estudiantes_curso (
+    estudiante_id INTEGER,
+    curso_id INTEGER,
+    fecha_inscripcion DATE,
+    calificacion INTEGER,
+    PRIMARY KEY (estudiante_id, curso_id)
+);
+
+-- Inserciones válidas
+INSERT INTO estudiantes_curso VALUES 
+(1, 101, '2023-09-01', 8),
+(1, 102, '2023-09-01', 7),  -- Mismo estudiante, curso diferente
+(2, 101, '2023-09-01', 9);  -- Estudiante diferente, mismo curso
+
+-- Error: duplicado
+INSERT INTO estudiantes_curso VALUES (1, 101, '2023-09-15', 9);
+```
+
+**Explicación del error:**
+> "Lo considera como una pareja... 1-1-101 tiene un valor duplicado"
+
+##### **D) AUTOINCREMENT**
+**Finalidad:** Generación automática de identificadores únicos
+
+**Ventajas explicadas:**
+> "Para no tener que estarnos preocupando de cuál es el último valor que introdujimos... y cuál es el nuevo valor que deberíamos introducir"
+
+**Sintaxis:**
+```sql
+CREATE TABLE ejemplo (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre VARCHAR(50)
+);
+```
+
+##### **E) CHECK (Validación de Dominio)**
+**Nivel de atributo individual:**
+```sql
+CREATE TABLE producto (
+    nombre VARCHAR(50),
+    precio NUMERIC CHECK(precio >= 0)
+);
+```
+
+**Funcionamiento:**
+> "Compruebe que lo que hay dentro del paréntesis es cierto... si es verdadero nos va a dejar insertar, si no es verdadero nos va a dar un error"
+
+**Nivel de tabla/base de datos (ASSERTION):**
+```sql
+CREATE ASSERTION un_presidente 
+CHECK((SELECT COUNT(*) FROM empleados WHERE puesto='presidente') < 2);
+```
+
+**Explicación detallada:**
+> "Se trae todas las filas de empleados... solo las que tienen un atributo puesto con el valor presidente... me va a dar siete [filas] y eso es lo que chequea contra esta condición"
+
+##### **F) FOREIGN KEY (Clave Foránea)**
+**Característica especial con NULL:**
+> "Una clave foránea sí que puede ser nul... no tengo por qué tener una clave foránea con un valor... puedo insertar null en una clave foránea... no estoy apuntando a nadie"
+
+**Ejemplo práctico:**
+> "Imaginaros que es una tabla de coches y se relacionan con el propietario... ese coche está en el desguace, no tiene propietario... su clave foránea estaría vacía"
+
+##### **G) Restricciones Múltiples (Encadenadas)**
+**Capacidad de combinación:**
+> "No solamente hay que definir una única restricción por columna... podemos definir varias... podemos encadenar restricciones"
+
+**Ejemplo:**
+```sql
+CREATE TABLE ejemplo (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    precio DECIMAL(10,2) CHECK(precio >= 0)
+);
+```
+
+### 🚀 **TRIGGERS (Disparadores)**
+**Definición avanzada:**
+> "Triggers son mini programitas que se van a ejecutar solo cuando se producen ciertos eventos"
+
+#### **Ejemplo Práctico 1: Conteo Automático**
+```sql
+CREATE TRIGGER despues_insercion_pedido
+AFTER INSERT ON pedidos
+FOR EACH ROW
+BEGIN
+    UPDATE clientes 
+    SET numero_pedidos = numero_pedidos + 1 
+    WHERE id_cliente = NEW.id_cliente;
+END;
+```
+
+#### **Ejemplo Práctico 2: Validación Condicional**
+```sql
+CREATE TRIGGER tr_solicitud_check
+AFTER INSERT ON solicita
+FOR EACH ROW
+BEGIN
+    DECLARE num_solicitudes NUMERIC;
+    SELECT COUNT(*) INTO num_solicitudes FROM solicita;
+    IF num_solicitudes > 5 THEN
+        INSERT INTO mensajes (mensaje) 
+        VALUES ('Se ha excedido el número máximo de solicitudes.');
+    END IF;
+END;
+```
+
+### 🔒 **Conceptos de Integridad de Datos**
+
+#### **1. Integridad de Entidad**
+- **Garantía:** Unicidad y no nulidad de claves primarias
+- **Implementación:** PRIMARY KEY automático
+- **Validación:** Sistema rechaza duplicados y NULLs
+
+#### **2. Integridad de Dominio**
+- **Control:** Valores pertenecen al dominio permitido
+- **Herramientas:** CHECK, tipos de datos, UNIQUE
+- **Validación:** Rangos, formatos, restricciones personalizadas
+
+#### **3. Integridad Referencial**
+- **Función:** Validez de vínculos entre tablas
+- **Mecanismo:** FOREIGN KEY
+- **Flexibilidad:** NULL permitido para ausencia de relación
+
+#### **4. Normalización**
+- **Objetivo:** Optimización del modelo relacional
+- **Primera Forma Normal:** Atomización obligatoria
+- **Proceso:** Eliminación de redundancias y dependencias
+
+### 💻 **Demostración Práctica en Clase**
+
+#### **Entorno de Trabajo:**
+- **Cliente SQL:** Interfaz gráfica para MySQL
+- **Metodología:** Código en vivo con explicación de errores
+- **Verificación:** Consultas SELECT para validar resultados
+
+#### **Manejo de Errores Demostrado:**
+```sql
+-- Error de duplicado en UNIQUE
+INSERT INTO tabla1 (atributo1, atributo2) VALUES (3, 77);
+-- Resultado: "Entrada duplicada para la clave 'atributo1'"
+
+-- Error de NULL en PRIMARY KEY  
+INSERT INTO estudiantes_curso VALUES (1, NULL, '2023-09-01', 8);
+-- Resultado: "La columna curso_id no puede ser nul"
+```
+
+### 🎓 **Metodología Didáctica**
+
+#### **Enfoque Progresivo:**
+1. **Teoría conceptual** con analogías visuales
+2. **Clasificación sistemática** de restricciones
+3. **Ejemplos prácticos** con código ejecutable
+4. **Análisis de errores** en tiempo real
+5. **Conexión con la realidad** mediante casos de uso
+
+#### **Herramientas Pedagógicas:**
+- **Metáforas visuales** (papel de aluminio)
+- **Ejemplos del mundo real** (concesionario, talleres)
+- **Código incremental** de complejidad creciente
+- **Análisis de errores** como método de aprendizaje
+
+### 📋 **Casos de Uso Explicados**
+
+#### **Tabla Intermedia con Marca Temporal:**
+> "Imaginaros un coche, un taller... yo tendría que poner en esa tabla intermedia tanto identificar el vehículo como el taller y además la fecha... para que no se repitieran cada vez que llevo ese vehículo al taller"
+
+#### **Gestión de Propietarios:**
+> "Un coche que está en el desguace no tiene propietario... su clave foránea estaría vacía, no está apuntando a ningún propietario"
+
+#### **Control de Roles Únicos:**
+> "Solo puede haber un presidente en empleados... mediante ASSERTION que cuenta registros con puesto='presidente'"
+
+### 🔧 **Herramientas y Sintaxis**
+
+#### **Sintaxis General de Restricciones:**
+```sql
+CREATE TABLE nombre_tabla (
+    atributo1 TIPO [RESTRICCIÓN1] [RESTRICCIÓN2],
+    atributo2 TIPO [RESTRICCIONES],
+    ...
+    [RESTRICCIONES_DE_TABLA]
+);
+```
+
+#### **Restricciones Combinadas:**
+```sql
+CREATE TABLE completa (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    precio DECIMAL(10,2) CHECK(precio >= 0),
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+### 📚 **Recursos y Materiales**
+
+**Promesa del profesor:**
+> "Os subiré este código... para que los copiéis, los peguéis y veáis cómo se comporta cuando insertamos una cosa, insertamos otra"
+
+**Enfoque práctico:**
+> "Yo voy a intentar ver con vosotros todos los que pueda pero si no, no nos da tiempo a avanzar la teoría"
+
+### 🎯 **Conclusiones Clave**
+
+1. **Las restricciones son herramientas fundamentales** para ajustar el modelo a la realidad
+2. **Existen dos tipos principales:** inherentes (automáticas) y semánticas (configurables)
+3. **La integridad de datos** se garantiza mediante múltiples mecanismos complementarios
+4. **Los TRIGGERS permiten lógica avanzada** para validaciones complejas
+5. **La práctica con código real** es esencial para comprender el comportamiento
+6. **Los errores son herramientas de aprendizaje** que clarifican conceptos
+7. **La normalización y las restricciones** trabajan juntas para optimizar el modelo
+
+Esta clase proporciona una **base sólida y práctica** para implementar restricciones de integridad en bases de datos relacionales, combinando teoría fundamental con experiencia práctica directa mediante código SQL ejecutable.

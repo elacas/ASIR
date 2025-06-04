@@ -1,0 +1,244 @@
+## Resumen desde el Minuto 6:2 - Tutoría Gestión de Bases de Datos: Restricciones y Triggers
+
+A partir del minuto 6:2, la tutoría se centra en el **repaso práctico de restricciones** mediante un test interactivo y luego el **desarrollo completo de un sistema de reservas hoteleras** con implementación de triggers y restricciones avanzadas.
+
+### 🧪 **Test de Repaso: Restricciones de Bases de Datos (6:2 - 25:22)**
+
+#### **Metodología del Repaso:**
+> "Os he preparado unos test para a modo de recordatorio de la teoría de ayer... hacemos un test así rapidillo de los siete ocho conceptos que vimos de restricciones"
+
+#### **Preguntas Clave Resueltas:**
+
+**1. Orden de Atributos en Tablas**
+- **Pregunta:** ¿Debo tener precaución con el orden de los atributos para cumplir restricciones inherentes?
+- **Respuesta:** **FALSO** - El orden es transparente para el sistema
+
+**2. Restricción PRIMARY KEY**
+- **Pregunta:** ¿Cuál afirmación es correcta sobre PRIMARY KEY?
+- **Opciones:** Varias claves por tabla / Permite repetidos / No permite nulos ni repetidos / Solo una columna
+- **Respuesta:** **C) No permite valores nulos ni repetidos**
+- **Aclaración:** Puede aplicarse a **múltiples columnas** (clave compuesta)
+
+**3. Restricciones de Unicidad**
+- **Pregunta:** ¿Qué restricción impide valores repetidos en columna(s) y que no sean nulos?
+- **Análisis:** Tanto PRIMARY KEY como UNIQUE impiden repetición, pero solo PRIMARY KEY prohíbe NULLs
+- **Respuesta:** **PRIMARY KEY**
+
+**4. Triggers y Eventos**
+- **Pregunta:** Para actualizar valor medio de salarios, ¿cuándo activar el trigger?
+- **Opciones:** BEFORE UPDATE, BEFORE DELETE, AFTER (cualquier evento), BEFORE INSERT
+- **Respuesta:** **C) AFTER** - Después de modificaciones para recalcular
+
+**5. Restricción NOT NULL**
+- **Propósito:** Garantizar que columna siempre tenga valor
+- **Aplicación:** Automática en PRIMARY KEY, recomendada para datos esenciales
+
+**6. Diferencia UNIQUE vs PRIMARY KEY**
+- **UNIQUE:** Permite valores NULL múltiples
+- **PRIMARY KEY:** No permite NULL, solo una por tabla
+
+**7. AUTOINCREMENT**
+- **Función:** Generación automática de identificadores únicos
+- **Uso típico:** Claves primarias de tipo entero
+
+### 🏨 **Ejercicio Práctico: Sistema de Reservas Hoteleras (25:22 - Final)**
+
+#### **Enunciado del Sistema:**
+**Hotel con las siguientes características:**
+- Gestión de **habitaciones** con tipos y precios
+- Registro de **clientes** con identificadores propios
+- Sistema de **reservas** con validaciones específicas
+- **Restricciones de negocio** complejas
+
+#### **Identificación de Entidades y Atributos:**
+
+**Entidades detectadas:**
+1. **HABITACIONES:** número (único), tipo, precio_noche
+2. **CLIENTES:** nombre, DNI, ID_cliente
+3. **RESERVAS:** tabla intermedia para relación N:M
+
+**Restricciones de negocio identificadas:**
+- Habitación no puede reservarse dos veces para mismas fechas
+- Precio de reserva debe ser positivo
+- **Habitaciones tipo 'suite' deben tener precio mínimo de 100€**
+- Fecha de salida posterior a fecha de entrada
+
+#### **Implementación de la Base de Datos:**
+
+**1. Creación de la Base de Datos:**
+```sql
+DROP DATABASE IF EXISTS Triggers301;
+CREATE DATABASE Triggers301;
+USE Triggers301;
+```
+
+**2. Tabla CLIENTES:**
+```sql
+CREATE TABLE clientes (
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(30) NOT NULL,
+    dni VARCHAR(9) NOT NULL UNIQUE
+);
+```
+
+**Características implementadas:**
+- **ID_cliente:** Clave primaria autoincremental
+- **Nombre y DNI:** Obligatorios (NOT NULL)
+- **DNI:** Único para evitar duplicados
+
+**3. Tabla HABITACIONES:**
+```sql
+CREATE TABLE habitaciones (
+    numero INT PRIMARY KEY AUTO_INCREMENT,
+    tipo ENUM('individual', 'doble', 'suite') NOT NULL,
+    precio_noche DECIMAL(10,2) NOT NULL
+);
+```
+
+**Innovaciones técnicas:**
+- **ENUM:** Restricción de valores permitidos para tipo
+- **DECIMAL(10,2):** Precisión monetaria
+- **NOT NULL:** Campos obligatorios
+
+### 🔧 **Implementación de Restricción Compleja: Precio Mínimo Suite**
+
+El profesor desarrolla **dos métodos alternativos** para implementar la regla: "Las habitaciones tipo 'suite' deben tener precio mínimo de 100€"
+
+#### **Método 1: TRIGGER (Recomendado para Lógica Compleja)**
+
+**Configuración del delimitador:**
+```sql
+DELIMITER $$
+```
+
+**Trigger BEFORE INSERT:**
+```sql
+CREATE TRIGGER precio_suite 
+BEFORE INSERT ON habitaciones 
+FOR EACH ROW 
+BEGIN 
+    IF (NEW.tipo = 'suite' AND NEW.precio_noche < 100) THEN 
+        SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'El precio de una Suite no puede ser inferior a 100€'; 
+    END IF; 
+END$$
+```
+
+**Trigger BEFORE UPDATE:**
+```sql
+CREATE TRIGGER precio_suite_update 
+BEFORE UPDATE ON habitaciones 
+FOR EACH ROW 
+BEGIN 
+    IF (NEW.tipo = 'suite' AND NEW.precio_noche < 100) THEN 
+        SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'El precio de una Suite no puede ser inferior a 100€'; 
+    END IF; 
+END$$
+```
+
+**Restauración del delimitador:**
+```sql
+DELIMITER ;
+```
+
+#### **Método 2: Restricción CHECK (Alternativa Directa)**
+
+**Implementación con lógica OR:**
+```sql
+ALTER TABLE habitaciones 
+ADD CONSTRAINT habitacion_suite_check 
+CHECK (tipo <> 'suite' OR precio_noche >= 100);
+```
+
+#### **Análisis Lógico de la Restricción CHECK:**
+
+**Explicación de la tabla de verdad:**
+> "Para que la restricción se cumpla, la expresión debe ser TRUE"
+
+| tipo = 'suite' | precio >= 100 | tipo <> 'suite' | Resultado OR | ¿Válido? |
+|----------------|----------------|-----------------|--------------|----------|
+| FALSE          | FALSE          | TRUE            | TRUE         | ✅ SÍ    |
+| FALSE          | TRUE           | TRUE            | TRUE         | ✅ SÍ    |
+| TRUE           | FALSE          | FALSE           | FALSE        | ❌ NO    |
+| TRUE           | TRUE           | FALSE           | TRUE         | ✅ SÍ    |
+
+**Casos prácticos:**
+- **Habitación 'individual' con precio 50€:** ✅ Válido (no es suite)
+- **Habitación 'suite' con precio 150€:** ✅ Válido (es suite con precio >= 100)
+- **Habitación 'suite' con precio 80€:** ❌ **Error** (es suite con precio < 100)
+
+### 🔍 **Conceptos de Validación de Datos Enseñados:**
+
+#### **1. Clasificación de Restricciones:**
+- **Inherentes:** Del sistema (no modificables)
+- **Semánticas:** Del usuario (opcionales, configurables)
+
+#### **2. Jerarquía de Validación:**
+1. **Tipo de datos:** ENUM, INT, DECIMAL, VARCHAR
+2. **Restricciones básicas:** NOT NULL, UNIQUE, PRIMARY KEY
+3. **Restricciones lógicas:** CHECK con expresiones
+4. **Lógica de negocio:** TRIGGERS para reglas complejas
+
+#### **3. Cuándo Usar Cada Método:**
+
+**TRIGGERS (Recomendado cuando):**
+- Lógica condicional compleja
+- Múltiples condiciones interdependientes
+- Necesidad de mensajes de error personalizados
+- Validaciones que involucran múltiples tablas
+
+**CHECK (Recomendado cuando):**
+- Validaciones simples sobre columnas
+- Expresiones lógicas directas
+- Mejor rendimiento para validaciones básicas
+
+### 💻 **Herramientas y Técnicas Utilizadas:**
+
+#### **Gestión de Delimitadores:**
+```sql
+DELIMITER $$  -- Cambio temporal para triggers
+-- código del trigger
+DELIMITER ;   -- Restauración
+```
+
+#### **Manejo de Errores Personalizados:**
+```sql
+SIGNAL SQLSTATE '45000' 
+SET MESSAGE_TEXT = 'Mensaje personalizado';
+```
+
+#### **Sintaxis de Triggers:**
+```sql
+CREATE TRIGGER nombre_trigger
+{BEFORE | AFTER} {INSERT | UPDATE | DELETE}
+ON nombre_tabla
+FOR EACH ROW
+BEGIN
+    -- lógica del trigger
+END
+```
+
+### 🎯 **Objetivos de Aprendizaje Alcanzados:**
+
+1. **Repaso consolidado** de restricciones básicas
+2. **Implementación práctica** de sistema completo
+3. **Comparación de métodos** para validaciones complejas
+4. **Uso avanzado de TRIGGERS** con lógica condicional
+5. **Comprensión de lógica booleana** en restricciones CHECK
+6. **Gestión de errores** personalizados en SQL
+
+### 📚 **Materiales Prometidos:**
+
+**Compromiso del profesor:**
+> "Os subiré entre mañana... ejercicios que contienen varios de estos trigger y restricciones... os pondré inserciones tanto las que son correctas como las que generan errores para que veáis qué errores generan y por qué"
+
+### 🔑 **Conclusiones Clave:**
+
+1. **Los triggers permiten lógica compleja** que las restricciones CHECK no pueden manejar fácilmente
+2. **Las restricciones CHECK son más eficientes** para validaciones simples
+3. **La combinación de ambos métodos** proporciona validación robusta
+4. **Los mensajes de error personalizados** mejoran la experiencia del usuario
+5. **La práctica incremental** facilita la comprensión de conceptos complejos
+
+Esta parte de la tutoría demuestra una **progresión pedagógica excelente**, desde conceptos teóricos hasta implementación práctica completa, combinando repaso, aplicación y comparación de métodos alternativos para resolver el mismo problema de validación de datos.
