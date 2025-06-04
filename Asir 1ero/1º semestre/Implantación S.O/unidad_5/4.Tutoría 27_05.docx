@@ -1,0 +1,114 @@
+## Resumen del Video: Configuración de Controlador de Dominio Secundario (DC2) - ASIR
+
+Este video es una **tutoría práctica** donde el profesor Paco guía a los estudiantes paso a paso para crear un **segundo controlador de dominio (DC2)** en Active Directory.
+
+### 🎯 **Objetivo de la Sesión**
+Crear un **controlador de dominio secundario (DC2)** para proporcionar **alta disponibilidad** y **replicación** al dominio existente.
+
+### 🔧 **Proceso Paso a Paso Explicado**
+
+#### **1. Verificación Inicial de Conectividad**
+**Comandos utilizados:**
+- `ipconfig` - Para verificar configuración de red
+- `ping 10.0.2.15 -t` - Para probar conectividad con DC1
+
+**Ejemplo práctico:**
+> "El rango de red mío es el 10.0.2.X. En este caso la IP estática es la .25. Si yo hago un ping a la .15 (mi dominio principal)..."
+
+**Problemas encontrados:**
+- Configuración de red en adaptador puente
+- Firewall de Windows bloqueando comunicación
+
+**Solución del profesor:**
+> "Por seguridad debemos crear reglas. Yo para optimizar mi tiempo lo que he hecho es deshabilitarlo [el firewall]"
+
+#### **2. Instalación de Roles y Características**
+**Roles instalados:**
+- **Servicios de dominio de Active Directory** (principal)
+- **Servidor DNS** 
+- **Servidor DHCP** (opcional)
+- **Cliente Telnet** (recomendación del profesor)
+
+**Advertencia importante del profesor:**
+> "Importante chicos porque tengo mucho despistado que siempre le da 'servicios de certificado' y luego 'es que profe no me funciona'"
+
+#### **3. Promoción a Controlador de Dominio**
+**Opciones disponibles:**
+- ✅ **Agregar un controlador de dominio a un dominio existente** (opción correcta)
+- ❌ Agregar un dominio a un bosque existente
+- ❌ Agregar a un nuevo bosque
+
+**Configuración de credenciales:**
+- Dominio: `asir.local`
+- Usuario: `administrador`
+- Contraseña del dominio principal
+
+**Punto crítico - Configuración DNS:**
+> "¿A dónde tiene que estar apuntando mi DNS? Al servidor principal, 10.0.2.15"
+
+#### **4. Configuraciones Específicas**
+
+**Configuración de replicación:**
+- **Servidor DNS:** ✅ Habilitado
+- **Catálogo global:** ✅ Habilitado  
+- **Replicar desde:** "Cualquier controlador de dominio"
+
+**Explicación del profesor:**
+> "Si yo tengo varios tengo que decir cuál es. Si yo pongo 'cualquier controlador' va al único que encuentre"
+
+**Contraseña de restauración:**
+> "Esta contraseña es la que yo configuré cuando yo creé mi dominio. No tiene nada que ver con el usuario administrador"
+
+#### **5. Verificación de la Configuración**
+
+**Métodos de verificación:**
+1. **Desde DC1:** Ir a "Active Directory Users and Computers" → Ver ambos controladores
+2. **Desde DC2:** Verificar que aparecen DC1 y DC2
+3. **Prueba práctica:** Apagar DC1 y crear usuarios desde DC2
+
+**Prueba recomendada por el profesor:**
+> "La mejor prueba es apagar DC1, dejo DC2 levantada, creo un usuario, creo una GPO, y si me deja escribir en el bosque está bien"
+
+#### **6. Problemas Técnicos Encontrados**
+
+**Recursos del sistema:**
+- Memoria al 49%
+- CPU al 38%
+- Dificultades con dos máquinas virtuales simultáneas
+
+**Recomendación del profesor:**
+> "Yo lo que suelo hacer es DC1 le bajo todos los recursos porque voy a estar trabajando con DC2 y le intento subir todos los recursos posibles"
+
+### 💡 **Consejos Prácticos del Profesor**
+
+#### **Optimización de recursos:**
+- Reducir recursos de DC1 cuando se trabaja con DC2
+- Usar snapshot/instantáneas para backup
+
+#### **Funcionalidades adicionales mencionadas:**
+- **Clúster/Conmutación por error** (failover clustering)
+- **Hyper-V** para virtualización anidada
+- **Balanceo de cargas** entre controladores
+
+#### **Limitaciones en máquinas virtuales:**
+> "En Virtual Box no hemos tenido [éxito con clúster]. Hay algo que debe no identificar bien, no entendemos el por qué"
+
+### 📚 **Contenido del Curso Restante**
+
+**Evaluación:**
+- **10 preguntas por sesión** para practice tests
+- **Examen final** basado en prácticas realizadas
+- **Práctica de verano** combinando todo lo aprendido
+
+**Temas pendientes mencionados:**
+- Configuración de **Ubuntu** unido al dominio (vía LDAP)
+- **Hyper-V** dentro de Windows Server
+- **IPv6** implementación
+
+### 🎯 **Objetivos de Aprendizaje Alcanzados**
+1. ✅ Configuración exitosa de DC2
+2. ✅ Establecimiento de replicación entre controladores  
+3. ✅ Verificación de funcionamiento del dominio distribuido
+4. ✅ Comprensión de alta disponibilidad en Active Directory
+
+El video demuestra una implementación práctica real con problemas típicos que se encuentran en entornos de laboratorio y las soluciones aplicadas por un profesional experimentado.
